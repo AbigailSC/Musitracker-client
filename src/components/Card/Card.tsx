@@ -5,14 +5,15 @@ import {
   Figure,
   Stack,
   HeaderText,
-  SkeletonFigure
+  SkeletonFigure,
+  Icon
 } from './Card.styles';
 import { AiOutlineHeart } from 'react-icons/ai';
 // AiFillHeart
 const Card: React.FC = () => {
   const aux =
     'https://cdns-images.dzcdn.net/images/cover/a16e1c987f2b672fb7734b41ac3e1366/264x264.jpg';
-  return typeof aux === 'number' ? (
+  return typeof aux === 'string' ? (
     <Container color={'rgba(75, 85, 99, 0.27)'} bgColor={'#000'}>
       <HStack>
         <p>1</p>
@@ -31,7 +32,9 @@ const Card: React.FC = () => {
         </HeaderText>
       </HStack>
       <HStack>
-        <AiOutlineHeart />
+        <Icon>
+          <AiOutlineHeart />
+        </Icon>
         <h3>3:48</h3>
       </HStack>
     </Container>

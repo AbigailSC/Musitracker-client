@@ -39,6 +39,7 @@ export const Container = styled.div<Props>`
   -webkit-backdrop-filter: blur(8.7px);
   padding: 8px 2em;
   width: calc(100% - 4em);
+  transition: 0.2s ease-out;
   &:hover {
     background: rgba(75, 85, 99, 0.4);
     transition: 0.2s ease-in;
@@ -81,6 +82,12 @@ export const HeaderText = styled.div<IHeader>`
     text-decoration: underline;
     transition: 0.2s ease-in;
   }
+`;
+
+export const Icon = styled.div`
+  cursor: pointer;
+  height: 1em;
+  width: 1em;
 `;
 
 export const SkeletonFigure = styled.div<ISkeleton>`

@@ -6,6 +6,7 @@ import About from '@components/About';
 import Details from '@components/Details';
 import Results from '@components/Results';
 import Profile from '@components/Profile';
+import Landing from '@components/Landing';
 import GlobalStyle from './styles/global';
 
 const App: React.FC = () => {
@@ -13,7 +14,8 @@ const App: React.FC = () => {
     <>
       <GlobalStyle />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/artist/:idArtist" element={<Details />} />
         <Route path="/search=:nameTrack" element={<Results />} />
