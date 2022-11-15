@@ -30,7 +30,7 @@ export const Box = styled.div`
   flex-direction: column;
   gap: 0.5em;
   :nth-child(2) {
-    gap: 1em;
+    gap: 1.5em;
   }
 `;
 
@@ -50,6 +50,19 @@ export const Span = styled.span`
   font-size: 1em;
   font-weight: 400;
   color: #7362c3;
+`;
+
+export const HyperText = styled(Span)`
+  cursor: pointer;
+  list-style: none;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+export const Text = styled.p`
+  font-size: 1em;
 `;
 
 export const Label = styled.span`

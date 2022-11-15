@@ -18,7 +18,8 @@
     "baseUrl": "./",
     "paths": {
       "@components/*": ["src/components/*"]
-    }
+    },
+    "useUnknownInCatchVariables": false
   },
   "include": [
     "src",

@@ -27,8 +27,8 @@ export default authSlice.reducer;
 export const postUserAuth = async (userdata: object): Promise<void> => {
   try {
     const newUser: AxiosResponse = await axios.post('/auth/singup', userdata);
-    console.log(newUser);
+    console.log(newUser.data);
   } catch (error) {
-    console.log(error);
+    console.log(error.response.data);
   }
 };
