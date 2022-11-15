@@ -7,6 +7,8 @@ import Details from '@components/Details';
 import Results from '@components/Results';
 import Profile from '@components/Profile';
 import Landing from '@components/Landing';
+import SingIn from '@components/SingIn';
+import SingUp from '@components/SingUp';
 import GlobalStyle from './styles/global';
 
 const App: React.FC = () => {
@@ -15,6 +17,8 @@ const App: React.FC = () => {
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/singin" element={<SingIn />} />
+        <Route path="/singup" element={<SingUp />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/artist/:idArtist" element={<Details />} />

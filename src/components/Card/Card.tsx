@@ -13,6 +13,7 @@ import { AiOutlineHeart } from 'react-icons/ai';
 const Card: React.FC = () => {
   const aux =
     'https://cdns-images.dzcdn.net/images/cover/a16e1c987f2b672fb7734b41ac3e1366/264x264.jpg';
+
   return typeof aux === 'string' ? (
     <Container color={'rgba(75, 85, 99, 0.27)'} bgColor={'#000'}>
       <HStack>

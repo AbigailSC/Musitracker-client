@@ -33,7 +33,7 @@ export const Container = styled.div<Props>`
   justify-content: space-between;
   align-items: center;
   background: rgba(75, 85, 99, 0.25);
-  border-radius: 16px;
+  border-radius: 1em;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(8.7px);
   -webkit-backdrop-filter: blur(8.7px);
