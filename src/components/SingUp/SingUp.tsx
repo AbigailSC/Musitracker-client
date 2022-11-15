@@ -19,8 +19,10 @@ import {
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { postUserAuth } from '../../redux/slices/auth/index';
 import { Link } from 'react-router-dom';
+import { useCustomDispatch } from '../../hooks/redux';
 
 const SingUp: React.FC = () => {
+  const dispatch = useCustomDispatch();
   interface IData {
     username?: string;
     email?: string;
@@ -94,7 +96,7 @@ const SingUp: React.FC = () => {
 
   const handleSubmit = (): void => {
     setError(validation(input));
-    postUserAuth(input);
+    dispatch(postUserAuth(input));
     setInput({
       username: '',
       email: '',
