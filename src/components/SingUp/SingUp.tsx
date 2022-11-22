@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-useless-escape */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Section,
   Container,
@@ -19,10 +20,19 @@ import {
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { postUserAuth } from '../../redux/slices/auth/index';
 import { Link } from 'react-router-dom';
-import { useCustomDispatch } from '../../hooks/redux';
+import { useCustomDispatch, useCustomSelector } from '../../hooks/redux';
+
+import { getUsersInfo } from '../../redux/slices/user/user';
 
 const SingUp: React.FC = () => {
   const dispatch = useCustomDispatch();
+
+  useEffect(() => {
+    dispatch(getUsersInfo());
+  }, []);
+
+  // const { auth } = useCustomSelector((state) => state);
+  const { userSlice } = useCustomSelector((state) => state);
   interface IData {
     username?: string;
     email?: string;
@@ -33,6 +43,10 @@ const SingUp: React.FC = () => {
     username: string;
     email: string;
     password: string;
+  }
+
+  interface IUser {
+    email: string;
   }
 
   const [showPass, setShowPass] = useState(true);
@@ -96,12 +110,19 @@ const SingUp: React.FC = () => {
 
   const handleSubmit = (): void => {
     setError(validation(input));
-    dispatch(postUserAuth(input));
-    setInput({
-      username: '',
-      email: '',
-      password: ''
-    });
+    const email = Array.isArray(userSlice.users)
+      ? userSlice.users.find((user: IUser) => user.email === input.email)
+      : undefined;
+    if (email.email !== undefined) {
+      alert('email ya existe');
+    } else {
+      dispatch(postUserAuth(input));
+      setInput({
+        username: '',
+        email: '',
+        password: ''
+      });
+    }
   };
   return (
     <Section>

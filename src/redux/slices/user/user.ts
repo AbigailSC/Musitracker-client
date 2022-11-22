@@ -3,28 +3,26 @@ import axios from '../../../utils/axios';
 import { AxiosResponse, AxiosError } from 'axios';
 import { Thunk } from 'src/redux/store/store';
 
-export interface IAuth {
-  accessToken: string | null;
+export interface IUser {
+  users: IUserData | [];
   isLoading: boolean;
 }
 
-export interface Data {
-  username: string;
+export interface IUserData {
   email: string;
-  password: string;
 }
 
-const initialState: IAuth = {
-  accessToken: null,
+const initialState: IUser = {
+  users: [],
   isLoading: false
 };
 
-const authSlice = createSlice({
-  name: 'auth',
+const userSlice = createSlice({
+  name: 'user',
   initialState,
   reducers: {
-    postUser: (state, action: PayloadAction<string | null>) => {
-      state.accessToken = action.payload;
+    getUsers: (state, action: PayloadAction<IUserData>) => {
+      state.users = action.payload;
     },
     setIsLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
@@ -32,19 +30,23 @@ const authSlice = createSlice({
   }
 });
 
-export const { postUser, setIsLoading } = authSlice.actions;
+export const { getUsers, setIsLoading } = userSlice.actions;
 
-export default authSlice.reducer;
+export default userSlice.reducer;
 
-export const postUserAuth =
-  (data: Data): Thunk =>
+export const getUsersInfo =
+  (): Thunk =>
   async (dispatch): Promise<AxiosResponse | AxiosError> => {
     dispatch(setIsLoading(true));
     try {
-      const newUser: AxiosResponse = await axios.post('/auth/singup', data);
-      const token = newUser.data.token;
-      dispatch(postUser(token));
-      return token;
+      const users: AxiosResponse = await axios.get('/user');
+      const dataUsers = users.data.map((user: IUserData) => {
+        return {
+          email: user.email
+        };
+      });
+      dispatch(getUsers(dataUsers));
+      return users;
     } catch (error) {
       return error as AxiosError;
     } finally {

@@ -2,6 +2,7 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import authReducer from '../slices/auth';
+import userSlice from '../slices/user/user';
 
 const persistAuthConfig = {
   key: 'authToken',
@@ -14,7 +15,8 @@ const store = configureStore({
     auth: persistReducer<ReturnType<typeof authReducer>>(
       persistAuthConfig,
       authReducer
-    )
+    ),
+    userSlice
   },
   middleware: (defaultMiddleware) =>
     defaultMiddleware({
