@@ -11,10 +11,8 @@ import {
   List,
   AList,
   HyperText,
-  Span,
-  Stack
+  Span
 } from './Landing.styles';
-import { BsFillCaretDownFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
 const Landing: React.FC = () => {
@@ -65,10 +63,6 @@ const Landing: React.FC = () => {
             placeat aliquam accusamus?
           </Text>
         </Container>
-        <Stack>
-          <Text>Ver más</Text>
-          <BsFillCaretDownFill style={{ width: '3em', height: '3em' }} />
-        </Stack>
       </LandingContainer>
     </>
   );

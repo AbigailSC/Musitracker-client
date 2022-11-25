@@ -52,10 +52,10 @@ export const HStack = styled.div`
   gap: 1em;
   width: 100%;
   justify-content: start;
-  :nth-child(2) {
+  &:nth-child(2) {
     justify-content: center;
   }
-  :nth-child(3) {
+  &:nth-child(3) {
     justify-content: end;
   }
 `;

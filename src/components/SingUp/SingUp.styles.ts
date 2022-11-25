@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import {} from 'styled-components/cssprop';
 
 interface IError {
   error: boolean;
@@ -125,7 +124,6 @@ export const Icon = styled.div`
   position: absolute;
   top: 25%;
   right: 0;
-  height: 1em;
   cursor: pointer;
   z-index: 1;
 `;

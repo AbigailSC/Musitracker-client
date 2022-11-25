@@ -10,6 +10,7 @@ export const LandingContainer = styled.section`
   height: 100vh;
   background-image: linear-gradient(
       to top,
+      rgba(17, 24, 39, 1),
       rgba(17, 24, 39, 0.3),
       rgba(17, 24, 39, 1)
     ),
@@ -27,7 +28,7 @@ export const Container = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;
-  gap: 2em;
+  gap: 4em;
 `;
 
 export const Header = styled.h2`
@@ -43,7 +44,7 @@ export const HStack = styled.div`
   display: flex;
   gap: 1em;
   align-items: center;
-  :nth-child(1) {
+  &:nth-child(1) {
     gap: 8px;
   }
 `;
@@ -101,12 +102,4 @@ export const HyperText = styled.h1`
 export const Span = styled.span`
   color: #7362c3;
   font-weight: 400;
-`;
-
-export const Stack = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: antiquewhite;
 `;

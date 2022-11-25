@@ -21,7 +21,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { postUserAuth } from '../../redux/slices/auth/index';
 import { Link } from 'react-router-dom';
 import { useCustomDispatch, useCustomSelector } from '../../hooks/redux';
-
+import Swal from 'sweetalert2';
 import { getUsersInfo } from '../../redux/slices/user/user';
 
 const SingUp: React.FC = () => {
@@ -33,6 +33,7 @@ const SingUp: React.FC = () => {
 
   // const { auth } = useCustomSelector((state) => state);
   const { userSlice } = useCustomSelector((state) => state);
+
   interface IData {
     username?: string;
     email?: string;
@@ -113,8 +114,14 @@ const SingUp: React.FC = () => {
     const email = Array.isArray(userSlice.users)
       ? userSlice.users.find((user: IUser) => user.email === input.email)
       : undefined;
-    if (email.email !== undefined) {
-      alert('email ya existe');
+    if (email !== undefined) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Oops...',
+        text: 'El e-mail que intentas utilizar ya se encuentra registrado.',
+        iconColor: '#b535f6',
+        confirmButtonColor: '#c35df7'
+      });
     } else {
       dispatch(postUserAuth(input));
       setInput({
