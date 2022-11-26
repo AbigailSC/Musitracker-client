@@ -11,7 +11,9 @@ export const SidebarContainer = styled.div`
   left: 0;
   width: 260px;
   height: 100%;
-  background: rgba(17, 24, 39, 0.3);
+  background: rgba(99, 99, 99, 0.1);
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.5px);
 `;
 
 export const Button = styled.button`
@@ -29,7 +31,6 @@ export const Button = styled.button`
   cursor: pointer;
   &:hover {
     color: #fff;
-    transition: 0.2s ease;
   }
   &:focus {
     border-right: 3px solid #6a28cb;
