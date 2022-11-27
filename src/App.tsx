@@ -1,6 +1,6 @@
 import React from 'react';
 import Home from '@components/Home';
-import { Navigate, redirect, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import NotFound from '@components/NotFound';
 import About from '@components/About';
 import Details from '@components/Details';
@@ -30,7 +30,7 @@ const App: React.FC = () => {
           element={user ? <Navigate replace to="/" /> : <Details />}
         />
         <Route
-          path="/search=:nameTrack"
+          path="/search=:name"
           element={user ? <Navigate replace to="/" /> : <Results />}
         />
         <Route
