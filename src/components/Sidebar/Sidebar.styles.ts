@@ -33,7 +33,7 @@ export const Button = styled.button`
     color: #fff;
   }
   &:focus {
-    border-right: 3px solid #6a28cb;
+    border-right: 4px solid #6a28cb;
   }
 `;
 
@@ -50,19 +50,4 @@ export const ContainerLogo = styled.div`
   justify-content: center;
   align-items: center;
   height: 100px;
-`;
-
-export const Span = styled.div`
-  width: 1em;
-  border-radius: 100%;
-`;
-
-export const SubBtn = styled.div`
-  &.sub-nav {
-    overflow: hidden;
-    height: 0;
-  }
-  &.sub-nav.open {
-    height: 100%;
-  }
 `;

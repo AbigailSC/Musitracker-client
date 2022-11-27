@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const SearchbarContainer = styled.div`
-  width: 100%;
+  width: 70%;
   display: flex;
   align-items: center;
   height: min-content;
@@ -19,7 +19,7 @@ export const SearchbarInput = styled.input`
 export const Icon = styled.button`
   position: absolute;
   right: 10px;
-  top: 40%;
+  top: 35%;
   background: transparent;
   color: #d4d4ea;
   transition: 0.2s ease-in;

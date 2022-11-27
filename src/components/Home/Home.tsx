@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import Searchbar from '@components/Searchbar';
+
+import Navbar from '@components/Navbar';
 import Sidebar from '@components/Sidebar/Sidebar';
+
 import React from 'react';
 import { Section, SectionContent } from './Home.styles';
 // import { useCustomSelector } from '../../hooks/redux/index';
@@ -11,7 +13,7 @@ const Home: React.FC = () => {
     <Section>
       <Sidebar />
       <SectionContent>
-        <Searchbar />
+        <Navbar />
       </SectionContent>
     </Section>
   );
