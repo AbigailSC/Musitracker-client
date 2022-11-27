@@ -17,4 +17,14 @@ export const SectionContent = styled.div`
   display: flex;
   height: 100%;
   padding: 2em 4em;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const SectionContentLeft = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;

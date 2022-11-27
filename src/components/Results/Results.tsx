@@ -3,9 +3,10 @@ import Navbar from '@components/Navbar';
 import Sidebar from '@components/Sidebar';
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Section, SectionContent } from './Results.styles';
+import { Section, SectionContent, SectionContentLeft } from './Results.styles';
 import { musicBySearch } from '../../redux/slices/music/index';
 import { useCustomSelector, useCustomDispatch } from '../../hooks/redux/index';
+import Spinner from '@components/Spinner/Spinner';
 
 const Results: React.FC = () => {
   const dispatch = useCustomDispatch();
@@ -25,7 +26,9 @@ const Results: React.FC = () => {
       <Sidebar />
       <SectionContent>
         <Navbar />
-        {musicSlice.isLoading ? <p>Cargando</p> : <p>Busquedas!</p>}
+        <SectionContentLeft>
+          {musicSlice.isLoading ? <Spinner /> : <p>Busquedas!</p>}
+        </SectionContentLeft>
       </SectionContent>
     </Section>
   );
