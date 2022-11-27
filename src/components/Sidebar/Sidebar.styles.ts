@@ -51,3 +51,9 @@ export const ContainerLogo = styled.div`
   align-items: center;
   height: 100px;
 `;
+
+export const SubItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-left: 2.5em;
+`;

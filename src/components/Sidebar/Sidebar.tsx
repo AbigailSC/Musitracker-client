@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { AiOutlineHome, AiOutlineCompass, AiOutlineLike, AiOutlineUser } from 'react-icons/ai';
 import { BiPodcast } from "react-icons/bi"
 import { MdOutlineMusicVideo, MdExpandMore, MdExpandLess } from "react-icons/md"
-import { Logo, SidebarContainer, Button, ContainerLogo, HStack } from './Sidebar.styles';
+import { Logo, SidebarContainer, Button, ContainerLogo, HStack, SubItem } from './Sidebar.styles';
 
 
 const Sidebar: React.FC = () => {
@@ -14,12 +14,16 @@ const Sidebar: React.FC = () => {
     setActiveItem(!activeItem)
   }
 
+  const handleFalseActiveItem = (): void => {
+    setActiveItem(false)
+  }
+
   return (
     <SidebarContainer>
       <ContainerLogo>
         <Logo src="./logo.png" alt="musitracker" />
       </ContainerLogo>
-      <Button>
+      <Button onClick={handleFalseActiveItem}>
         <HStack>
           <AiOutlineHome style={{ width: "1.5em", height: "1.5em" }} /> Home
         </HStack>
@@ -34,7 +38,7 @@ const Sidebar: React.FC = () => {
       </Button>
       {
         activeItem && (
-          <>
+          <SubItem>
             <Button>
               Trending Music
             </Button>
@@ -44,25 +48,25 @@ const Sidebar: React.FC = () => {
             <Button>
               Genres
             </Button>
-          </>
+          </SubItem>
         )
       }
-      <Button>
+      <Button onClick={handleFalseActiveItem}>
         <HStack>
           <BiPodcast style={{ width: "1.5em", height: "1.5em" }} /> Podcasts
         </HStack>
       </Button>
-      <Button>
+      <Button onClick={handleFalseActiveItem}>
         <HStack>
           <AiOutlineLike style={{ width: "1.5em", height: "1.5em" }} /> Favorites
         </HStack>
       </Button>
-      <Button>
+      <Button onClick={handleFalseActiveItem}>
         <HStack>
           <AiOutlineUser style={{ width: "1.5em", height: "1.5em" }} /> Artists
         </HStack>
       </Button>
-      <Button>
+      <Button onClick={handleFalseActiveItem}>
         <HStack>
           <MdOutlineMusicVideo style={{ width: "1.5em", height: "1.5em" }} /> Albums
         </HStack>
