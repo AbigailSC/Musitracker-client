@@ -1,4 +1,13 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const loading = keyframes`
+  from {
+    left: -200px
+  }
+  to{
+    left: 100%;
+  }
+`;
 
 export const Section = styled.section`
   display: flex;
@@ -19,12 +28,80 @@ export const SectionContent = styled.div`
   padding: 2em 4em;
   display: flex;
   flex-direction: column;
+  gap: 2em;
 `;
 
 export const SectionContentLeft = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+`;
+
+export const HeroContainer = styled.div`
+  width: 100%;
+  display: flex;
+  height: 340px;
+  overflow: hidden;
+  border-radius: 1em;
+  position: relative;
+  & > img {
+    object-fit: cover;
+    transition: transform 0.8s ease;
+    height: 100%;
+    width: 100%;
+  }
+  &:hover > img {
+    transform: scale(1.05);
+  }
+`;
+
+export const HeroContainerSkeleton = styled.div`
+  width: 100%;
+  display: flex;
+  height: 340px;
+  overflow: hidden;
+  border-radius: 1em;
+  position: relative;
+  overflow: hidden;
+  background-color: #4b5563;
+  ::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: -200px;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+      to right,
+      #4b5563 0%,
+      #7a879a 50%,
+      #4b5563 100%
+    );
+    animation: ${loading} 1000ms ease infinite;
+  }
+`;
+
+export const HeroContainerHeader = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 40%;
+  background: rgba(99, 99, 99, 0.1);
+  backdrop-filter: blur(4px);
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 1em 2em;
+  justify-content: center;
+  & > h3 {
+    color: #d4d4ea;
+  }
+  & > h2 {
+    font-size: 2em;
+    font-weight: 500;
+  }
 `;

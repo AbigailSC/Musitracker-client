@@ -6,6 +6,7 @@ export const UserContainer = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+  z-index: 20;
 `;
 
 export const Avatar = styled.img`
