@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { AiOutlineHome, AiOutlineCompass, AiOutlineLike, AiOutlineUser } from 'react-icons/ai';
 import { BiPodcast } from "react-icons/bi"
 import { MdOutlineMusicVideo, MdExpandMore, MdExpandLess } from "react-icons/md"
-import { Logo, SidebarContainer, Button, ContainerLogo, HStack, SubItem } from './Sidebar.styles';
+import { Logo, SidebarContainer, Button, ContainerLogo, HStack, SubItem, Span } from './Sidebar.styles';
 
 
 const Sidebar: React.FC = () => {
@@ -24,51 +24,63 @@ const Sidebar: React.FC = () => {
         <Logo src="./logo.png" alt="musitracker" />
       </ContainerLogo>
       <Button onClick={handleFalseActiveItem}>
+        <div className='effectHover' />
         <HStack>
-          <AiOutlineHome style={{ width: "1.5em", height: "1.5em" }} /> Home
+          <AiOutlineHome className="icon" /> <span className='span'>Home</span>
         </HStack>
       </Button>
       <Button onClick={handleActiveItem}>
+        <div className='effectHover' />
         <HStack>
-          <AiOutlineCompass style={{ width: "1.5em", height: "1.5em" }} /> Explore
+          <AiOutlineCompass className="icon" /> Explore
         </HStack>
         {activeItem
-          ? <MdExpandLess style={{ width: "1.5em", height: "1.5em" }} />
-          : <MdExpandMore style={{ width: "1.5em", height: "1.5em" }} />}
+          ? <MdExpandLess className="icon" />
+          : <MdExpandMore className="icon" />}
       </Button>
       {
         activeItem && (
           <SubItem>
             <Button>
+              <div className='effectHover' />
+              <Span />
               Trending Music
             </Button>
             <Button>
+              <div className='effectHover' />
+              <Span />
               Top Music
             </Button>
             <Button>
+              <div className='effectHover' />
+              <Span />
               Genres
             </Button>
           </SubItem>
         )
       }
       <Button onClick={handleFalseActiveItem}>
+        <div className='effectHover' />
         <HStack>
-          <BiPodcast style={{ width: "1.5em", height: "1.5em" }} /> Podcasts
+          <BiPodcast className="icon" /> Podcasts
         </HStack>
       </Button>
       <Button onClick={handleFalseActiveItem}>
+        <div className='effectHover' />
         <HStack>
-          <AiOutlineLike style={{ width: "1.5em", height: "1.5em" }} /> Favorites
+          <AiOutlineLike className="icon" /> Favorites
         </HStack>
       </Button>
       <Button onClick={handleFalseActiveItem}>
+        <div className='effectHover' />
         <HStack>
-          <AiOutlineUser style={{ width: "1.5em", height: "1.5em" }} /> Artists
+          <AiOutlineUser className="icon" /> Artists
         </HStack>
       </Button>
       <Button onClick={handleFalseActiveItem}>
+        <div className='effectHover' />
         <HStack>
-          <MdOutlineMusicVideo style={{ width: "1.5em", height: "1.5em" }} /> Albums
+          <MdOutlineMusicVideo className="icon" /> Albums
         </HStack>
       </Button>
     </SidebarContainer>
