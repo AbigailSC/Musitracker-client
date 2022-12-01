@@ -10,17 +10,6 @@ import {
 } from './Card.styles';
 import { AiOutlineHeart } from 'react-icons/ai';
 import getAverageColor from '../../utils/getAverageColor';
-// import { FastAverageColor } from 'fast-average-color';
-
-// const fac = new FastAverageColor();
-// fac
-//   .getColorAsync(img.src)
-//   .then((color) => {
-//     console.log(color.rgba);
-//   })
-//   .catch((e) => {
-//     console.log(e);
-//   });
 
 // AiFillHeart
 const Card: React.FC = () => {
@@ -33,6 +22,7 @@ const Card: React.FC = () => {
     setColor(color);
   };
   getColor(aux);
+
   console.log(color);
 
   return typeof aux === 'string' ? (
