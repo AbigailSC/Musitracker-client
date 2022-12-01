@@ -38,10 +38,19 @@ export const Container = styled.div<Props>`
   backdrop-filter: blur(8.7px);
   -webkit-backdrop-filter: blur(8.7px);
   padding: 8px 2em;
-  width: calc(100% - 4em);
+  width: 100%;
   transition: 0.2s ease-out;
   &:hover {
     background: rgba(75, 85, 99, 0.4);
+    transition: 0.2s ease-in;
+  }
+`;
+
+export const HeaderText = styled.div<IHeader>`
+  color: ${(props) => (props.color !== '#d1d5db' ? props.color : '#d1d5db')};
+  cursor: ${(props) => (props.cursor !== 'default' ? props.cursor : 'default')};
+  &.hover:hover {
+    text-decoration: underline;
     transition: 0.2s ease-in;
   }
 `;
@@ -50,13 +59,27 @@ export const HStack = styled.div`
   display: flex;
   align-items: center;
   gap: 1em;
-  width: 100%;
+  width: 50%;
   justify-content: start;
   &:nth-child(2) {
-    justify-content: center;
+    justify-content: flex-start;
+    width: 40%;
+    & > ${HeaderText} {
+      width: min-content;
+      max-width: 70%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
   &:nth-child(3) {
+    width: 10%;
     justify-content: end;
+  }
+  & > p {
+    width: 30px;
+    display: flex;
+    justify-content: flex-end;
   }
 `;
 
@@ -73,15 +96,6 @@ export const Stack = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-`;
-
-export const HeaderText = styled.div<IHeader>`
-  color: ${(props) => (props.color !== '#d1d5db' ? props.color : '#d1d5db')};
-  cursor: ${(props) => (props.cursor !== 'default' ? props.cursor : 'default')};
-  &.hover:hover {
-    text-decoration: underline;
-    transition: 0.2s ease-in;
-  }
 `;
 
 export const Icon = styled.div`

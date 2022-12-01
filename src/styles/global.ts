@@ -55,7 +55,6 @@ export default createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* border: 1px solid red; */
     font-family: 'Ubuntu', sans-serif;
     background-color: var(--sc-background);
     color: var(--sc-text-color);
@@ -68,5 +67,6 @@ export default createGlobalStyle`
     border: none;
     font-size: 1em;
     box-sizing: border-box;
+    /* border: 1px solid red; */
   }
 `;

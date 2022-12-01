@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
 import {
   Container,
@@ -5,73 +6,50 @@ import {
   Figure,
   Stack,
   HeaderText,
-  SkeletonFigure,
   Icon
 } from './Card.styles';
 import { AiOutlineHeart } from 'react-icons/ai';
 import getAverageColor from '../../utils/getAverageColor';
 
 // AiFillHeart
-const Card: React.FC = () => {
-  const aux =
-    'https://cdns-images.dzcdn.net/images/cover/a16e1c987f2b672fb7734b41ac3e1366/264x264.jpg';
-  const [color, setColor] = useState<string>('');
+const Card: React.FC = ({ title, artist, album, duration, img, id, index }) => {
 
+  const [color, setColor] = useState<string>('');
+  const durationTimeMinutes = Math.floor(duration / 60);
+  const durationTimeSeconds = duration % 60;
   const getColor = async (img: string): Promise<void> => {
     const color = await getAverageColor(img);
     setColor(color);
   };
-  getColor(aux);
-
-  console.log(color);
-
-  return typeof aux === 'string' ? (
+  getColor(img);
+  console.log(color, id);
+  return (
     <Container color={'rgba(75, 85, 99, 0.27)'} bgColor={'#000'}>
       <HStack>
-        <p>1</p>
-        <Figure bgImage={aux}></Figure>
+        <p>#{index}</p>
+        <Figure bgImage={img}></Figure>
         <Stack>
-          <HeaderText>Starlight</HeaderText>
+          <HeaderText>{title}</HeaderText>
           <HeaderText color={'#919499'} cursor={'pointer'} className="hover">
-            Dreamcatcher
+            {artist}
           </HeaderText>
-          <img
-            id="imgCard"
-            src={aux}
-            alt="something"
-            style={{ display: 'none' }}
-          />
         </Stack>
       </HStack>
       <HStack>
         <HeaderText cursor={'pointer'} className="hover">
-          Dystopia
+          {album}
         </HeaderText>
       </HStack>
       <HStack>
         <Icon>
           <AiOutlineHeart />
         </Icon>
-        <h3>3:48</h3>
-      </HStack>
-    </Container>
-  ) : (
-    <Container color={'rgba(75, 85, 99, 0.27)'} bgColor={'#000'}>
-      <HStack>
-        <p>1</p>
-        <SkeletonFigure width={'4em'} heigth={'4em'} />
-        <Stack>
-          <SkeletonFigure width={'10em'} heigth={'1em'} />
-          <SkeletonFigure width={'14em'} heigth={'1em'} />
-          <img src={aux} alt="something" style={{ display: 'none' }} />
-        </Stack>
-      </HStack>
-      <HStack>
-        <SkeletonFigure width={'10em'} heigth={'1em'} />
-      </HStack>
-      <HStack>
-        <AiOutlineHeart />
-        <SkeletonFigure width={'3em'} heigth={'1em'} />
+        <h3>
+          {`${durationTimeMinutes}:${durationTimeSeconds > 10
+            ? durationTimeSeconds
+            : `0${durationTimeSeconds}`
+            }`}
+        </h3>
       </HStack>
     </Container>
   );

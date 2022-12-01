@@ -9,16 +9,23 @@ import {
   SectionContentLeft,
   HeroContainer,
   HeroContainerSkeleton,
-  HeroContainerHeader
+  HeroContainerHeader,
+  Container,
+  Stack,
+  CardContainer
 } from './Results.styles';
 import { musicBySearch } from '../../redux/slices/music/index';
 import { useCustomSelector, useCustomDispatch } from '../../hooks/redux/index';
+import Card from '@components/Card';
+import { ITitle } from './types';
+import CardSkeleton from '@components/CardSkeleton/CardSkeleton';
 
 const Results: React.FC = () => {
   const dispatch = useCustomDispatch();
   const { name } = useParams();
   const { musicSlice } = useCustomSelector((state) => state);
   const musicData = musicSlice.musicFiltered;
+  const skeletonFill = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   const heroImage: string = musicData[0]?.artist.picture;
   const heroName = musicData[0]?.artist.name;
@@ -30,7 +37,6 @@ const Results: React.FC = () => {
     dispatch(musicBySearch(name as string));
   }, []);
 
-  console.log(musicData);
   return (
     <Section>
       <Sidebar />
@@ -38,15 +44,42 @@ const Results: React.FC = () => {
         <Navbar />
         <SectionContentLeft>
           {musicSlice.isLoading ? (
-            <HeroContainerSkeleton />
+            <Stack>
+              <Container>
+                <HeroContainerSkeleton />
+              </Container>
+              <CardContainer>
+                {skeletonFill.map((index) => (
+                  <CardSkeleton key={index} index={index + 1} />
+                ))}
+              </CardContainer>
+            </Stack>
           ) : (
-            <HeroContainer>
-              <HeroContainerHeader>
-                <h3>Artist</h3>
-                <h2>{heroName}</h2>
-              </HeroContainerHeader>
-              <img src={heroImage} alt="hero" />
-            </HeroContainer>
+            <Stack>
+              <Container>
+                <HeroContainer>
+                  <HeroContainerHeader>
+                    <h3>Artist</h3>
+                    <h2>{heroName}</h2>
+                  </HeroContainerHeader>
+                  <img src={heroImage} alt="hero" />
+                </HeroContainer>
+              </Container>
+              <CardContainer>
+                {musicData.map((card: ITitle, index: number) => (
+                  <Card
+                    key={index}
+                    title={card.title}
+                    artist={card.artist.name}
+                    album={card.album.title}
+                    duration={card.duration}
+                    img={card.album.cover}
+                    id={card.id}
+                    index={index + 1}
+                  />
+                ))}
+              </CardContainer>
+            </Stack>
           )}
         </SectionContentLeft>
       </SectionContent>
