@@ -92,7 +92,7 @@ const Sidebar: React.FC = () => {
               <Button className='secondary'>
                 <div className='effectHover' />
                 <BiTrendingUp className='subIcon' />
-                Top Music
+                Top Playlists
               </Button>
               <Button className='secondary'>
                 <div className='effectHover' />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Container,
   HStack,
@@ -9,10 +9,32 @@ import {
   Icon
 } from './Card.styles';
 import { AiOutlineHeart } from 'react-icons/ai';
+import getAverageColor from '../../utils/getAverageColor';
+// import { FastAverageColor } from 'fast-average-color';
+
+// const fac = new FastAverageColor();
+// fac
+//   .getColorAsync(img.src)
+//   .then((color) => {
+//     console.log(color.rgba);
+//   })
+//   .catch((e) => {
+//     console.log(e);
+//   });
+
 // AiFillHeart
 const Card: React.FC = () => {
   const aux =
     'https://cdns-images.dzcdn.net/images/cover/a16e1c987f2b672fb7734b41ac3e1366/264x264.jpg';
+  const [color, setColor] = useState<string>('');
+
+  const getColor = async (img: string): Promise<void> => {
+    const color = await getAverageColor(img);
+    setColor(color);
+  };
+  getColor(aux);
+
+  console.log(color);
 
   return typeof aux === 'string' ? (
     <Container color={'rgba(75, 85, 99, 0.27)'} bgColor={'#000'}>
@@ -24,7 +46,12 @@ const Card: React.FC = () => {
           <HeaderText color={'#919499'} cursor={'pointer'} className="hover">
             Dreamcatcher
           </HeaderText>
-          <img src={aux} alt="something" style={{ display: 'none' }} />
+          <img
+            id="imgCard"
+            src={aux}
+            alt="something"
+            style={{ display: 'none' }}
+          />
         </Stack>
       </HStack>
       <HStack>

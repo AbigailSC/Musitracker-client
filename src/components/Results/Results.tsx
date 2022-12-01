@@ -20,7 +20,7 @@ const Results: React.FC = () => {
   const { musicSlice } = useCustomSelector((state) => state);
   const musicData = musicSlice.musicFiltered;
 
-  const heroImage = musicData[0]?.artist.picture;
+  const heroImage: string = musicData[0]?.artist.picture;
   const heroName = musicData[0]?.artist.name;
   // Math.floor(Math.random() * musicData.length)
   // * En caso de reloguear la pagina, se pierde el estado de la busqueda

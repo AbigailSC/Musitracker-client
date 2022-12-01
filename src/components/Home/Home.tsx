@@ -2,6 +2,7 @@
 
 import Navbar from '@components/Navbar';
 import Sidebar from '@components/Sidebar/Sidebar';
+import Card from '@components/Card';
 
 import React from 'react';
 import { Section, SectionContent } from './Home.styles';
@@ -14,6 +15,7 @@ const Home: React.FC = () => {
       <Sidebar />
       <SectionContent>
         <Navbar />
+        <Card />
       </SectionContent>
     </Section>
   );
