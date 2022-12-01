@@ -33,7 +33,6 @@ const Card: React.FC = () => {
     setColor(color);
   };
   getColor(aux);
-
   console.log(color);
 
   return typeof aux === 'string' ? (
