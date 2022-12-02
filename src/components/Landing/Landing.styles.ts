@@ -100,6 +100,6 @@ export const HyperText = styled.h1`
 `;
 
 export const Span = styled.span`
-  color: #7362c3;
+  color: #775cff;
   font-weight: 400;
 `;

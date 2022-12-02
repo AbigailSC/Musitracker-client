@@ -56,6 +56,7 @@ export const HeroContainer = styled.div`
   background-color: #4b5563;
   & > img {
     object-fit: cover;
+    object-position: center 42%;
     transition: transform 0.8s ease;
     height: 100%;
     width: 100%;

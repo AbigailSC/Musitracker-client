@@ -60,7 +60,7 @@ export const musicBySearch =
     dispatch(setIsLoading(true));
     try {
       const musicData: AxiosResponse = await axios.get(
-        `/music/search?title=${title}`
+        `/music/search?title=${title.trim()}`
       );
       const musicFiltered = musicData.data.map(
         (music: IMusicSearched) => music

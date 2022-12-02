@@ -27,7 +27,7 @@ const Card: React.FC = ({ title, artist, album, duration, img, id, index }) => {
     <Container color={'rgba(75, 85, 99, 0.27)'} bgColor={'#000'}>
       <HStack>
         <p>#{index}</p>
-        <Figure bgImage={img}></Figure>
+        <Figure bgImage={img !== null ? img : "https://via.placeholder.com/800x800?text=Not+Found"}></Figure>
         <Stack>
           <HeaderText>{title}</HeaderText>
           <HeaderText color={'#919499'} cursor={'pointer'} className="hover">

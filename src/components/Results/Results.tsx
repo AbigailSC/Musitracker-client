@@ -36,7 +36,6 @@ const Results: React.FC = () => {
   useEffect(() => {
     dispatch(musicBySearch(name as string));
   }, []);
-
   return (
     <Section>
       <Sidebar />
