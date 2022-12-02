@@ -12,7 +12,8 @@ import {
   HeroContainerHeader,
   Container,
   Stack,
-  CardContainer
+  CardContainer,
+  ErrorContainer
 } from './Results.styles';
 import { musicBySearch } from '../../redux/slices/music/index';
 import { useCustomSelector, useCustomDispatch } from '../../hooks/redux/index';
@@ -28,14 +29,24 @@ const Results: React.FC = () => {
   const skeletonFill = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   const heroImage: string = musicData[0]?.artist.picture;
-  const heroName = musicData[0]?.artist.name;
+  const heroName: string = musicData[0]?.artist.name;
   // Math.floor(Math.random() * musicData.length)
   // * En caso de reloguear la pagina, se pierde el estado de la busqueda
   // * por lo que se debe volver a buscar por el parametro de la url
 
+  const verifyArray = (array: []): boolean => {
+    if (array.length === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   useEffect(() => {
     dispatch(musicBySearch(name as string));
   }, []);
+
+  console.log(musicData);
   return (
     <Section>
       <Sidebar />
@@ -53,6 +64,21 @@ const Results: React.FC = () => {
                 ))}
               </CardContainer>
             </Stack>
+          ) : verifyArray(musicData) ? (
+            <ErrorContainer>
+              <h3>
+                No results found with{' '}
+                <span>
+                  {"'"}
+                  {name}
+                  {"'"}
+                </span>
+              </h3>
+              <p>
+                Make sure you write the words correctly and use fewer or more
+                keywords.
+              </p>
+            </ErrorContainer>
           ) : (
             <Stack>
               <Container>

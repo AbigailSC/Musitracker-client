@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useState, KeyboardEvent } from 'react';
 import { SearchbarContainer, SearchbarInput, Icon } from './Searchbar.styles';
 import { BsSearch } from 'react-icons/bs';
 import { useCustomDispatch } from '../../hooks/redux';
@@ -19,12 +19,20 @@ const Searchbar: React.FC = () => {
       setName('');
     }
   };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLElement>): void => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+    console.log('enter');
+  };
   return (
     <SearchbarContainer>
       <SearchbarInput
         type="text"
         placeholder="Search by artists, songs and albums"
         onChange={(e) => handleInputChange(e)}
+        onKeyDown={handleKeyDown}
       />
       <Link to={name === '' ? '' : `/search=${name}`}>
         <Icon onClick={handleSearch}>

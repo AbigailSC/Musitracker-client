@@ -13,7 +13,7 @@ export const Section = styled.section`
 `;
 
 export const SectionContent = styled.div`
-  width: calc(100% - 260px);
+  width: calc(100% - 100px);
   display: flex;
   height: 100%;
   padding: 2em 4em;

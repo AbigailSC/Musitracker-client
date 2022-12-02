@@ -22,9 +22,8 @@ export const Section = styled.section`
 `;
 
 export const SectionContent = styled.div`
-  width: calc(100% - 260px);
+  width: calc(100% - 100px);
   display: flex;
-  height: 100%;
   padding: 2em 4em;
   display: flex;
   flex-direction: column;
@@ -127,4 +126,26 @@ export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1em;
+`;
+
+export const ErrorContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  & > h3 {
+    color: #fff;
+    font-size: 2em;
+    & > span {
+      color: #c35df7;
+      font-weight: 500;
+    }
+  }
+  & > p {
+    color: #d4d4ea;
+    font-size: 1.2em;
+  }
 `;
