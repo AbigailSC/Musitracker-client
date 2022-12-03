@@ -34,6 +34,7 @@ export const SidebarContainerHidden = styled.div`
   display: ${(props: ISidebar) => (props.isOpen ? 'none' : 'flex')};
   flex-direction: column;
   align-items: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
 `;
 
 export const HStack = styled.div`

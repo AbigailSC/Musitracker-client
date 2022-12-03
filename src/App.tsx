@@ -9,6 +9,7 @@ import Profile from '@components/Profile';
 import Landing from '@components/Landing';
 import SingIn from '@components/SingIn';
 import SingUp from '@components/SingUp';
+import Mediaplayer from '@components/Mediaplayer';
 import GlobalStyle from './styles/global';
 
 const App: React.FC = () => {
@@ -31,7 +32,17 @@ const App: React.FC = () => {
         />
         <Route
           path="/search=:name"
-          element={user ? <Navigate replace to="/" /> : <Results />}
+          element={
+            user ? (
+              <Navigate replace to="/" />
+            ) : (
+              <>
+                <Results />
+
+                <Mediaplayer />
+              </>
+            )
+          }
         />
         <Route
           path="/profile"
