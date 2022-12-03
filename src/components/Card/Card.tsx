@@ -11,9 +11,8 @@ import {
 import { AiOutlineHeart } from 'react-icons/ai';
 import getAverageColor from '../../utils/getAverageColor';
 
-// AiFillHeart
 const Card: React.FC = ({ title, artist, album, duration, img, id, index }) => {
-
+  // AiFillHeart
   const [color, setColor] = useState<string>('');
   const durationTimeMinutes = Math.floor(duration / 60);
   const durationTimeSeconds = duration % 60;

@@ -14,7 +14,7 @@ export const SidebarContainer = styled.div`
   top: 0;
   left: 0;
   width: 230px;
-  height: 100%;
+  height: calc(100% - 100px);
   background: rgba(24, 35, 64, 0.8);
   box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(6.5px);
@@ -27,7 +27,7 @@ export const SidebarContainerHidden = styled.div`
   top: 0;
   left: 0;
   width: 100px;
-  height: 100%;
+  height: calc(100% - 100px);
   background: rgba(24, 35, 64, 0.8);
   box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(6.5px);
