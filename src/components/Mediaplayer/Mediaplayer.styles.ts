@@ -68,3 +68,5 @@ export const PlayButton = styled.button`
     animation: ${scale} 0.2s ease-out;
   }
 `;
+
+export const ProgressBar = styled.input``;

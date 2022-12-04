@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 interface Props {
   color: string;
   bgColor: string;
+  // onClick: () => any;
 }
 
 interface IFigure {
@@ -52,6 +53,9 @@ export const HeaderText = styled.div<IHeader>`
   &.hover:hover {
     text-decoration: underline;
     transition: 0.2s ease-in;
+  }
+  &.title {
+    cursor: pointer;
   }
 `;
 

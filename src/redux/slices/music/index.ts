@@ -5,6 +5,7 @@ import { Thunk } from 'src/redux/store/store';
 
 export interface IMusic {
   musicFiltered: IMusicSearched | [];
+  currentSong: string | null;
   isLoading: boolean;
 }
 
@@ -34,6 +35,7 @@ interface IAlbum {
 
 const initialState: IMusic = {
   musicFiltered: [],
+  currentSong: null,
   isLoading: false
 };
 
@@ -46,11 +48,15 @@ const musicSlice = createSlice({
     },
     setIsLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
+    },
+    setCurrentSong: (state, action: PayloadAction<string>) => {
+      state.currentSong = action.payload;
     }
   }
 });
 
-export const { getMusicBySearch, setIsLoading } = musicSlice.actions;
+export const { getMusicBySearch, setIsLoading, setCurrentSong } =
+  musicSlice.actions;
 
 export default musicSlice.reducer;
 
@@ -71,5 +77,15 @@ export const musicBySearch =
       return error as AxiosError;
     } finally {
       dispatch(setIsLoading(false));
+    }
+  };
+
+export const getCurrentSong =
+  (song: string): Thunk =>
+  (dispatch): any => {
+    try {
+      dispatch(setCurrentSong(song));
+    } catch (error) {
+      return error;
     }
   };

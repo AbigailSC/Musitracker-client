@@ -10,9 +10,23 @@ import {
 } from './Card.styles';
 import { AiOutlineHeart } from 'react-icons/ai';
 import getAverageColor from '../../utils/getAverageColor';
+import { getCurrentSong } from '../../redux/slices/music/index';
+import { useCustomDispatch } from '../../hooks/redux/index';
 
-const Card: React.FC = ({ title, artist, album, duration, img, id, index }) => {
+interface IProps {
+  title: string,
+  artist: string,
+  album: string;
+  duration: number;
+  img: string;
+  index: number;
+  preview: string;
+  onClick?: (song: React.MouseEvent<HTMLElement>) => void,
+}
+
+const Card: React.FC<IProps> = ({ title, artist, album, duration, img, index, preview }) => {
   // AiFillHeart
+  const dispatch = useCustomDispatch();
   const [color, setColor] = useState<string>('');
   const durationTimeMinutes = Math.floor(duration / 60);
   const durationTimeSeconds = duration % 60;
@@ -21,14 +35,18 @@ const Card: React.FC = ({ title, artist, album, duration, img, id, index }) => {
     setColor(color);
   };
   getColor(img);
-  console.log(color, id);
+  const handleCurrentSong = (song: string): any => {
+    console.log(song);
+    dispatch(getCurrentSong(song));
+  };
+  console.log(color);
   return (
     <Container color={'rgba(75, 85, 99, 0.27)'} bgColor={'#000'}>
       <HStack>
         <p>#{index}</p>
         <Figure bgImage={img !== null ? img : "https://via.placeholder.com/800x800?text=Not+Found"}></Figure>
         <Stack>
-          <HeaderText>{title}</HeaderText>
+          <HeaderText onClick={() => handleCurrentSong(preview)} className="title">{title}</HeaderText>
           <HeaderText color={'#919499'} cursor={'pointer'} className="hover">
             {artist}
           </HeaderText>

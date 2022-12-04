@@ -23,7 +23,16 @@ const App: React.FC = () => {
         <Route path="/singup" element={<SingUp />} />
         <Route
           path="/home"
-          element={user ? <Navigate replace to="/" /> : <Home />}
+          element={
+            user ? (
+              <Navigate replace to="/" />
+            ) : (
+              <>
+                <Home />
+                <Mediaplayer />
+              </>
+            )
+          }
         />
         <Route path="/about" element={<About />} />
         <Route
@@ -38,7 +47,6 @@ const App: React.FC = () => {
             ) : (
               <>
                 <Results />
-
                 <Mediaplayer />
               </>
             )

@@ -7,7 +7,10 @@ import {
 import React from 'react';
 import { AiOutlineHeart } from 'react-icons/ai';
 
-const CardSkeleton: React.FC = ({ index }) => {
+interface IProps {
+  index: number;
+}
+const CardSkeleton: React.FC<IProps> = ({ index }) => {
   return (
     <Container color={'rgba(75, 85, 99, 0.27)'} bgColor={'#000'}>
       <HStack>

@@ -1,8 +1,11 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import Navbar from '@components/Navbar';
-import Sidebar from '@components/Sidebar';
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import Navbar from '@components/Navbar';
+import Sidebar from '@components/Sidebar';
+import CardSkeleton from '@components/CardSkeleton/CardSkeleton';
+import Card from '@components/Card';
+import { musicBySearch } from '../../redux/slices/music/index';
+import { useCustomSelector, useCustomDispatch } from '../../hooks/redux/index';
 import {
   Section,
   SectionContent,
@@ -15,11 +18,7 @@ import {
   CardContainer,
   ErrorContainer
 } from './Results.styles';
-import { musicBySearch } from '../../redux/slices/music/index';
-import { useCustomSelector, useCustomDispatch } from '../../hooks/redux/index';
-import Card from '@components/Card';
 import { ITitle } from './types';
-import CardSkeleton from '@components/CardSkeleton/CardSkeleton';
 
 const Results: React.FC = () => {
   const dispatch = useCustomDispatch();
@@ -44,9 +43,8 @@ const Results: React.FC = () => {
 
   useEffect(() => {
     dispatch(musicBySearch(name as string));
-  }, []);
+  }, [dispatch, name]);
 
-  console.log(musicData);
   return (
     <Section>
       <Sidebar />
@@ -93,13 +91,13 @@ const Results: React.FC = () => {
               <CardContainer>
                 {musicData.map((card: ITitle, index: number) => (
                   <Card
-                    key={index}
+                    key={card.id}
+                    preview={card.preview}
                     title={card.title}
                     artist={card.artist.name}
                     album={card.album.title}
                     duration={card.duration}
                     img={card.album.cover}
-                    id={card.id}
                     index={index + 1}
                   />
                 ))}
