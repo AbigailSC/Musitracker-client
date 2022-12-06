@@ -35,6 +35,15 @@ const Mediaplayer: React.FC = () => {
     }
   });
 
+  const changeOpacityColor = (color: string): string => {
+    const opacity = 0.5;
+    const rgb = color
+      .replace(/[^\d,]/g, '')
+      .split(',')
+      .map((n) => parseInt(n, 10));
+    return `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${opacity})`;
+  };
+
   useEffect(() => {
     currentMusicAudio.play();
     setIsPlaying(true);
@@ -46,6 +55,7 @@ const Mediaplayer: React.FC = () => {
     };
   }, [currentMusic?.preview]);
 
+  console.log(musicSlice.currentDominantColor);
   const handlePlayPause = (): void => {
     setIsPlaying(!isPlaying);
     isPlaying ? currentMusicAudio.play() : currentMusicAudio.pause();
@@ -57,41 +67,47 @@ const Mediaplayer: React.FC = () => {
 
   // console.log(currentMusicAudio);
   return (
-    <>
-      <div>
+    <MediaPlayerContainer
+      background={changeOpacityColor(musicSlice.currentDominantColor)}
+    >
+      {/* <div>
         <input type="range" defaultValue="0" />
-      </div>
-      <MediaPlayerContainer>
-        <HStack>
-          <MediaPlayerImg
-            src={currentMusic?.album.cover}
-            alt={currentMusic?.title}
-          />
-          <Stack>
-            <h3>{currentMusic?.title}</h3>
-            <h4>{currentMusic?.artist.name}</h4>
-          </Stack>
-        </HStack>
-        <HStack>
-          <IoShuffle />
-          <IoPlaySkipBackOutline />
-          <PlayButton onClick={() => handlePlayPause()}>
-            {isPlaying ? <FaPause /> : <FaPlay />}
-          </PlayButton>
-          <IoPlaySkipForwardOutline />
-          <IoRepeat />
-        </HStack>
-        <HStack>
-          {isLiked ? (
-            <AiFillHeart onClick={() => handleLike()} />
-          ) : (
-            <AiOutlineHeart onClick={() => handleLike()} />
-          )}
-          <IoVolumeMediumOutline />
-          {/* <input type="range" min="0" max="100" value="50" /> */}
-        </HStack>
-      </MediaPlayerContainer>
-    </>
+      </div> */}
+      <HStack>
+        <MediaPlayerImg
+          src={
+            currentMusic !== null
+              ? currentMusic?.album.cover
+              : 'http://www.scottishculture.org/themes/scottishculture/images/music_placeholder.png'
+          }
+          alt={currentMusic !== null ? currentMusic?.title : 'no music'}
+        />
+        <Stack>
+          <h3>{currentMusic !== null ? currentMusic?.title : 'Title'}</h3>
+          <h4>
+            {currentMusic !== null ? currentMusic?.artist.name : 'Artist'}
+          </h4>
+        </Stack>
+      </HStack>
+      <HStack>
+        <IoShuffle />
+        <IoPlaySkipBackOutline />
+        <PlayButton onClick={() => handlePlayPause()}>
+          {isPlaying ? <FaPause /> : <FaPlay />}
+        </PlayButton>
+        <IoPlaySkipForwardOutline />
+        <IoRepeat />
+      </HStack>
+      <HStack>
+        {isLiked ? (
+          <AiFillHeart onClick={() => handleLike()} />
+        ) : (
+          <AiOutlineHeart onClick={() => handleLike()} />
+        )}
+        <IoVolumeMediumOutline />
+        {/* <input type="range" min="0" max="100" value="50" /> */}
+      </HStack>
+    </MediaPlayerContainer>
   );
 };
 

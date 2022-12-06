@@ -17,7 +17,7 @@ export const SidebarContainer = styled.div`
   height: calc(100% - 100px);
   background: rgba(24, 35, 64, 0.8);
   box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(6.5px);
+  backdrop-filter: blur(6px);
   display: ${(props: ISidebar) => (props.isOpen ? 'block' : 'none')};
   z-index: 30;
 `;
@@ -30,7 +30,7 @@ export const SidebarContainerHidden = styled.div`
   height: calc(100% - 100px);
   background: rgba(24, 35, 64, 0.8);
   box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(6.5px);
+  backdrop-filter: blur(6px);
   display: ${(props: ISidebar) => (props.isOpen ? 'none' : 'flex')};
   flex-direction: column;
   align-items: center;

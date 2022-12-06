@@ -9,14 +9,21 @@ const scale = keyframes`
   }
 `;
 
-export const MediaPlayerContainer = styled.div`
+interface IMediaPlayerContainer {
+  background: string;
+}
+
+export const MediaPlayerContainer = styled.div<IMediaPlayerContainer>`
   width: 100%;
   bottom: 0;
   right: 0;
   position: fixed;
-  background: rgba(24, 35, 64, 0.4);
+  background: ${(props) =>
+    props.background !== 'rgba(24, 35, 64, 0.4)'
+      ? props.background
+      : 'rgba(24, 35, 64, 0.4)'};
   box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(6.5px);
+  backdrop-filter: blur(3px);
   z-index: 40;
   height: 100px;
   display: flex;

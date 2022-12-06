@@ -6,6 +6,7 @@ import { Thunk } from 'src/redux/store/store';
 export interface IMusic {
   musicFiltered: IMusicSearched | [];
   currentSong: IMusicSearched | null;
+  currentDominantColor: string;
   isLoading: boolean;
 }
 
@@ -36,6 +37,7 @@ interface IAlbum {
 const initialState: IMusic = {
   musicFiltered: [],
   currentSong: null,
+  currentDominantColor: '',
   isLoading: false
 };
 
@@ -51,12 +53,19 @@ const musicSlice = createSlice({
     },
     setCurrentSong: (state, action: PayloadAction<IMusicSearched>) => {
       state.currentSong = action.payload;
+    },
+    setDominantColor: (state, action: PayloadAction<string>) => {
+      state.currentDominantColor = action.payload;
     }
   }
 });
 
-export const { getMusicBySearch, setIsLoading, setCurrentSong } =
-  musicSlice.actions;
+export const {
+  getMusicBySearch,
+  setIsLoading,
+  setCurrentSong,
+  setDominantColor
+} = musicSlice.actions;
 
 export default musicSlice.reducer;
 
@@ -85,6 +94,16 @@ export const getCurrentSong =
   (dispatch): any => {
     try {
       dispatch(setCurrentSong(song));
+    } catch (error) {
+      return error;
+    }
+  };
+
+export const getDominantColor =
+  (color: string): Thunk =>
+  (dispatch): any => {
+    try {
+      dispatch(setDominantColor(color));
     } catch (error) {
       return error;
     }

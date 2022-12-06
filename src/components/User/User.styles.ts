@@ -18,7 +18,7 @@ export const Avatar = styled.img`
 export const UserDropdown = styled.div`
   background: rgba(24, 35, 64, 0.4);
   box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(6.5px);
+  backdrop-filter: blur(6px);
   position: absolute;
   display: flex;
   flex-direction: column;
