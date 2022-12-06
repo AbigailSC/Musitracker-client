@@ -92,7 +92,7 @@ const Results: React.FC = () => {
                 {musicData.map((card: ITitle, index: number) => (
                   <Card
                     key={card.id}
-                    preview={card.preview}
+                    obj={card}
                     title={card.title}
                     artist={card.artist.name}
                     album={card.album.title}

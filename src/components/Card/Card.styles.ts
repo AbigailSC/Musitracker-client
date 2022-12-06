@@ -93,7 +93,7 @@ export const Figure = styled.div<IFigure>`
   background-image: url(${(props) => props.bgImage});
   background-position: center;
   background-size: cover;
-  border-radius: 8px;
+  /* border-radius: 8px; */
 `;
 
 export const Stack = styled.div`

@@ -40,7 +40,7 @@ export const Stack = styled.div`
 export const MediaPlayerImg = styled.img`
   width: 70px;
   height: 70px;
-  border-radius: 12px;
+  /* border-radius: 12px; */
 `;
 
 export const VolumeLine = styled.div`

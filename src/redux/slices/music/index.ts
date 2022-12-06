@@ -5,7 +5,7 @@ import { Thunk } from 'src/redux/store/store';
 
 export interface IMusic {
   musicFiltered: IMusicSearched | [];
-  currentSong: string | null;
+  currentSong: IMusicSearched | null;
   isLoading: boolean;
 }
 
@@ -49,7 +49,7 @@ const musicSlice = createSlice({
     setIsLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     },
-    setCurrentSong: (state, action: PayloadAction<string>) => {
+    setCurrentSong: (state, action: PayloadAction<IMusicSearched>) => {
       state.currentSong = action.payload;
     }
   }
@@ -81,7 +81,7 @@ export const musicBySearch =
   };
 
 export const getCurrentSong =
-  (song: string): Thunk =>
+  (song: IMusicSearched): Thunk =>
   (dispatch): any => {
     try {
       dispatch(setCurrentSong(song));
