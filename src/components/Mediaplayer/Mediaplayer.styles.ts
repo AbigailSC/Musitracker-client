@@ -13,15 +13,13 @@ interface IMediaPlayerContainer {
   background: string;
 }
 
-export const MediaPlayerContainer = styled.div<IMediaPlayerContainer>`
+export const MediaPlayerContainer = styled.div`
   width: 100%;
   bottom: 0;
   right: 0;
   position: fixed;
-  background: ${(props) =>
-    props.background !== 'rgba(24, 35, 64, 0.4)'
-      ? props.background
-      : 'rgba(24, 35, 64, 0.4)'};
+  background: rgba(24, 35, 64, 0.4);
+
   box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3px);
   z-index: 40;
@@ -44,10 +42,10 @@ export const Stack = styled.div`
   gap: 1em;
 `;
 
-export const MediaPlayerImg = styled.img`
+export const MediaPlayerImg = styled.img<IMediaPlayerContainer>`
   width: 70px;
   height: 70px;
-  /* border-radius: 12px; */
+  box-shadow: ${(props) => `${props.background} 0px 20px 40px -15px`};
 `;
 
 export const VolumeLine = styled.div`
@@ -76,4 +74,27 @@ export const PlayButton = styled.button`
   }
 `;
 
-export const ProgressBar = styled.input``;
+export const ProgressBar = styled.input<IMediaPlayerContainer>`
+  position: relative;
+  background-color: ${(props) => props.background};
+  border-radius: 8px;
+  height: 7px;
+  width: 100%;
+  outline: none;
+  z-index: 100;
+  -webkit-appearance: none;
+  &::-webkit-slider-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    -webkit-appearance: none;
+    cursor: pointer;
+    background-color: #fff;
+    display: none;
+  }
+  &:hover {
+    &::-webkit-slider-thumb {
+      display: block;
+    }
+  }
+`;

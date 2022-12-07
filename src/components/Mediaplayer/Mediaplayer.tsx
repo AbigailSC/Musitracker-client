@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   MediaPlayerContainer,
   MediaPlayerImg,
   HStack,
   Stack,
-  PlayButton
+  PlayButton,
+  ProgressBar
 } from './Mediaplayer.styles';
-import { Howl } from 'howler';
 import {
   IoPlaySkipBackOutline,
   IoPlaySkipForwardOutline,
@@ -18,63 +18,82 @@ import {
 import { FaPlay, FaPause } from 'react-icons/fa';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { useCustomSelector } from '../../hooks/redux/index';
+// import changeOpacityColor from '../../utils/changeOpacityColor';
+import calculateTime from '../../utils/calculateTime';
 
 const Mediaplayer: React.FC = () => {
   const { musicSlice } = useCustomSelector((state) => state);
   const currentMusic = musicSlice.currentSong;
-  const [isPlaying, setIsPlaying] = useState(false);
+  // const allMusic = musicSlice.musicFiltered;
   const [isLiked, setIsLiked] = useState(false);
+  const [dataCurrentMusic, setDataCurrentMusic] = useState({});
+  // const [dataAllMusic, setDataAllMusic] = useState([]);
+  // const [count, setCount] = useState(0);
 
-  const currentMusicAudio = new Howl({
-    src: [currentMusic?.preview as string],
-    volume: 0.5,
-    html5: true,
-    autoplay: false,
-    onend: function () {
-      setIsPlaying(false);
-    }
-  });
-
-  const changeOpacityColor = (color: string): string => {
-    const opacity = 0.5;
-    const rgb = color
-      .replace(/[^\d,]/g, '')
-      .split(',')
-      .map((n) => parseInt(n, 10));
-    return `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${opacity})`;
-  };
+  const currentAudio = useRef<HTMLAudioElement>(null);
+  const progressBar = useRef<HTMLInputElement>(null);
+  // const volumeBar = useRef();
 
   useEffect(() => {
-    currentMusicAudio.play();
-    setIsPlaying(true);
-    console.log('sonandoo');
-    return () => {
-      currentMusicAudio.stop();
-      setIsPlaying(false);
-      console.log('me juii');
-    };
-  }, [currentMusic?.preview]);
+    if (currentAudio.current !== null) {
+      currentAudio.current.play();
+      currentAudio.current.volume = 0.1;
+    }
+  }, [currentMusic]);
 
-  console.log(musicSlice.currentDominantColor);
+  // useEffect(() => {
+  //   setDataAllMusic(Object.values(allMusic));
+  // }, [allMusic]);
   const handlePlayPause = (): void => {
-    setIsPlaying(!isPlaying);
-    isPlaying ? currentMusicAudio.play() : currentMusicAudio.pause();
+    if (currentAudio.current !== null) {
+      if (currentAudio.current.paused) {
+        currentAudio.current.play();
+      } else {
+        currentAudio.current.pause();
+      }
+    }
   };
 
   const handleLike = (): void => {
     setIsLiked(!isLiked);
   };
 
-  // console.log(currentMusicAudio);
+  const handlePlay = (): void => {
+    const timeDuration = Math.floor(currentAudio?.current?.duration as number);
+    const currentTime = Math.floor(
+      currentAudio?.current?.currentTime as number
+    );
+    // setIsLiked(!isLiked);
+    setDataCurrentMusic({
+      current: calculateTime(currentTime),
+      length: calculateTime(timeDuration)
+    });
+    if (progressBar.current !== null) {
+      progressBar.current.value = currentTime.toString();
+      progressBar.current.max = timeDuration.toString();
+    }
+  };
+
+  const handleCurrentTime = (): void => {
+    if (currentAudio.current !== null) {
+      currentAudio.current.currentTime = parseInt(
+        progressBar?.current?.value as string
+      );
+    }
+  };
+
+  console.log(dataCurrentMusic);
+
   return (
-    <MediaPlayerContainer
-      background={changeOpacityColor(musicSlice.currentDominantColor)}
-    >
-      {/* <div>
-        <input type="range" defaultValue="0" />
-      </div> */}
+    <MediaPlayerContainer>
+      <audio
+        ref={currentAudio}
+        src={currentMusic?.preview}
+        onTimeUpdate={handlePlay}
+      ></audio>
       <HStack>
         <MediaPlayerImg
+          background={musicSlice.currentDominantColor}
           src={
             currentMusic !== null
               ? currentMusic?.album.cover
@@ -90,13 +109,27 @@ const Mediaplayer: React.FC = () => {
         </Stack>
       </HStack>
       <HStack>
-        <IoShuffle />
-        <IoPlaySkipBackOutline />
-        <PlayButton onClick={() => handlePlayPause()}>
-          {isPlaying ? <FaPause /> : <FaPlay />}
-        </PlayButton>
-        <IoPlaySkipForwardOutline />
-        <IoRepeat />
+        <Stack>
+          <HStack>
+            <IoShuffle />
+            <IoPlaySkipBackOutline />
+            <PlayButton onClick={() => handlePlayPause()}>
+              {currentAudio.current?.paused ?? false ? <FaPlay /> : <FaPause />}
+            </PlayButton>
+            <IoPlaySkipForwardOutline />
+            <IoRepeat />
+          </HStack>
+
+          <ProgressBar
+            background={musicSlice.currentDominantColor}
+            type="range"
+            defaultValue="0"
+            step="1"
+            ref={progressBar}
+            className="progress"
+            onChange={() => handleCurrentTime()}
+          />
+        </Stack>
       </HStack>
       <HStack>
         {isLiked ? (
