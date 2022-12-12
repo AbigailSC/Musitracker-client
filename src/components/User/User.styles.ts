@@ -6,7 +6,6 @@ export const UserContainer = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  z-index: 20;
 `;
 
 export const Avatar = styled.img`
@@ -16,7 +15,7 @@ export const Avatar = styled.img`
 `;
 
 export const UserDropdown = styled.div`
-  background: rgba(24, 35, 64, 0.4);
+  background: rgba(24, 35, 64, 0.7);
   box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(6px);
   position: absolute;
@@ -30,6 +29,7 @@ export const UserDropdown = styled.div`
   gap: 2px;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 60;
 `;
 
 export const UserDropdownItem = styled.div`
@@ -39,6 +39,7 @@ export const UserDropdownItem = styled.div`
   cursor: pointer;
   padding: 8px 12px;
   transition: 0.2s ease;
+  z-index: 60;
   &:hover {
     color: #fff;
     background-color: #7362c3;

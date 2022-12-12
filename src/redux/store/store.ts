@@ -3,12 +3,17 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import authReducer from '../slices/auth';
 import userSlice from '../slices/user/user';
-import musicSlice from '../slices/music';
+import musicReducer from '../slices/music';
 
 const persistAuthConfig = {
   key: 'authToken',
   storage,
   whitelist: ['accessToken']
+};
+const persistCurrentMusicConfig = {
+  key: 'currentMusic',
+  storage,
+  whitelist: ['currentSong']
 };
 
 const store = configureStore({
@@ -18,7 +23,10 @@ const store = configureStore({
       authReducer
     ),
     userSlice,
-    musicSlice
+    musicSlice: persistReducer<ReturnType<typeof musicReducer>>(
+      persistCurrentMusicConfig,
+      musicReducer
+    )
   },
   middleware: (defaultMiddleware) =>
     defaultMiddleware({

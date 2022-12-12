@@ -28,6 +28,18 @@ const scale = keyframes`
   }
 `;
 
+const pulse = (background: string): any => keyframes`
+  0% {
+    box-shadow: 0 0 0 0 ${background};
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+  }
+`;
+
 interface IMediaPlayerContainer {
   background: string;
 }
@@ -37,9 +49,9 @@ export const MediaPlayerContainer = styled.div`
   bottom: 0;
   right: 0;
   position: fixed;
-  background: rgba(24, 35, 64, 0.4);
+  background: rgba(24, 35, 64, 0.8);
   box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(6.5px);
   z-index: 40;
   height: 100px;
   display: flex;
@@ -103,7 +115,9 @@ export const Stack = styled.div`
 export const MediaPlayerImg = styled.img<IMediaPlayerContainer>`
   width: 70px;
   height: 70px;
-  box-shadow: ${(props) => `${props.background} 0px 20px 40px -15px`};
+  border-radius: 100%;
+  /* box-shadow: ${(props) => `${props.background} 0px 20px 40px -15px`}; */
+  animation: ${(props) => pulse(props.background)} 2s infinite;
 `;
 
 export const VolumeLine = styled.div`

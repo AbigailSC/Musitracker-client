@@ -24,8 +24,6 @@ export const Section = styled.section`
 export const SectionContent = styled.div`
   width: calc(100% - 100px);
   display: flex;
-  padding: 2em 4em;
-  display: flex;
   flex-direction: column;
   gap: 2em;
 `;
@@ -37,6 +35,8 @@ export const SectionContentLeft = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  padding: 2em 4em;
+  margin-top: 100px;
 `;
 
 export const Container = styled.div`
