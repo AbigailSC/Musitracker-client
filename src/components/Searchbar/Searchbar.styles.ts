@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const SearchbarContainer = styled.div`
+export const SearchbarContainer = styled.form`
   width: 40%;
   display: flex;
   align-items: center;

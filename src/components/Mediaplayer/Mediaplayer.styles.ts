@@ -1,5 +1,24 @@
 import styled, { keyframes } from 'styled-components';
 
+const height = '30px';
+const thumbHeight = 28;
+const trackHeight = '10px';
+const upperColor = '#edf5f9';
+const lowerColor = '#c35df7';
+const thumbColor = '#ddd';
+const thumbHoverColor = '#ccc';
+const upperBackground = `linear-gradient(to bottom, ${upperColor}, ${upperColor}) 100% 50% / 100% ${trackHeight} no-repeat transparent`;
+const lowerBackground = `linear-gradient(to bottom, ${lowerColor}, ${lowerColor}) 100% 50% / 100% ${trackHeight} no-repeat transparent`;
+
+const makeLongShadow = (color: string, size: string): string => {
+  let i = 18;
+  let shadow = `${i}px 0 0 ${size} ${color}`;
+  for (; i < 706; i++) {
+    shadow = `${shadow}, ${i}px 0 0 ${size} ${color}`;
+  }
+  return shadow;
+};
+
 const scale = keyframes`
   0% {
     transform: scale(1);
@@ -19,7 +38,6 @@ export const MediaPlayerContainer = styled.div`
   right: 0;
   position: fixed;
   background: rgba(24, 35, 64, 0.4);
-
   box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3px);
   z-index: 40;
@@ -30,16 +48,56 @@ export const MediaPlayerContainer = styled.div`
   padding: 2em 6em;
 `;
 
+export const MediaPlayerContent = styled.div`
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  &:nth-child(2) {
+    width: 20%;
+    justify-content: flex-start;
+  }
+  &:nth-child(3) {
+    width: 60%;
+    justify-content: center;
+  }
+  &:nth-child(4) {
+    width: 20%;
+    justify-content: flex-end;
+  }
+`;
+
 export const HStack = styled.div`
   display: flex;
   gap: 1em;
   align-items: center;
 `;
 
+export const PlayerContainer = styled.div`
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+`;
+
 export const Stack = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  :nth-child(1) {
+    width: 100%;
+  }
+  :nth-child(2) {
+    align-items: flex-start;
+  }
+  & > h3 {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 `;
 
 export const MediaPlayerImg = styled.img<IMediaPlayerContainer>`
@@ -75,26 +133,96 @@ export const PlayButton = styled.button`
 `;
 
 export const ProgressBar = styled.input<IMediaPlayerContainer>`
-  position: relative;
-  background-color: ${(props) => props.background};
-  border-radius: 8px;
-  height: 7px;
+  overflow: hidden;
+  display: block;
+  appearance: none;
+  // background-color: ${(props) => props.background};
+  background-color: transparent;
+  height: ${height};
+  border-radius: 16px;
+  max-width: 700px;
   width: 100%;
+  margin: 0;
   outline: none;
-  z-index: 100;
-  -webkit-appearance: none;
-  &::-webkit-slider-thumb {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    -webkit-appearance: none;
-    cursor: pointer;
-    background-color: #fff;
-    display: none;
+  cursor: pointer;
+  &:focus {
+    outline: none;
   }
-  &:hover {
+  &::-webkit-slider-runnable-track {
+    width: 100%;
+    height: ${height};
+    background: ${lowerBackground};
+  }
+  &::-webkit-slider-thumb {
+    position: relative;
+    appearance: none;
+    height: ${thumbHeight}px;
+    width: ${thumbHeight}px;
+    background: ${thumbColor};
+    border-radius: 100%;
+    border: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: ${makeLongShadow(upperColor, '-10px')};
+    transition: background-color 150ms;
+  }
+  &::-moz-range-track,
+  &::-moz-range-progress {
+    width: 100%;
+    height: ${height};
+    background: ${upperBackground};
+  }
+
+  &::-moz-range-progress {
+    background: ${lowerBackground};
+  }
+  &::-moz-range-thumb {
+    appearance: none;
+    margin: 0;
+    height: ${thumbHeight};
+    width: ${thumbHeight};
+    background: ${thumbColor};
+    border-radius: 100%;
+    border: 0;
+    transition: background-color 150ms;
+  }
+  &::-ms-track {
+    width: 100%;
+    height: ${height};
+    border: 0;
+    /* color needed to hide track marks */
+    color: transparent;
+    background: transparent;
+  }
+  &::-ms-fill-lower {
+    background: ${lowerBackground};
+  }
+  &::-ms-fill-upper {
+    background: ${upperBackground};
+  }
+  &::-ms-thumb {
+    appearance: none;
+    height: ${thumbHeight};
+    width: ${thumbHeight};
+    background: ${thumbColor};
+    border-radius: 100%;
+    border: 0;
+    transition: background-color 150ms;
+    /* IE Edge thinks it can support -webkit prefixes */
+    top: 0;
+    margin: 0;
+    box-shadow: none;
+  }
+  &:hover,
+  &:focus {
     &::-webkit-slider-thumb {
-      display: block;
+      background-color: ${thumbHoverColor};
+    }
+    &::-moz-range-thumb {
+      background-color: ${thumbHoverColor};
+    }
+    &::-ms-thumb {
+      background-color: ${thumbHoverColor};
     }
   }
 `;

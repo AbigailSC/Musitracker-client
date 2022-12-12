@@ -46,6 +46,15 @@ export const HStack = styled.div`
     width: 1.5em;
     height: 1.5em;
   }
+  & > .anchor,
+  .anchor:link,
+  .anchor:visited,
+  .anchor:hover {
+    text-decoration: none;
+    color: inherit;
+    cursor: auto;
+    outline: 0;
+  }
 `;
 
 export const Button = styled.button`
@@ -101,6 +110,15 @@ export const Button = styled.button`
     width: 1.5em;
     height: 1.5em;
     margin-right: 1em;
+  }
+  & > .anchor,
+  .anchor:link,
+  .anchor:visited,
+  .anchor:hover {
+    text-decoration: none;
+    color: inherit;
+    cursor: auto;
+    outline: 0;
   }
 `;
 

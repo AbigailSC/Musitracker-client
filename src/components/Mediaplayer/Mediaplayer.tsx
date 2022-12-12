@@ -6,7 +6,9 @@ import {
   HStack,
   Stack,
   PlayButton,
-  ProgressBar
+  ProgressBar,
+  MediaPlayerContent,
+  PlayerContainer
 } from './Mediaplayer.styles';
 import {
   IoPlaySkipBackOutline,
@@ -21,12 +23,17 @@ import { useCustomSelector } from '../../hooks/redux/index';
 // import changeOpacityColor from '../../utils/changeOpacityColor';
 import calculateTime from '../../utils/calculateTime';
 
+interface Props {
+  current?: string;
+  length?: string;
+}
+
 const Mediaplayer: React.FC = () => {
   const { musicSlice } = useCustomSelector((state) => state);
   const currentMusic = musicSlice.currentSong;
   // const allMusic = musicSlice.musicFiltered;
   const [isLiked, setIsLiked] = useState(false);
-  const [dataCurrentMusic, setDataCurrentMusic] = useState({});
+  const [dataCurrentMusic, setDataCurrentMusic] = useState<Props>({});
   // const [dataAllMusic, setDataAllMusic] = useState([]);
   // const [count, setCount] = useState(0);
 
@@ -81,9 +88,6 @@ const Mediaplayer: React.FC = () => {
       );
     }
   };
-
-  console.log(dataCurrentMusic);
-
   return (
     <MediaPlayerContainer>
       <audio
@@ -91,7 +95,7 @@ const Mediaplayer: React.FC = () => {
         src={currentMusic?.preview}
         onTimeUpdate={handlePlay}
       ></audio>
-      <HStack>
+      <MediaPlayerContent>
         <MediaPlayerImg
           background={musicSlice.currentDominantColor}
           src={
@@ -107,8 +111,8 @@ const Mediaplayer: React.FC = () => {
             {currentMusic !== null ? currentMusic?.artist.name : 'Artist'}
           </h4>
         </Stack>
-      </HStack>
-      <HStack>
+      </MediaPlayerContent>
+      <MediaPlayerContent>
         <Stack>
           <HStack>
             <IoShuffle />
@@ -119,19 +123,21 @@ const Mediaplayer: React.FC = () => {
             <IoPlaySkipForwardOutline />
             <IoRepeat />
           </HStack>
-
-          <ProgressBar
-            background={musicSlice.currentDominantColor}
-            type="range"
-            defaultValue="0"
-            step="1"
-            ref={progressBar}
-            className="progress"
-            onChange={() => handleCurrentTime()}
-          />
+          <PlayerContainer>
+            <p>{dataCurrentMusic.current}</p>
+            <ProgressBar
+              background={musicSlice.currentDominantColor}
+              type="range"
+              defaultValue="0"
+              step="1"
+              ref={progressBar}
+              onChange={() => handleCurrentTime()}
+            />
+            <p>{dataCurrentMusic.length}</p>
+          </PlayerContainer>
         </Stack>
-      </HStack>
-      <HStack>
+      </MediaPlayerContent>
+      <MediaPlayerContent>
         {isLiked ? (
           <AiFillHeart onClick={() => handleLike()} />
         ) : (
@@ -139,7 +145,7 @@ const Mediaplayer: React.FC = () => {
         )}
         <IoVolumeMediumOutline />
         {/* <input type="range" min="0" max="100" value="50" /> */}
-      </HStack>
+      </MediaPlayerContent>
     </MediaPlayerContainer>
   );
 };
