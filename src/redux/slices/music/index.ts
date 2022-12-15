@@ -8,6 +8,7 @@ export interface IMusic {
   musicFiltered: IMusicSearched | [];
   currentSong: IMusicSearched | null;
   genres: IGenres | [];
+  currentGenre: IGenres | null;
   currentDominantColor: string;
   isLoading: boolean;
 }
@@ -40,6 +41,7 @@ const initialState: IMusic = {
   musicFiltered: [],
   currentSong: null,
   genres: [],
+  currentGenre: null,
   currentDominantColor: '',
   isLoading: false
 };
@@ -62,6 +64,9 @@ const musicSlice = createSlice({
     },
     setGenres: (state, action: PayloadAction<IGenres>) => {
       state.genres = action.payload;
+    },
+    setCurrentGenre: (state, action: PayloadAction<IGenres>) => {
+      state.currentGenre = action.payload;
     }
   }
 });
@@ -71,7 +76,8 @@ export const {
   setIsLoading,
   setCurrentSong,
   setDominantColor,
-  setGenres
+  setGenres,
+  setCurrentGenre
 } = musicSlice.actions;
 
 export default musicSlice.reducer;
@@ -127,6 +133,24 @@ export const getGenres =
       );
       dispatch(setGenres(genresFiltered));
       return genresData;
+    } catch (error) {
+      return error as AxiosError;
+    } finally {
+      dispatch(setIsLoading(false));
+    }
+  };
+
+export const getCurrentGenre =
+  (genre: number): Thunk =>
+  async (dispatch): Promise<AxiosResponse | AxiosError> => {
+    dispatch(setIsLoading(true));
+    try {
+      const genreSelected: AxiosResponse = await axios.get(
+        `/music/genres/${genre}`
+      );
+      const genreFiltered = genreSelected.data.map((music: IArtist) => music);
+      dispatch(setCurrentGenre(genreFiltered));
+      return genreSelected;
     } catch (error) {
       return error as AxiosError;
     } finally {

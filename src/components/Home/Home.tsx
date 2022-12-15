@@ -34,6 +34,7 @@ const Home: React.FC = () => {
               {genres.map((genre: IGenres) => (
                 <Genres
                   key={genre.id}
+                  id={genre.id}
                   picture={genre.picture}
                   name={genre.name}
                 />

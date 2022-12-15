@@ -21,7 +21,7 @@ interface IProps {
   img: string;
   index: number;
   obj: IMusicSearched;
-  onClick?: (song: React.MouseEvent<HTMLElement>) => void,
+  onClick?: (song: React.MouseEvent<HTMLElement>) => void;
 }
 
 
