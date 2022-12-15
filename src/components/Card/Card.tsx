@@ -10,6 +10,7 @@ import {
 } from './Card.styles';
 import { AiOutlineHeart } from 'react-icons/ai';
 import getAverageColor from '../../utils/getAverageColor';
+import calculateTime from '../../utils/calculateTime';
 import { getCurrentSong, IMusicSearched, getDominantColor } from '../../redux/slices/music/index';
 import { useCustomDispatch } from '../../hooks/redux/index';
 
@@ -24,19 +25,11 @@ interface IProps {
   onClick?: (song: React.MouseEvent<HTMLElement>) => void;
 }
 
-
 const Card: React.FC<IProps> = ({ title, artist, album, duration, img, index, obj }) => {
   // AiFillHeart
   const dispatch = useCustomDispatch();
   const [color, setColor] = useState<string>('');
 
-  const calculateTime = (secs: number): string => {
-    const minutes = Math.floor(secs / 60);
-    const returnedMinutes = minutes < 10 ? `${minutes}` : `${minutes}`;
-    const seconds = Math.floor(secs % 60);
-    const returnedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
-    return `${returnedMinutes}:${returnedSeconds}`;
-  }
   const getColor = async (img: string): Promise<void> => {
     const color = await getAverageColor(img);
     setColor(color);
