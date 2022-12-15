@@ -8,8 +8,9 @@ interface IProps {
 }
 
 const Genres: React.FC<IProps> = ({ name, picture }) => {
+  const placeholderAll = 'https://f4.bcbits.com/img/a2068923191_16.jpg';
   return (
-    <Container backgroundImage={picture}>
+    <Container backgroundImage={name === 'All' ? placeholderAll : picture}>
       <Title>{name}</Title>
     </Container>
   );
