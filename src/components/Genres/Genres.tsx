@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from './Genres.styles';
+import { Container, Title } from './Genres.styles';
 
 interface IProps {
   name: string;
@@ -8,7 +8,11 @@ interface IProps {
 }
 
 const Genres: React.FC<IProps> = ({ name, picture }) => {
-  return <Container backgroundImage={picture}>{name}</Container>;
+  return (
+    <Container backgroundImage={picture}>
+      <Title>{name}</Title>
+    </Container>
+  );
 };
 
 export default Genres;

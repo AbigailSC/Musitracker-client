@@ -21,4 +21,9 @@ export const Container = styled.div<IContainer>`
   flex-direction: column;
   background-image: ${(props) => `url(${props.backgroundImage})`};
   background-size: cover;
+  filter: blur(1px);
+`;
+
+export const Title = styled.h3`
+  font-size: 1.5em;
 `;
