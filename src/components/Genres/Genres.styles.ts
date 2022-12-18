@@ -20,6 +20,7 @@ export const Title = styled.h3`
   word-break: normal;
   letter-spacing: 2px;
   color: #c9ccd0;
+  transition: 0.2s ease-in;
 `;
 
 export const Container = styled.div<IContainer>`
@@ -33,7 +34,7 @@ export const Container = styled.div<IContainer>`
   flex-direction: column;
   transition: 0.2s ease-in;
   background-image: ${(props) =>
-    `linear-gradient(rgba(181, 53, 246, 0.1), rgba(181, 53, 246, 0.4)),url(${props.backgroundImage})`};
+    `linear-gradient(rgba(181, 53, 246, 0.1), rgba(181, 53, 246, 0.3)),url(${props.backgroundImage})`};
   background-size: cover;
   cursor: pointer;
   &:hover {

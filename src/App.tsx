@@ -11,6 +11,7 @@ import SingIn from '@components/SingIn';
 import SingUp from '@components/SingUp';
 import Mediaplayer from '@components/Mediaplayer';
 import GlobalStyle from './styles/global';
+import ResultsByGenre from '@components/ResultsByGenre';
 
 const App: React.FC = () => {
   const user = false;
@@ -38,6 +39,19 @@ const App: React.FC = () => {
         <Route
           path="/artist/:idArtist"
           element={user ? <Navigate replace to="/" /> : <Details />}
+        />
+        <Route
+          path="/genre/:genre"
+          element={
+            user ? (
+              <Navigate replace to="/" />
+            ) : (
+              <>
+                <ResultsByGenre />
+                <Mediaplayer />
+              </>
+            )
+          }
         />
         <Route
           path="/search=:name"
