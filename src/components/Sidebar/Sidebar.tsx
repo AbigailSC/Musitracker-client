@@ -26,12 +26,13 @@ const Sidebar: React.FC = () => {
   const handleDesactiveSidebar = (): void => {
     setActiveSidebar(false)
   }
+  const logo = "https://res.cloudinary.com/dbhb8sohh/image/upload/v1671491482/logo_u5qkmd.png"
   return (
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
     <div onMouseOver={handleActiveSidebar} onMouseOut={handleDesactiveSidebar}>
       <SidebarContainerHidden isOpen={activeSidebar}>
         <ContainerLogo>
-          <Logo src="./logo.png" alt="musitracker" />
+          <Logo src={logo} alt="musitracker" />
         </ContainerLogo>
         <ButtonHidden>
           <AiOutlineHome className="icon" />
@@ -65,17 +66,17 @@ const Sidebar: React.FC = () => {
       </SidebarContainerHidden>
       <SidebarContainer isOpen={activeSidebar}>
         <ContainerLogo>
-          <Logo src="./logo.png" alt="musitracker" />
+          <Logo src={logo} alt="musitracker" />
         </ContainerLogo>
-        <Button onClick={handleFalseActiveItem}>
-          <div className='effectHover' />
-          <HStack>
-            <AiOutlineHome className="icon" />
-            <Link to="/home" className='anchor'>
+        <Link to="/home" className='anchor'>
+          <Button onClick={handleFalseActiveItem}>
+            <div className='effectHover' />
+            <HStack>
+              <AiOutlineHome className="icon" />
               Home
-            </Link>
-          </HStack>
-        </Button>
+            </HStack>
+          </Button>
+        </Link>
         <Button onClick={handleActiveItem}>
           <div className='effectHover' />
           <HStack>
@@ -88,16 +89,20 @@ const Sidebar: React.FC = () => {
         {
           activeItem && (
             <SubItem>
-              <Button className='secondary'>
-                <div className='effectHover' />
-                <BiBroadcast className='subIcon' />
-                <Link to="/trending" className='anchor'>Trending Music</Link>
-              </Button>
-              <Button className='secondary'>
-                <div className='effectHover' />
-                <BiTrendingUp className='subIcon' />
-                <Link to="/top" className='anchor'>Top Playlists</Link>
-              </Button>
+              <Link to="/trending" className='anchor'>
+                <Button className='secondary'>
+                  <div className='effectHover' />
+                  <BiBroadcast className='subIcon' />
+                  Trending Music
+                </Button>
+              </Link>
+              <Link to="/top" className='anchor'>
+                <Button className='secondary'>
+                  <div className='effectHover' />
+                  <BiTrendingUp className='subIcon' />
+                  Top Playlists
+                </Button>
+              </Link>
               <Button className='secondary'>
                 <div className='effectHover' />
                 <BiMusic className='subIcon' />
@@ -106,31 +111,39 @@ const Sidebar: React.FC = () => {
             </SubItem>
           )
         }
-        <Button onClick={handleFalseActiveItem}>
-          <div className='effectHover' />
-          <HStack>
-            <BiPodcast className="icon" />
-            <Link to="/podcasts" className='anchor'>Podcasts</Link>
-          </HStack>
-        </Button>
-        <Button onClick={handleFalseActiveItem}>
-          <div className='effectHover' />
-          <HStack>
-            <AiOutlineLike className="icon" /><Link to="/favorites" className='anchor'>Favorites</Link>
-          </HStack>
-        </Button>
-        <Button onClick={handleFalseActiveItem}>
-          <div className='effectHover' />
-          <HStack>
-            <AiOutlineUser className="icon" /><Link to="/artists" className='anchor'>Artists</Link>
-          </HStack>
-        </Button>
-        <Button onClick={handleFalseActiveItem}>
-          <div className='effectHover' />
-          <HStack>
-            <MdOutlineMusicVideo className="icon" /><Link to="/albums" className='anchor'>Albums</Link>
-          </HStack>
-        </Button>
+        <Link to="/podcasts" className='anchor'>
+          <Button onClick={handleFalseActiveItem}>
+            <div className='effectHover' />
+            <HStack>
+              <BiPodcast className="icon" />
+              Podcasts
+            </HStack>
+          </Button>
+        </Link>
+        <Link to="/favorites" className='anchor'>
+          <Button onClick={handleFalseActiveItem}>
+            <div className='effectHover' />
+            <HStack>
+              <AiOutlineLike className="icon" />Favorites
+            </HStack>
+          </Button>
+        </Link>
+        <Link to="/artists" className='anchor'>
+          <Button onClick={handleFalseActiveItem}>
+            <div className='effectHover' />
+            <HStack>
+              <AiOutlineUser className="icon" />Artists
+            </HStack>
+          </Button>
+        </Link>
+        <Link to="/albums" className='anchor'>
+          <Button onClick={handleFalseActiveItem}>
+            <div className='effectHover' />
+            <HStack>
+              <MdOutlineMusicVideo className="icon" />Albums
+            </HStack>
+          </Button>
+        </Link>
       </SidebarContainer>
     </div >
   );

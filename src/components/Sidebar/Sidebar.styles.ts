@@ -100,7 +100,7 @@ export const Button = styled.button`
       color: #c35df7;
     }
   }
-  :nth-child(1) {
+  &:nth-child(1) {
     justify-content: flex-start;
   }
   & ~ .secondary {
@@ -148,5 +148,19 @@ export const ContainerLogo = styled.div`
 export const SubItem = styled.div`
   display: flex;
   flex-direction: column;
+  & > .anchor,
+  .anchor:link,
+  .anchor:visited,
+  .anchor:hover {
+    text-decoration: none;
+    color: inherit;
+    cursor: auto;
+    outline: 0;
+  }
   /* margin-left: 2.5em; */
+  & > ${Button} {
+    &:nth-child(3) {
+      justify-content: flex-start;
+    }
+  }
 `;
