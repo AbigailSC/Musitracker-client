@@ -4,17 +4,24 @@ import React from 'react';
 import {
   Section,
   SectionContent,
-  SectionContentLeft
+  SectionContentLeft,
+  Header
 } from './ResultsByGenre.styles';
+import { useParams } from 'react-router-dom';
+import { useCustomSelector } from '../../hooks/redux/index';
 
 const ResultsByGenre: React.FC = () => {
+  const { genre } = useParams();
+  const { musicSlice } = useCustomSelector((state) => state);
+
+  console.log(musicSlice.currentGenre);
   return (
     <Section>
       <Sidebar />
       <SectionContent>
         <Navbar />
         <SectionContentLeft>
-          <p>hola</p>
+          <Header>{genre}</Header>
         </SectionContentLeft>
       </SectionContent>
     </Section>

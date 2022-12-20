@@ -25,7 +25,17 @@ export const SectionContentLeft = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   padding: 2em 4em;
   margin-top: 100px;
+`;
+
+export const Header = styled.h2`
+  font-size: 4em;
+  font-weight: 700;
+  /* background: linear-gradient(to right, #b535f6, #c35df7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; */
+  color: #d4d4ea;
 `;

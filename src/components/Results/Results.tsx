@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '@components/Navbar';
 import Sidebar from '@components/Sidebar';
 import CardSkeleton from '@components/CardSkeleton/CardSkeleton';
 import Card from '@components/Card';
-import { musicBySearch } from '../../redux/slices/music/index';
-import { useCustomSelector, useCustomDispatch } from '../../hooks/redux/index';
+import { useCustomSelector } from '../../hooks/redux/index';
 import {
   Section,
   SectionContent,
@@ -21,7 +20,6 @@ import {
 import { ITitle } from './types';
 
 const Results: React.FC = () => {
-  const dispatch = useCustomDispatch();
   const { name } = useParams();
   const { musicSlice } = useCustomSelector((state) => state);
   const musicData = musicSlice.musicFiltered;
@@ -40,10 +38,6 @@ const Results: React.FC = () => {
       return false;
     }
   };
-
-  useEffect(() => {
-    dispatch(musicBySearch(name as string));
-  }, [dispatch, name]);
 
   return (
     <Section>
