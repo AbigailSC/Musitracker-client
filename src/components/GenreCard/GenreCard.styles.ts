@@ -32,6 +32,7 @@ export const GenreCardContainer = styled.div`
 
 export const Title = styled.h3`
   font-size: 1.5em;
+  font-weight: 500;
   color: #d4d4ea;
   cursor: pointer;
   transition: 0.2s ease-out;
