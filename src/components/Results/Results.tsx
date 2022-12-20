@@ -83,18 +83,19 @@ const Results: React.FC = () => {
                 </HeroContainer>
               </Container>
               <CardContainer>
-                {musicData.map((card: ITitle, index: number) => (
-                  <Card
-                    key={card.id}
-                    obj={card}
-                    title={card.title}
-                    artist={card.artist.name}
-                    album={card.album.title}
-                    duration={card.duration}
-                    img={card.album.cover}
-                    index={index + 1}
-                  />
-                ))}
+                {musicData instanceof Array &&
+                  musicData.map((card: ITitle, index: number) => (
+                    <Card
+                      key={card.id}
+                      obj={card}
+                      title={card.title}
+                      artist={card.artist.name}
+                      album={card.album.title}
+                      duration={card.duration}
+                      img={card.album.cover}
+                      index={index + 1}
+                    />
+                  ))}
               </CardContainer>
             </Stack>
           )}

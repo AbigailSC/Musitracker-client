@@ -28,6 +28,7 @@ export const SectionContentLeft = styled.div`
   align-items: flex-start;
   padding: 2em 4em;
   margin-top: 100px;
+  gap: 3em;
 `;
 
 export const Header = styled.h2`
@@ -38,4 +39,11 @@ export const Header = styled.h2`
   -webkit-text-fill-color: transparent;
   background-clip: text; */
   color: #d4d4ea;
+`;
+
+export const ContainerCards = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  padding-bottom: 100px;
 `;

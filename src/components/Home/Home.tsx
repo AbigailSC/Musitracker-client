@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import Navbar from '@components/Navbar';
@@ -31,14 +32,16 @@ const Home: React.FC = () => {
             <p>Loading</p>
           ) : (
             <GenresContainer>
-              {genres.map((genre: IGenres) => (
-                <Genres
-                  key={genre.id}
-                  id={genre.id}
-                  picture={genre.picture}
-                  name={genre.name}
-                />
-              ))}
+              {genres instanceof Array
+                ? genres.map((genre: IGenres) => (
+                  <Genres
+                    key={genre.id}
+                    id={genre.id}
+                    picture={genre.picture}
+                    name={genre.name}
+                  />
+                ))
+                : null}
             </GenresContainer>
           )}
         </SectionContentLeft>
