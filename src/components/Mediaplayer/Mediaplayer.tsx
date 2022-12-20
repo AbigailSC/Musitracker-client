@@ -20,7 +20,6 @@ import {
 import { FaPlay, FaPause } from 'react-icons/fa';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { useCustomSelector } from '../../hooks/redux/index';
-// import changeOpacityColor from '../../utils/changeOpacityColor';
 import calculateTime from '../../utils/calculateTime';
 
 interface Props {
@@ -98,6 +97,7 @@ const Mediaplayer: React.FC = () => {
       <MediaPlayerContent>
         <MediaPlayerImg
           background={musicSlice.currentDominantColor}
+          active={currentAudio.current?.paused ?? false}
           src={
             currentMusic !== null
               ? currentMusic?.album.cover

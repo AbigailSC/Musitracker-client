@@ -13,7 +13,12 @@ const persistAuthConfig = {
 const persistCurrentMusicConfig = {
   key: 'currentMusic',
   storage,
-  whitelist: ['currentSong', 'currentGenre', 'musicFiltered']
+  whitelist: [
+    'currentSong',
+    'currentGenre',
+    'musicFiltered',
+    'currentDominantColor'
+  ]
 };
 
 const store = configureStore({

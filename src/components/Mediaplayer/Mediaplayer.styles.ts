@@ -42,6 +42,7 @@ const pulse = (background: string): any => keyframes`
 
 interface IMediaPlayerContainer {
   background: string;
+  active: boolean;
 }
 
 export const MediaPlayerContainer = styled.div`
@@ -117,7 +118,8 @@ export const MediaPlayerImg = styled.img<IMediaPlayerContainer>`
   height: 70px;
   border-radius: 100%;
   /* box-shadow: ${(props) => `${props.background} 0px 20px 40px -15px`}; */
-  animation: ${(props) => pulse(props.background)} 2s infinite;
+  animation: ${(props) => (props.active ? null : pulse(props.background))} 1.5s
+    infinite;
 `;
 
 export const VolumeLine = styled.div`

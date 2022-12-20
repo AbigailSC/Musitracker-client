@@ -1,5 +1,5 @@
 const changeOpacityColor = (color: string): string => {
-  const opacity = 0.5;
+  const opacity = 0;
   const rgb = color
     .replace(/[^\d,]/g, '')
     .split(',')
