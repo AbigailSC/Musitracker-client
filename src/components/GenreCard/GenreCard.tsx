@@ -25,7 +25,7 @@ const GenreCard: React.FC<IProps> = ({ artist, id, img }) => {
   return (
     <GenreCardContainer>
       <ImageArtist src={img} alt={artist} />
-      <Link to={`artist/${id}`} className="anchor">
+      <Link to={`/artist/${id}`} className="anchor">
         <Title onClick={() => handleArtistInfo()}>{artist}</Title>
       </Link>
     </GenreCardContainer>

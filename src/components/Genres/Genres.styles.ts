@@ -33,7 +33,7 @@ export const Container = styled.div<IContainer>`
   flex-direction: column;
   transition: 0.2s ease-in;
   background-image: ${(props) =>
-    `linear-gradient(rgba(17, 24, 39, 0.1), rgba(17, 24, 39, 0.6)),url(${props.backgroundImage})`};
+    `linear-gradient(rgba(17, 24, 39, 0.1), rgba(17, 24, 39, 0.8)),url(${props.backgroundImage})`};
   background-size: cover;
   cursor: pointer;
 `;

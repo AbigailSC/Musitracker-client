@@ -39,7 +39,16 @@ const App: React.FC = () => {
         <Route path="/about" element={<About />} />
         <Route
           path="/artist/:idArtist"
-          element={user ? <Navigate replace to="/" /> : <Artist />}
+          element={
+            user ? (
+              <Navigate replace to="/" />
+            ) : (
+              <>
+                <Artist />
+                <Mediaplayer />
+              </>
+            )
+          }
         />
         <Route
           path="/genre/:genre"
