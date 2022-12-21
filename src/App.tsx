@@ -1,17 +1,17 @@
 import React from 'react';
-import Home from '@components/Home';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import Home from '@pages/Home';
 import NotFound from '@components/NotFound';
 import About from '@components/About';
 import Details from '@components/Details';
-import Results from '@components/Results';
+import Results from '@pages/Results';
 import Profile from '@components/Profile';
-import Landing from '@components/Landing';
+import Landing from '@pages/Landing';
 import SingIn from '@components/SingIn';
 import SingUp from '@components/SingUp';
 import Mediaplayer from '@components/Mediaplayer';
 import GlobalStyle from './styles/global';
-import ResultsByGenre from '@components/ResultsByGenre';
+import ResultsByGenre from '@pages/ResultsByGenre';
 
 const App: React.FC = () => {
   const user = false;

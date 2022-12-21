@@ -17,7 +17,8 @@
     "jsx": "react-jsx",
     "baseUrl": "./",
     "paths": {
-      "@components/*": ["src/components/*"]
+      "@components/*": ["src/components/*"],
+      "@pages/*": ["src/pages/*"],
     },
     "useUnknownInCatchVariables": false
   },
