@@ -10,6 +10,8 @@ export interface IMusic {
   genres: IGenres | [];
   currentGenre: IGenres | null;
   currentDominantColor: string;
+  currentArtist: IArtistFull | null;
+  artistAlbums: IArtistAlbums | [];
   isLoading: boolean;
 }
 
@@ -22,6 +24,26 @@ export interface IMusicSearched {
   preview: string;
   artist: IArtist;
   album: IAlbum;
+}
+
+export interface IArtistFull {
+  id: number;
+  name: string;
+  link: string;
+  picture_xl: string;
+  nb_album: number;
+  nb_fan: number;
+}
+
+export interface IArtistAlbums {
+  id: number;
+  title: string;
+  cover_xl: string;
+  genre_id: number;
+  fans: number;
+  release_date: string;
+  record_type: string;
+  type: string;
 }
 
 interface IArtist {
@@ -43,6 +65,8 @@ const initialState: IMusic = {
   genres: [],
   currentGenre: null,
   currentDominantColor: '',
+  currentArtist: null,
+  artistAlbums: [],
   isLoading: false
 };
 
@@ -67,6 +91,12 @@ const musicSlice = createSlice({
     },
     setCurrentGenre: (state, action: PayloadAction<IGenres>) => {
       state.currentGenre = action.payload;
+    },
+    setCurrentArtist: (state, action: PayloadAction<IArtistFull>) => {
+      state.currentArtist = action.payload;
+    },
+    setArtistAlbums: (state, action: PayloadAction<IArtistAlbums>) => {
+      state.artistAlbums = action.payload;
     }
   }
 });
@@ -77,7 +107,9 @@ export const {
   setCurrentSong,
   setDominantColor,
   setGenres,
-  setCurrentGenre
+  setCurrentGenre,
+  setCurrentArtist,
+  setArtistAlbums
 } = musicSlice.actions;
 
 export default musicSlice.reducer;
@@ -151,6 +183,43 @@ export const getCurrentGenre =
       const genreFiltered = genreSelected.data.map((music: IArtist) => music);
       dispatch(setCurrentGenre(genreFiltered));
       return genreSelected;
+    } catch (error) {
+      return error as AxiosError;
+    } finally {
+      dispatch(setIsLoading(false));
+    }
+  };
+
+export const getCurrentArtist =
+  (artistId: number): Thunk =>
+  async (dispatch): Promise<AxiosResponse | AxiosError> => {
+    dispatch(setIsLoading(true));
+    try {
+      const artistSelected: AxiosResponse = await axios.get(
+        `/music/artist/${artistId}`
+      );
+      dispatch(setCurrentArtist(artistSelected.data));
+      return artistSelected;
+    } catch (error) {
+      return error as AxiosError;
+    } finally {
+      dispatch(setIsLoading(false));
+    }
+  };
+
+export const getArtistAlbums =
+  (artistId: number): Thunk =>
+  async (dispatch): Promise<AxiosResponse | AxiosError> => {
+    dispatch(setIsLoading(true));
+    try {
+      const artistSelected: AxiosResponse = await axios.get(
+        `/music/artist/${artistId}/albums/1`
+      );
+      const artistFiltered = artistSelected.data.apiData.map(
+        (music: IArtistAlbums) => music
+      );
+      dispatch(setArtistAlbums(artistFiltered));
+      return artistSelected;
     } catch (error) {
       return error as AxiosError;
     } finally {

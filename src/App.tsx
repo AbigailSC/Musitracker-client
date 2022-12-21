@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import Home from '@pages/Home';
 import NotFound from '@components/NotFound';
 import About from '@components/About';
-import Details from '@components/Details';
+// import Details from '@components/Details';
 import Results from '@pages/Results';
 import Profile from '@components/Profile';
 import Landing from '@pages/Landing';
@@ -12,6 +12,7 @@ import SingUp from '@components/SingUp';
 import Mediaplayer from '@components/Mediaplayer';
 import GlobalStyle from './styles/global';
 import ResultsByGenre from '@pages/ResultsByGenre';
+import Artist from '@pages/Artist';
 
 const App: React.FC = () => {
   const user = false;
@@ -38,7 +39,7 @@ const App: React.FC = () => {
         <Route path="/about" element={<About />} />
         <Route
           path="/artist/:idArtist"
-          element={user ? <Navigate replace to="/" /> : <Details />}
+          element={user ? <Navigate replace to="/" /> : <Artist />}
         />
         <Route
           path="/genre/:genre"

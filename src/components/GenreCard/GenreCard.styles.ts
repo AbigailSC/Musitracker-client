@@ -28,6 +28,15 @@ export const GenreCardContainer = styled.div`
   text-align: center;
   gap: 1em;
   height: 300px;
+  & > .anchor,
+  .anchor:link,
+  .anchor:visited,
+  .anchor:hover {
+    text-decoration: none;
+    color: #d4d4ea;
+    cursor: auto;
+    outline: 0;
+  }
 `;
 
 export const Title = styled.h3`
@@ -36,6 +45,9 @@ export const Title = styled.h3`
   color: #d4d4ea;
   cursor: pointer;
   transition: 0.2s ease-out;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   &:hover {
     color: #fff;
     transition: 0.2s ease-out;

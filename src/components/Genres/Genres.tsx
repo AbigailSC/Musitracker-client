@@ -18,9 +18,9 @@ const Genres: React.FC<IProps> = ({ name, picture, id }) => {
   const handleCurrentGenre = (genreId: number): void => {
     dispatch(getCurrentGenre(genreId));
   };
-
+  const nameWithoutSpace = name.replace(/\//g, '');
   return (
-    <Link to={`/genre/${name}`} style={{ textDecoration: 'none' }}>
+    <Link to={`/genre/${nameWithoutSpace}`} style={{ textDecoration: 'none' }}>
       <Container
         backgroundImage={name === 'All' ? placeholderAll : picture}
         onClick={() => handleCurrentGenre(id)}
