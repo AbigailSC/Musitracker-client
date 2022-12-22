@@ -66,6 +66,13 @@ export const AlbumCardTitle = styled.h3`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
+  color: #d4d4ea;
+  transition: 0.2s ease-out;
+  &:hover {
+    color: #fff;
+    transition: 0.2s ease-in;
+  }
 `;
 
 export const DotSpan = styled.div`
@@ -84,6 +91,6 @@ export const AlbumCardSubtitle = styled.h4`
 export const HStack = styled.div`
   display: flex;
   align-items: center;
-  gap: 1em;
+  gap: 0.5em;
   width: min-content;
 `;

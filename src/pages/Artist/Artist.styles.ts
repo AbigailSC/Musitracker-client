@@ -59,7 +59,7 @@ export const ArtistHeader = styled.div<IHeader>`
     `linear-gradient(rgba(17, 24, 39, 0.1), rgba(17, 24, 39, 1)),url(${props.backgroundImg})`};
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: 0% 25%;
+  background-position: 0% 30%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
