@@ -239,7 +239,14 @@ export const getCurrentArtist =
       const artistSelected: AxiosResponse = await axios.get(
         `/music/artist/${artistId}`
       );
-      dispatch(setCurrentArtist(artistSelected.data));
+      const artistTopTracks = await axios.get(
+        `/music/artist/${artistId}/topTracks`
+      );
+      const artistWithTopTracks = {
+        ...artistSelected.data,
+        topTracks: artistTopTracks.data
+      };
+      dispatch(setCurrentArtist(artistWithTopTracks));
       return artistSelected;
     } catch (error) {
       return error as AxiosError;
