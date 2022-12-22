@@ -38,7 +38,7 @@ export interface IArtistFull {
 export interface IArtistAlbums {
   id: number;
   title: string;
-  cover_xl: string;
+  cover_big: string;
   genre_id: number;
   fans: number;
   release_date: string;
