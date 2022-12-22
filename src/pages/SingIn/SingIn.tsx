@@ -20,7 +20,7 @@ import { Container } from './SingIn.styles';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { useCustomDispatch } from '../../hooks/redux';
-import { postUserAuth } from 'src/redux/slices/auth';
+import { postUserAuth } from '../../redux/slices/auth';
 
 const SingIn: React.FC = () => {
   const dispatch = useCustomDispatch();
