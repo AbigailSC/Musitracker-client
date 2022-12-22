@@ -74,6 +74,20 @@ export const AlbumCardContainer = styled.div`
   gap: 1em;
   padding-bottom: 100px;
   justify-content: space-between;
+  & > .cardSkeleton {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1em;
+    width: 300px;
+    height: 400px;
+    background: rgba(75, 85, 99, 0.25);
+    border-radius: 1em;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    padding: 1em;
+  }
 `;
 
 export const Title = styled.h2`

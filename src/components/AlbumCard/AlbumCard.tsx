@@ -9,6 +9,7 @@ import {
 } from './AlbumCard.styles';
 import { useCustomDispatch } from '../../hooks/redux/index';
 import { getCurrentAlbum } from '../../redux/slices/music/index';
+import { Link } from 'react-router-dom';
 
 interface IProps {
   id: number;
@@ -38,9 +39,11 @@ const AlbumCard: React.FC<IProps> = ({
   return (
     <AlbumCardContainer>
       <AlbumCardImage src={img} alt={title} />
-      <AlbumCardTitle onClick={() => handleCurrentAlbum(id)}>
-        {title}
-      </AlbumCardTitle>
+      <Link to={`/album/${id}`} className="anchor">
+        <AlbumCardTitle onClick={() => handleCurrentAlbum(id)}>
+          {title}
+        </AlbumCardTitle>
+      </Link>
       <HStack>
         <AlbumCardSubtitle>{releaseDateFormatted}</AlbumCardSubtitle>
         <DotSpan />

@@ -52,6 +52,16 @@ export const AlbumCardContainer = styled.div`
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(8px);
   padding: 1em;
+  & > .anchor,
+  .anchor:link,
+  .anchor:visited,
+  .anchor:hover {
+    text-decoration: none;
+    color: #d4d4ea;
+    cursor: auto;
+    outline: 0;
+    width: 100%;
+  }
 `;
 
 export const AlbumCardImage = styled.img`

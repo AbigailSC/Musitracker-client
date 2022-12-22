@@ -24,7 +24,7 @@ const Artist: React.FC = () => {
   const { musicSlice } = useCustomSelector((state) => state);
   const artist = musicSlice.currentArtist;
   const artistAlbums = musicSlice.artistAlbums;
-
+  const skeletonFill = [1, 2, 3, 4, 5];
   return (
     <Section>
       <Sidebar />
@@ -32,7 +32,18 @@ const Artist: React.FC = () => {
         <Navbar />
         <SectionContentLeft>
           {musicSlice.isLoading ? (
-            <SkeletonFigure width="100%" heigth="420px" />
+            <ArtistContainer>
+              <SkeletonFigure width="100%" heigth="420px" />
+              <AlbumCardContainer>
+                {skeletonFill.map((item) => (
+                  <div key={item} className="cardSkeleton">
+                    <SkeletonFigure width="100%" heigth="300px" />
+                    <SkeletonFigure width="80%" heigth="1.5em" />
+                    <SkeletonFigure width="90%" heigth="1em" />
+                  </div>
+                ))}
+              </AlbumCardContainer>
+            </ArtistContainer>
           ) : (
             <ArtistContainer>
               {artist !== null && (
