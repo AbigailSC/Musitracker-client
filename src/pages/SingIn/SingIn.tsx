@@ -19,10 +19,11 @@ import {
 import { Container } from './SingIn.styles';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import { useCustomDispatch, useCustomSelector } from '../../hooks/redux';
-import Swal from 'sweetalert2';
+import { useCustomDispatch } from '../../hooks/redux';
+import { postUserAuth } from 'src/redux/slices/auth';
 
 const SingIn: React.FC = () => {
+  const dispatch = useCustomDispatch();
   interface IData {
     username?: string;
     email?: string;
