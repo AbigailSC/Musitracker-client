@@ -19,7 +19,8 @@ const persistCurrentMusicConfig = {
     'musicFiltered',
     'currentDominantColor',
     'currentArtist',
-    'artistAlbums'
+    'artistAlbums',
+    'currentAlbum'
   ]
 };
 

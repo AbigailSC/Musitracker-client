@@ -7,6 +7,8 @@ import {
   AlbumCardSubtitle,
   DotSpan
 } from './AlbumCard.styles';
+import { useCustomDispatch } from '../../hooks/redux/index';
+import { getCurrentAlbum } from '../../redux/slices/music/index';
 
 interface IProps {
   id: number;
@@ -25,13 +27,20 @@ const AlbumCard: React.FC<IProps> = ({
   releaseDate,
   recordType
 }) => {
+  const dispatch = useCustomDispatch();
   const releaseDateFormatted = releaseDate.slice(0, 4);
   const TypeCapitalized =
     recordType.charAt(0).toUpperCase() + recordType.slice(1);
+
+  const handleCurrentAlbum = (albumId: number): void => {
+    dispatch(getCurrentAlbum(albumId));
+  };
   return (
     <AlbumCardContainer>
       <AlbumCardImage src={img} alt={title} />
-      <AlbumCardTitle>{title}</AlbumCardTitle>
+      <AlbumCardTitle onClick={() => handleCurrentAlbum(id)}>
+        {title}
+      </AlbumCardTitle>
       <HStack>
         <AlbumCardSubtitle>{releaseDateFormatted}</AlbumCardSubtitle>
         <DotSpan />

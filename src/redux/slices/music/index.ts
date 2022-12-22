@@ -11,10 +11,46 @@ export interface IMusic {
   currentGenre: IGenres | null;
   currentDominantColor: string;
   currentArtist: IArtistFull | null;
+  currentAlbum: IAlbumFull | null;
   artistAlbums: IArtistAlbums | [];
   isLoading: boolean;
 }
 
+export interface IAlbumFull {
+  id: number;
+  title: string;
+  link: string;
+  cover_big: string;
+  genres: {
+    id: number;
+    name: string;
+  };
+  label: string;
+  release_date: string;
+  tracklist: string;
+  duration_total: number;
+  contributors: {
+    id: number;
+    name: string;
+    link: string;
+    picture_big: string;
+    role: string;
+  };
+  artist: {
+    id: number;
+    name: string;
+    picture_xl: string;
+  };
+  tracks: IAlbumFullTracks;
+}
+
+interface IAlbumFullTracks {
+  id: number;
+  title: string;
+  link: string;
+  duration: number;
+  preview: string;
+}
 export interface IMusicSearched {
   id: number;
   title: string;
@@ -66,6 +102,7 @@ const initialState: IMusic = {
   currentGenre: null,
   currentDominantColor: '',
   currentArtist: null,
+  currentAlbum: null,
   artistAlbums: [],
   isLoading: false
 };
@@ -97,6 +134,9 @@ const musicSlice = createSlice({
     },
     setArtistAlbums: (state, action: PayloadAction<IArtistAlbums>) => {
       state.artistAlbums = action.payload;
+    },
+    setCurrentAlbum: (state, action: PayloadAction<IAlbumFull>) => {
+      state.currentAlbum = action.payload;
     }
   }
 });
@@ -109,7 +149,8 @@ export const {
   setGenres,
   setCurrentGenre,
   setCurrentArtist,
-  setArtistAlbums
+  setArtistAlbums,
+  setCurrentAlbum
 } = musicSlice.actions;
 
 export default musicSlice.reducer;
@@ -220,6 +261,23 @@ export const getArtistAlbums =
       );
       dispatch(setArtistAlbums(artistFiltered));
       return artistSelected;
+    } catch (error) {
+      return error as AxiosError;
+    } finally {
+      dispatch(setIsLoading(false));
+    }
+  };
+
+export const getCurrentAlbum =
+  (albumId: number): Thunk =>
+  async (dispatch): Promise<AxiosResponse | AxiosError> => {
+    dispatch(setIsLoading(true));
+    try {
+      const albumSelected: AxiosResponse = await axios.get(
+        `/music/album/${albumId}`
+      );
+      dispatch(setCurrentAlbum(albumSelected.data));
+      return albumSelected;
     } catch (error) {
       return error as AxiosError;
     } finally {
