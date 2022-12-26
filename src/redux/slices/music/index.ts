@@ -28,6 +28,7 @@ export interface IAlbumFull {
   label: string;
   release_date: string;
   tracklist: string;
+  record_type: string;
   duration_total: number;
   contributors: {
     id: number;
