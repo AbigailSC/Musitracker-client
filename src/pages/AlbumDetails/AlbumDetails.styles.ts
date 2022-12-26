@@ -82,4 +82,11 @@ export const Text = styled.h3<IText>`
   text-transform: capitalize;
 `;
 
+export const Dot = styled.div`
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fff;
+`;
+
 // export const AlbumHeaderContainer = styled.div``;
