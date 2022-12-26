@@ -15,7 +15,8 @@ import {
   AlbumImg,
   AlbumHeaderInfo,
   Text,
-  Dot
+  Dot,
+  AlbumHeaderImgArtist
 } from './AlbumDetails.styles';
 import getAverageColor from '../../utils/getAverageColor';
 import getTotalTime from '../../utils/getTotalTime';
@@ -56,11 +57,13 @@ const AlbumDetails: React.FC = () => {
                     <Text color="#fff" weight="700" size="1em">
                       {albumDetails.record_type}
                     </Text>
-
                     <Text color="#fff" weight="700" size="3em">
                       {albumDetails.title}
                     </Text>
                     <HStack>
+                      <AlbumHeaderImgArtist
+                        src={albumDetails.artist.picture_xl}
+                      />
                       <Text color="#fff" weight="700" size="1em">
                         {albumDetails.artist.name}
                       </Text>
