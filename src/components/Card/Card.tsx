@@ -11,8 +11,11 @@ import {
 import { AiOutlineHeart } from 'react-icons/ai';
 import getAverageColor from '../../utils/getAverageColor';
 import calculateTime from '../../utils/calculateTime';
-import { getCurrentSong, IMusicSearched, getDominantColor } from '../../redux/slices/music/index';
+import {
+  getCurrentSong, IMusicSearched, getDominantColor, getCurrentAlbum
+} from '../../redux/slices/music/index';
 import { useCustomDispatch } from '../../hooks/redux/index';
+import { Link } from 'react-router-dom';
 
 interface IProps {
   title: string,
@@ -43,6 +46,10 @@ const Card: React.FC<IProps> = ({ title, artist, album, duration, img, index, ob
     dispatch(getDominantColor(color))
   }
 
+  const handleCurrentAlbum = (albumId: number): void => {
+    dispatch(getCurrentAlbum(albumId));
+  };
+
   return (
     <Container color={'rgba(75, 85, 99, 0.27)'} bgColor={'#000'}>
       <HStack>
@@ -56,9 +63,11 @@ const Card: React.FC<IProps> = ({ title, artist, album, duration, img, index, ob
         </Stack>
       </HStack>
       <HStack>
-        <HeaderText cursor={'pointer'} className="hover">
-          {album}
-        </HeaderText>
+        <Link to={`/album/${obj.album.id}`} className="anchor">
+          <HeaderText cursor={'pointer'} className="hover" onClick={() => handleCurrentAlbum(obj.album.id)}>
+            {album}
+          </HeaderText>
+        </Link>
       </HStack>
       <HStack>
         <Icon>

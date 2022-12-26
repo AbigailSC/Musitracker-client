@@ -38,7 +38,6 @@ const Results: React.FC = () => {
       return false;
     }
   };
-
   return (
     <Section>
       <Sidebar />

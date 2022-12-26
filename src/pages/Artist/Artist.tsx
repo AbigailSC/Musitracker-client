@@ -14,17 +14,22 @@ import {
   HStack,
   Subtitle,
   SkeletonFigure,
-  AlbumCardContainer
+  AlbumCardContainer,
+  TopTracksContainer
 } from './Artist.styles';
 import { FiExternalLink } from 'react-icons/fi';
 import AlbumCard from '@components/AlbumCard';
 import { IArtistAlbums } from '../../redux/slices/music/index';
+import Card from '@components/Card';
+import { ITitle } from '@pages/Results/types';
 
 const Artist: React.FC = () => {
   const { musicSlice } = useCustomSelector((state) => state);
   const artist = musicSlice.currentArtist;
   const artistAlbums = musicSlice.artistAlbums;
+  const topTracks = musicSlice.currentArtist?.topTracks;
   const skeletonFill = [1, 2, 3, 4, 5];
+  // console.log(musicSlice.currentAlbum);
   return (
     <Section>
       <Sidebar />
@@ -62,6 +67,23 @@ const Artist: React.FC = () => {
                   <Subtitle>{artist.nb_fan} fans</Subtitle>
                 </ArtistHeader>
               )}
+              <Title>Top songs</Title>
+              <TopTracksContainer>
+                {topTracks instanceof Array &&
+                  topTracks.map((track: ITitle, index) => (
+                    <Card
+                      key={track.id}
+                      obj={track}
+                      title={track.title}
+                      artist={track.artist.name}
+                      album={track.album.title}
+                      duration={track.duration}
+                      img={track.album.cover}
+                      index={index + 1}
+                    />
+                  ))}
+              </TopTracksContainer>
+              <Title>Discography</Title>
               <AlbumCardContainer>
                 {artistAlbums instanceof Array &&
                   artistAlbums.map((album: IArtistAlbums) => (

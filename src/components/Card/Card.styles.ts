@@ -84,6 +84,15 @@ export const HStack = styled.div`
     display: flex;
     justify-content: flex-end;
   }
+  & > .anchor,
+  .anchor:link,
+  .anchor:visited,
+  .anchor:hover {
+    text-decoration: none;
+    color: #d4d4ea;
+    cursor: auto;
+    outline: 0;
+  }
 `;
 
 export const Figure = styled.div<IFigure>`

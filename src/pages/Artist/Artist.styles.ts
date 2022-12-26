@@ -90,6 +90,12 @@ export const AlbumCardContainer = styled.div`
   }
 `;
 
+export const TopTracksContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+`;
+
 export const Title = styled.h2`
   font-size: 3em;
   font-weight: 700;
