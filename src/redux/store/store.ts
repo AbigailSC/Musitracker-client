@@ -8,7 +8,7 @@ import musicReducer from '../slices/music';
 const persistAuthConfig = {
   key: 'authToken',
   storage,
-  whitelist: ['accessToken']
+  whitelist: ['accessToken', 'user']
 };
 const persistCurrentMusicConfig = {
   key: 'currentMusic',

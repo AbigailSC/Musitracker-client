@@ -18,32 +18,29 @@ import {
 } from '../SingUp/SingUp.styles';
 import { Container } from './SingIn.styles';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
-import { useCustomDispatch } from '../../hooks/redux';
-import { postUserAuth } from '../../redux/slices/auth';
+import { Link, useNavigate } from 'react-router-dom';
+import { useCustomDispatch, useCustomSelector } from '../../hooks/redux';
+import { singInAuth } from '../../redux/slices/auth';
+interface IData {
+  email?: string;
+  password?: string;
+}
+
+interface IInput {
+  email: string;
+  password: string;
+}
 
 const SingIn: React.FC = () => {
   const dispatch = useCustomDispatch();
-  interface IData {
-    username?: string;
-    email?: string;
-    password?: string;
-  }
-
-  interface IInput {
-    username: string;
-    email: string;
-    password: string;
-  }
-
+  const navigate = useNavigate();
   const [showPass, setShowPass] = useState(true);
   const [input, setInput] = useState({
-    username: '',
     email: '',
     password: ''
   });
   const [error, setError] = useState<IData>({});
-
+  const { auth } = useCustomSelector((state) => state);
   const validateEmail =
     /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
@@ -79,13 +76,16 @@ const SingIn: React.FC = () => {
 
   const handleSubmit = (): void => {
     setError(validation(input));
-    dispatch(postUserAuth(input));
+    dispatch(singInAuth(input));
     setInput({
-      username: '',
       email: '',
       password: ''
     });
+    if (!auth.isLoading) {
+      navigate('/home');
+    }
   };
+
   return (
     <Section>
       <Container />

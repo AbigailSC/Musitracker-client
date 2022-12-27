@@ -5,12 +5,22 @@ import {
   UserDropdown,
   UserDropdownItem
 } from './User.styles';
+import { getlogOut } from '../../redux/slices/auth/index';
+import { useNavigate } from 'react-router-dom';
+import { useCustomDispatch } from '../../hooks/redux';
 
 const User: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const dispatch = useCustomDispatch();
+  const navigate = useNavigate();
 
   const toggleDropdown = (): void => {
     setIsOpen(!isOpen);
+  };
+
+  const handleSingOut = (): void => {
+    dispatch(getlogOut());
+    navigate('/');
   };
 
   return (
@@ -23,7 +33,9 @@ const User: React.FC = () => {
       {isOpen && (
         <UserDropdown>
           <UserDropdownItem>Profile</UserDropdownItem>
-          <UserDropdownItem>Sing out</UserDropdownItem>
+          <UserDropdownItem onClick={() => handleSingOut()}>
+            Sing out
+          </UserDropdownItem>
         </UserDropdown>
       )}
     </UserContainer>
