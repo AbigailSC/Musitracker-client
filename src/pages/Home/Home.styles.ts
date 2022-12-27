@@ -35,6 +35,6 @@ export const GenresContainer = styled.div`
   width: 100%;
   justify-content: flex-start;
   padding-bottom: 100px;
-  gap: 10px;
+  gap: 1em;
   flex-wrap: wrap;
 `;

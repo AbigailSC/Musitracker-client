@@ -3,17 +3,19 @@ import {
   UserContainer,
   Avatar,
   UserDropdown,
-  UserDropdownItem
+  UserDropdownItem,
+  SkeletonAvatar
 } from './User.styles';
 import { getlogOut } from '../../redux/slices/auth/index';
 import { logOut } from '../../redux/slices/user/user';
 import { useNavigate } from 'react-router-dom';
-import { useCustomDispatch } from '../../hooks/redux';
+import { useCustomDispatch, useCustomSelector } from '../../hooks/redux';
 
 const User: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dispatch = useCustomDispatch();
   const navigate = useNavigate();
+  const { userSlice } = useCustomSelector((state) => state);
 
   const toggleDropdown = (): void => {
     setIsOpen(!isOpen);
@@ -24,14 +26,17 @@ const User: React.FC = () => {
     dispatch(logOut());
     navigate('/');
   };
-
   return (
     <UserContainer>
-      <Avatar
-        src="https://res.cloudinary.com/dbhb8sohh/image/upload/v1661300709/fv195vkpbkbra3xd9tei.gif"
-        alt="nombre"
-        onClick={toggleDropdown}
-      />
+      {userSlice.userInfo !== null ? (
+        <Avatar
+          src={userSlice.userInfo.imageProfile}
+          alt="nombre"
+          onClick={toggleDropdown}
+        />
+      ) : (
+        <SkeletonAvatar />
+      )}
       {isOpen && (
         <UserDropdown>
           <UserDropdownItem>Profile</UserDropdownItem>

@@ -15,6 +15,7 @@ interface IUserInfo {
   username: string;
   email: string;
   password?: string;
+  imageProfile: string;
   createdAt: string;
   updatedAt: string;
 }
