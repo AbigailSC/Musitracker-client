@@ -19,20 +19,21 @@ import {
 } from './SingUp.styles';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { postUserAuth } from '../../redux/slices/auth/index';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCustomDispatch, useCustomSelector } from '../../hooks/redux';
 import Swal from 'sweetalert2';
 import { getUsersInfo } from '../../redux/slices/user/user';
 
 const SingUp: React.FC = () => {
   const dispatch = useCustomDispatch();
-
+  const navigate = useNavigate();
+  const { userSlice } = useCustomSelector((state) => state);
+  const { auth } = useCustomSelector((state) => state);
   useEffect(() => {
     dispatch(getUsersInfo());
   }, []);
 
   // const { auth } = useCustomSelector((state) => state);
-  const { userSlice } = useCustomSelector((state) => state);
 
   interface IData {
     username?: string;
@@ -129,6 +130,9 @@ const SingUp: React.FC = () => {
         email: '',
         password: ''
       });
+      if (!auth.isLoading) {
+        navigate('/home');
+      }
     }
   };
   return (

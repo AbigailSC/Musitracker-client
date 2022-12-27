@@ -72,7 +72,7 @@ const AlbumDetails: React.FC = () => {
                         {date}
                       </Text>
                       <Dot />
-                      <Text color="#fff" weight="400" size="1em">
+                      <Text color="#d4d4ea" weight="400" size="1em">
                         {albumDetails.tracklist.length} songs, {time}
                       </Text>
                     </HStack>
