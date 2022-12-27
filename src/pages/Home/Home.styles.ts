@@ -33,8 +33,8 @@ export const SectionContentLeft = styled.div`
 export const GenresContainer = styled.div`
   display: flex;
   width: 100%;
-  gap: 1em;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding-bottom: 100px;
+  gap: 10px;
+  flex-wrap: wrap;
 `;

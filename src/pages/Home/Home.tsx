@@ -33,7 +33,7 @@ const Home: React.FC = () => {
           ) : (
             <GenresContainer>
               {genres instanceof Array
-                ? genres.map((genre: IGenres) => (
+                && genres.map((genre: IGenres) => (
                   <Genres
                     key={genre.id}
                     id={genre.id}
@@ -41,7 +41,7 @@ const Home: React.FC = () => {
                     name={genre.name}
                   />
                 ))
-                : null}
+              }
             </GenresContainer>
           )}
         </SectionContentLeft>

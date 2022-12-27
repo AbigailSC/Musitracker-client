@@ -27,7 +27,7 @@ export const Container = styled.div<IContainer>`
   align-items: flex-start;
   justify-content: flex-end;
   padding: 1em;
-  width: 220px;
+  width: 200px;
   height: 200px;
   border-radius: 1em;
   flex-direction: column;

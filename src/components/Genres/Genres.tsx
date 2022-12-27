@@ -19,13 +19,14 @@ const Genres: React.FC<IProps> = ({ name, picture, id }) => {
     dispatch(getCurrentGenre(genreId));
   };
   const nameWithoutSpace = name.replace(/\//g, '');
+  const titleWithoutSlash = name.replace(/\//g, ' / ');
   return (
     <Link to={`/genre/${nameWithoutSpace}`} style={{ textDecoration: 'none' }}>
       <Container
         backgroundImage={name === 'All' ? placeholderAll : picture}
         onClick={() => handleCurrentGenre(id)}
       >
-        <Title>{name}</Title>
+        <Title>{titleWithoutSlash}</Title>
       </Container>
     </Link>
   );
