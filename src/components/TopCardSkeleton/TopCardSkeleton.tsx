@@ -1,8 +1,7 @@
 import {
   Container,
   HStack,
-  SkeletonFigure,
-  Stack
+  SkeletonFigure
 } from '@components/Card/Card.styles';
 import React from 'react';
 import { AiOutlineHeart } from 'react-icons/ai';
@@ -10,16 +9,13 @@ import { AiOutlineHeart } from 'react-icons/ai';
 interface IProps {
   index: number;
 }
-const CardSkeleton: React.FC<IProps> = ({ index }) => {
+const TopCardSkeleton: React.FC<IProps> = ({ index }) => {
   return (
     <Container>
       <HStack>
         <p>{index}</p>
         <SkeletonFigure width={'4em'} heigth={'4em'} />
-        <Stack>
-          <SkeletonFigure width={'10em'} heigth={'1em'} />
-          <SkeletonFigure width={'14em'} heigth={'1em'} />
-        </Stack>
+        <SkeletonFigure width={'14em'} heigth={'1em'} />
       </HStack>
       <HStack>
         <SkeletonFigure width={'10em'} heigth={'1em'} />
@@ -32,4 +28,4 @@ const CardSkeleton: React.FC<IProps> = ({ index }) => {
   );
 };
 
-export default CardSkeleton;
+export default TopCardSkeleton;

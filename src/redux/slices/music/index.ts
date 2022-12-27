@@ -70,6 +70,22 @@ export interface IArtistFull {
   picture_xl: string;
   nb_album: number;
   nb_fan: number;
+  topTracks: IArtistFullTopTracks;
+}
+
+export interface IArtistFullTopTracks {
+  id: number;
+  title: string;
+  preview: string;
+  duration: number;
+  rank: number;
+  artist: {
+    name: string;
+  };
+  album: {
+    title: string;
+    cover: string;
+  };
 }
 
 export interface IArtistAlbums {

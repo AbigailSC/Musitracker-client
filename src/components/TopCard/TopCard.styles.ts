@@ -4,15 +4,6 @@ interface IText {
   cursor?: string;
 }
 
-// const loading = keyframes`
-//   from {
-//     left: -200px
-//   }
-//   to{
-//     left: 100%;
-//   }
-// `;
-
 export const Icon = styled.div`
   cursor: pointer;
   height: 1em;

@@ -22,6 +22,7 @@ import AlbumCard from '@components/AlbumCard';
 import { IArtistAlbums } from '../../redux/slices/music/index';
 import TopCard from '@components/TopCard';
 import { ITitle } from '@pages/Results/types';
+import TopCardSkeleton from '@components/TopCardSkeleton/TopCardSkeleton';
 
 const Artist: React.FC = () => {
   const { musicSlice } = useCustomSelector((state) => state);
@@ -39,6 +40,12 @@ const Artist: React.FC = () => {
           {musicSlice.isLoading ? (
             <ArtistContainer>
               <SkeletonFigure width="100%" heigth="420px" />
+              <Title>Top songs</Title>
+              {skeletonFill.map((item) => (
+                <div key={item} className="cardSkeleton">
+                  <TopCardSkeleton key={item} index={item + 1} />
+                </div>
+              ))}
               <AlbumCardContainer>
                 {skeletonFill.map((item) => (
                   <div key={item} className="cardSkeleton">
