@@ -20,7 +20,7 @@ import {
 import { FiExternalLink } from 'react-icons/fi';
 import AlbumCard from '@components/AlbumCard';
 import { IArtistAlbums } from '../../redux/slices/music/index';
-import Card from '@components/Card';
+import TopCard from '@components/TopCard';
 import { ITitle } from '@pages/Results/types';
 
 const Artist: React.FC = () => {
@@ -71,14 +71,13 @@ const Artist: React.FC = () => {
               <TopTracksContainer>
                 {topTracks instanceof Array &&
                   topTracks.map((track: ITitle, index) => (
-                    <Card
+                    <TopCard
                       key={track.id}
                       obj={track}
                       title={track.title}
-                      artist={track.artist.name}
-                      album={track.album.title}
                       duration={track.duration}
                       img={track.album.cover}
+                      rank={track.rank}
                       index={index + 1}
                     />
                   ))}

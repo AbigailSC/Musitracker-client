@@ -8,7 +8,7 @@ import {
   HeaderText,
   Icon
 } from './Card.styles';
-import { AiOutlineHeart } from 'react-icons/ai';
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import getAverageColor from '../../utils/getAverageColor';
 import calculateTime from '../../utils/calculateTime';
 import {
@@ -30,16 +30,16 @@ interface IProps {
 }
 
 const Card: React.FC<IProps> = ({ title, artist, album, duration, img, index, obj }) => {
-  // AiFillHeart
   const dispatch = useCustomDispatch();
   const [color, setColor] = useState<string>('');
+  const [liked, setLiked] = useState<boolean>(false);
 
   const getColor = async (img: string): Promise<void> => {
     const color = await getAverageColor(img);
     setColor(color);
   };
-  getColor(img);
-  const handleCurrentSong = (obj: IMusicSearched): any => {
+
+  const handleCurrentSong = (obj: IMusicSearched): void => {
     dispatch(getCurrentSong(obj));
   };
 
@@ -56,8 +56,14 @@ const Card: React.FC<IProps> = ({ title, artist, album, duration, img, index, ob
     dispatch(getArtistAlbums(obj.artist.id));
   };
 
+  const handleLike = (): void => {
+    setLiked(!liked)
+  }
+
+  getColor(img);
+
   return (
-    <Container color={'rgba(75, 85, 99, 0.27)'} bgColor={'#000'}>
+    <Container>
       <HStack>
         <p>{index}</p>
         <Figure bgImage={img !== null ? img : "https://via.placeholder.com/800x800?text=Not+Found"}></Figure>
@@ -78,8 +84,8 @@ const Card: React.FC<IProps> = ({ title, artist, album, duration, img, index, ob
         </Link>
       </HStack>
       <HStack>
-        <Icon>
-          <AiOutlineHeart />
+        <Icon onClick={() => handleLike()}>
+          {liked ? <AiFillHeart /> : <AiOutlineHeart />}
         </Icon>
         <h3>
           {calculateTime(duration)}

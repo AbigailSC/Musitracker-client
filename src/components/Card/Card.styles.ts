@@ -1,11 +1,5 @@
 import styled, { keyframes } from 'styled-components';
 
-interface Props {
-  color: string;
-  bgColor: string;
-  // onClick: () => any;
-}
-
 interface IFigure {
   bgImage: string;
 }
@@ -29,7 +23,7 @@ const loading = keyframes`
   }
 `;
 
-export const Container = styled.div<Props>`
+export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
