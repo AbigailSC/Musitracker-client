@@ -68,7 +68,7 @@ const Sidebar: React.FC = () => {
         <ContainerLogo>
           <Logo src={logo} alt="musitracker" />
         </ContainerLogo>
-        <Link to="/home" className='anchor'>
+        <Link to="/home" className='anchor' style={{ textDecoration: "none" }}>
           <Button onClick={handleFalseActiveItem}>
             <div className='effectHover' />
             <HStack>
@@ -89,14 +89,14 @@ const Sidebar: React.FC = () => {
         {
           activeItem && (
             <SubItem>
-              <Link to="/trending" className='anchor'>
+              <Link to="/trending" className='anchor' style={{ textDecoration: "none" }}>
                 <Button className='secondary'>
                   <div className='effectHover' />
                   <BiBroadcast className='subIcon' />
                   Trending Music
                 </Button>
               </Link>
-              <Link to="/top" className='anchor'>
+              <Link to="/top" className='anchor' style={{ textDecoration: "none" }}>
                 <Button className='secondary'>
                   <div className='effectHover' />
                   <BiTrendingUp className='subIcon' />
@@ -111,7 +111,7 @@ const Sidebar: React.FC = () => {
             </SubItem>
           )
         }
-        <Link to="/podcasts" className='anchor'>
+        <Link to="/podcasts" className='anchor' style={{ textDecoration: "none" }}>
           <Button onClick={handleFalseActiveItem}>
             <div className='effectHover' />
             <HStack>
@@ -120,7 +120,7 @@ const Sidebar: React.FC = () => {
             </HStack>
           </Button>
         </Link>
-        <Link to="/favorites" className='anchor'>
+        <Link to="/favorites" className='anchor' style={{ textDecoration: "none" }}>
           <Button onClick={handleFalseActiveItem}>
             <div className='effectHover' />
             <HStack>
@@ -128,7 +128,7 @@ const Sidebar: React.FC = () => {
             </HStack>
           </Button>
         </Link>
-        <Link to="/artists" className='anchor'>
+        <Link to="/artists" className='anchor' style={{ textDecoration: "none" }}>
           <Button onClick={handleFalseActiveItem}>
             <div className='effectHover' />
             <HStack>
@@ -136,7 +136,7 @@ const Sidebar: React.FC = () => {
             </HStack>
           </Button>
         </Link>
-        <Link to="/albums" className='anchor'>
+        <Link to="/albums" className='anchor' style={{ textDecoration: "none" }}>
           <Button onClick={handleFalseActiveItem}>
             <div className='effectHover' />
             <HStack>
