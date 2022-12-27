@@ -12,7 +12,8 @@ import { AiOutlineHeart } from 'react-icons/ai';
 import getAverageColor from '../../utils/getAverageColor';
 import calculateTime from '../../utils/calculateTime';
 import {
-  getCurrentSong, IMusicSearched, getDominantColor, getCurrentAlbum
+  getCurrentSong, IMusicSearched, getDominantColor, getCurrentAlbum, getCurrentArtist,
+  getArtistAlbums
 } from '../../redux/slices/music/index';
 import { useCustomDispatch } from '../../hooks/redux/index';
 import { Link } from 'react-router-dom';
@@ -50,6 +51,11 @@ const Card: React.FC<IProps> = ({ title, artist, album, duration, img, index, ob
     dispatch(getCurrentAlbum(albumId));
   };
 
+  const handleArtistInfo = (): void => {
+    dispatch(getCurrentArtist(obj.artist.id));
+    dispatch(getArtistAlbums(obj.artist.id));
+  };
+
   return (
     <Container color={'rgba(75, 85, 99, 0.27)'} bgColor={'#000'}>
       <HStack>
@@ -57,9 +63,11 @@ const Card: React.FC<IProps> = ({ title, artist, album, duration, img, index, ob
         <Figure bgImage={img !== null ? img : "https://via.placeholder.com/800x800?text=Not+Found"}></Figure>
         <Stack>
           <HeaderText onClick={() => { handleCurrentSong(obj); handleCurrentDominantColor(color) }} className="title">{title}</HeaderText>
-          <HeaderText color={'#919499'} cursor={'pointer'} className="hover">
-            {artist}
-          </HeaderText>
+          <Link to={`/artist/${obj.artist.id}`} style={{ textDecoration: "none" }}>
+            <HeaderText color={'#919499'} cursor={'pointer'} className="hover" onClick={() => handleArtistInfo()}>
+              {artist}
+            </HeaderText>
+          </Link>
         </Stack>
       </HStack>
       <HStack>
