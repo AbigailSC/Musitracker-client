@@ -13,9 +13,12 @@ import ResultsByGenre from '@pages/ResultsByGenre';
 import Artist from '@pages/Artist';
 import AlbumDetails from '@pages/AlbumDetails';
 import GlobalStyle from './styles/global';
+import { useCustomSelector } from './hooks/redux/index';
 
 const App: React.FC = () => {
-  const user = false;
+  const { auth } = useCustomSelector((state) => state);
+  const user = auth.accessToken !== null;
+
   return (
     <>
       <GlobalStyle />
@@ -27,12 +30,12 @@ const App: React.FC = () => {
           path="/home"
           element={
             user ? (
-              <Navigate replace to="/" />
-            ) : (
               <>
                 <Home />
                 <Mediaplayer />
               </>
+            ) : (
+              <Navigate replace to="/" />
             )
           }
         />
@@ -41,12 +44,12 @@ const App: React.FC = () => {
           path="/artist/:idArtist"
           element={
             user ? (
-              <Navigate replace to="/" />
-            ) : (
               <>
                 <Artist />
                 <Mediaplayer />
               </>
+            ) : (
+              <Navigate replace to="/" />
             )
           }
         />
@@ -54,12 +57,12 @@ const App: React.FC = () => {
           path="/genre/:genre"
           element={
             user ? (
-              <Navigate replace to="/" />
-            ) : (
               <>
                 <ResultsByGenre />
                 <Mediaplayer />
               </>
+            ) : (
+              <Navigate replace to="/" />
             )
           }
         />
@@ -67,12 +70,12 @@ const App: React.FC = () => {
           path="/search=:name"
           element={
             user ? (
-              <Navigate replace to="/" />
-            ) : (
               <>
                 <Results />
                 <Mediaplayer />
               </>
+            ) : (
+              <Navigate replace to="/" />
             )
           }
         />
@@ -80,19 +83,18 @@ const App: React.FC = () => {
           path="/album/:albumId"
           element={
             user ? (
-              <Navigate replace to="/" />
-            ) : (
               <>
                 <AlbumDetails />
                 <Mediaplayer />
               </>
+            ) : (
+              <Navigate replace to="/" />
             )
           }
         />
-
         <Route
           path="/profile"
-          element={user ? <Navigate replace to="/" /> : <Profile />}
+          element={user ? <Profile /> : <Navigate replace to="/" />}
         />
         <Route path="/404" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/404" replace />} />

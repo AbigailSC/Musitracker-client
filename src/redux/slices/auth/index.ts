@@ -6,7 +6,6 @@ import { Thunk } from 'src/redux/store/store';
 export interface IAuth {
   accessToken: string | null;
   isLoading: boolean;
-  user: IUser | null;
 }
 
 export interface Data {
@@ -15,18 +14,8 @@ export interface Data {
   password: string;
 }
 
-export interface IUser {
-  _id: string;
-  username: string;
-  email: string;
-  password?: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
 const initialState: IAuth = {
   accessToken: null,
-  user: null,
   isLoading: false
 };
 
@@ -37,12 +26,8 @@ const authSlice = createSlice({
     postUser: (state, action: PayloadAction<string | null>) => {
       state.accessToken = action.payload;
     },
-    logOut: (state) => {
+    removeToken: (state) => {
       state.accessToken = null;
-      state.user = null;
-    },
-    singIn: (state, action: PayloadAction<IUser | null>) => {
-      state.user = action.payload;
     },
     setIsLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
@@ -50,7 +35,7 @@ const authSlice = createSlice({
   }
 });
 
-export const { postUser, singIn, logOut, setIsLoading } = authSlice.actions;
+export const { postUser, removeToken, setIsLoading } = authSlice.actions;
 
 export default authSlice.reducer;
 
@@ -77,7 +62,6 @@ export const singInAuth =
     try {
       const user = await axios.post('/auth/singin', data);
       const token = user.data.token;
-      dispatch(singIn(user.data.user));
       dispatch(postUser(token));
       return token;
     } catch (error) {
@@ -92,7 +76,7 @@ export const getlogOut =
   (dispatch): any => {
     dispatch(setIsLoading(true));
     try {
-      dispatch(logOut());
+      dispatch(removeToken());
     } catch (error) {
       return error;
     } finally {

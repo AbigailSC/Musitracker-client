@@ -6,6 +6,7 @@ import {
   UserDropdownItem
 } from './User.styles';
 import { getlogOut } from '../../redux/slices/auth/index';
+import { logOut } from '../../redux/slices/user/user';
 import { useNavigate } from 'react-router-dom';
 import { useCustomDispatch } from '../../hooks/redux';
 
@@ -20,6 +21,7 @@ const User: React.FC = () => {
 
   const handleSingOut = (): void => {
     dispatch(getlogOut());
+    dispatch(logOut());
     navigate('/');
   };
 

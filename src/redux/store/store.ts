@@ -8,10 +8,11 @@ import musicReducer from '../slices/music';
 const persistAuthConfig = {
   key: 'authToken',
   storage,
-  whitelist: ['accessToken', 'user']
+  whitelist: ['accessToken']
 };
+
 const persistCurrentMusicConfig = {
-  key: 'currentMusic',
+  key: 'music',
   storage,
   whitelist: [
     'currentSong',
@@ -24,13 +25,22 @@ const persistCurrentMusicConfig = {
   ]
 };
 
+const persistUserConfig = {
+  key: 'user',
+  storage,
+  whitelist: ['userInfo']
+};
+
 const store = configureStore({
   reducer: {
     auth: persistReducer<ReturnType<typeof authReducer>>(
       persistAuthConfig,
       authReducer
     ),
-    userSlice,
+    userSlice: persistReducer<ReturnType<typeof userSlice>>(
+      persistUserConfig,
+      userSlice
+    ),
     musicSlice: persistReducer<ReturnType<typeof musicReducer>>(
       persistCurrentMusicConfig,
       musicReducer

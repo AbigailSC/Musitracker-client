@@ -2,10 +2,21 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from '../../../utils/axios';
 import { AxiosResponse, AxiosError } from 'axios';
 import { Thunk } from 'src/redux/store/store';
+import { Data } from '../auth';
 
 export interface IUser {
   users: IUserData | [];
+  userInfo: IUserInfo | null;
   isLoading: boolean;
+}
+
+interface IUserInfo {
+  _id: string;
+  username: string;
+  email: string;
+  password?: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface IUserData {
@@ -14,6 +25,7 @@ export interface IUserData {
 
 const initialState: IUser = {
   users: [],
+  userInfo: null,
   isLoading: false
 };
 
@@ -24,13 +36,20 @@ const userSlice = createSlice({
     getUsers: (state, action: PayloadAction<IUserData>) => {
       state.users = action.payload;
     },
+    getUserInfo: (state, action: PayloadAction<IUserInfo>) => {
+      state.userInfo = action.payload;
+    },
+    singOut: (state) => {
+      state.userInfo = null;
+    },
     setIsLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     }
   }
 });
 
-export const { getUsers, setIsLoading } = userSlice.actions;
+export const { getUsers, getUserInfo, singOut, setIsLoading } =
+  userSlice.actions;
 
 export default userSlice.reducer;
 
@@ -49,6 +68,34 @@ export const getUsersInfo =
       return users;
     } catch (error) {
       return error as AxiosError;
+    } finally {
+      dispatch(setIsLoading(false));
+    }
+  };
+
+export const singIn =
+  (data: Data): Thunk =>
+  async (dispatch): Promise<AxiosResponse | AxiosError> => {
+    dispatch(setIsLoading(true));
+    try {
+      const user = await axios.post('/auth/singin', data);
+      dispatch(getUserInfo(user.data.user));
+      return user;
+    } catch (error) {
+      return error as AxiosError;
+    } finally {
+      dispatch(setIsLoading(false));
+    }
+  };
+
+export const logOut =
+  (): Thunk =>
+  (dispatch): any => {
+    dispatch(setIsLoading(true));
+    try {
+      dispatch(singOut());
+    } catch (error) {
+      return error;
     } finally {
       dispatch(setIsLoading(false));
     }
