@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import About from '@components/About';
-import Profile from '@components/Profile';
+import Profile from '@pages/Profile';
 import NotFound from '@pages/NotFound';
 import Home from '@pages/Home';
 import Results from '@pages/Results';

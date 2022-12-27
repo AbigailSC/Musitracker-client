@@ -8,7 +8,7 @@ import {
 } from './User.styles';
 import { getlogOut } from '../../redux/slices/auth/index';
 import { logOut } from '../../redux/slices/user/user';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCustomDispatch, useCustomSelector } from '../../hooks/redux';
 
 const User: React.FC = () => {
@@ -39,7 +39,9 @@ const User: React.FC = () => {
       )}
       {isOpen && (
         <UserDropdown>
-          <UserDropdownItem>Profile</UserDropdownItem>
+          <Link to="/profile" style={{ textDecoration: 'none' }}>
+            <UserDropdownItem>Profile</UserDropdownItem>
+          </Link>
           <UserDropdownItem onClick={() => handleSingOut()}>
             Sing out
           </UserDropdownItem>
