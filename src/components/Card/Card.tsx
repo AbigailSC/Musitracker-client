@@ -53,7 +53,7 @@ const Card: React.FC<IProps> = ({ title, artist, album, duration, img, index, ob
   return (
     <Container color={'rgba(75, 85, 99, 0.27)'} bgColor={'#000'}>
       <HStack>
-        <p>#{index}</p>
+        <p>{index}</p>
         <Figure bgImage={img !== null ? img : "https://via.placeholder.com/800x800?text=Not+Found"}></Figure>
         <Stack>
           <HeaderText onClick={() => { handleCurrentSong(obj); handleCurrentDominantColor(color) }} className="title">{title}</HeaderText>

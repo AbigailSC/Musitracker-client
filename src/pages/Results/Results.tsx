@@ -15,9 +15,12 @@ import {
   Container,
   Stack,
   CardContainer,
-  ErrorContainer
+  ErrorContainer,
+  HStack,
+  Text
 } from './Results.styles';
 import { ITitle } from './types';
+import { AiOutlineClockCircle } from 'react-icons/ai';
 
 const Results: React.FC = () => {
   const { name } = useParams();
@@ -81,6 +84,19 @@ const Results: React.FC = () => {
                   <img src={heroImage} alt="hero" />
                 </HeroContainer>
               </Container>
+              <HStack>
+                <Text width="50%">
+                  <span>#</span>
+                  <div />
+                  <h3>Title</h3>
+                </Text>
+                <Text width="40%">
+                  <h3>Album</h3>
+                </Text>
+                <Text width="10%">
+                  <AiOutlineClockCircle />
+                </Text>
+              </HStack>
               <CardContainer>
                 {musicData instanceof Array &&
                   musicData.map((card: ITitle, index: number) => (

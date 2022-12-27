@@ -9,6 +9,10 @@ const loading = keyframes`
   }
 `;
 
+interface IText {
+  width: string;
+}
+
 export const Section = styled.section`
   display: flex;
   width: 100%;
@@ -147,5 +151,33 @@ export const ErrorContainer = styled.div`
   & > p {
     color: #d4d4ea;
     font-size: 1.2em;
+  }
+`;
+
+export const HStack = styled.div`
+  display: flex;
+  padding: 1em 2em;
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+`;
+
+export const Text = styled.div<IText>`
+  width: ${(props) => props.width};
+  display: flex;
+  gap: 1em;
+  & > span {
+    width: 30px;
+    display: flex;
+    justify-content: flex-end;
+    color: #d4d4ea;
+  }
+  & > div {
+    width: 4em;
+  }
+  & > h3 {
+    color: #d4d4ea;
+  }
+  &:nth-child(3) {
+    justify-content: flex-end;
   }
 `;
