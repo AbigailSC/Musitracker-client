@@ -19,7 +19,7 @@ import {
 import { Container } from './SingIn.styles';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
-import { useCustomDispatch, useCustomSelector } from '../../hooks/redux';
+import { useCustomDispatch } from '../../hooks/redux';
 import { singInAuth } from '../../redux/slices/auth';
 import { singIn } from '../../redux/slices/user/user';
 interface IData {
@@ -41,8 +41,6 @@ const SingIn: React.FC = () => {
     password: ''
   });
   const [error, setError] = useState<IData>({});
-  const { auth } = useCustomSelector((state) => state);
-  const { userSlice } = useCustomSelector((state) => state);
   const validateEmail =
     /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
@@ -79,14 +77,11 @@ const SingIn: React.FC = () => {
   const handleSubmit = (): void => {
     setError(validation(input));
     dispatch(singInAuth(input));
-    dispatch(singIn(input));
+    dispatch(singIn(input)).then(() => navigate('/home'));
     setInput({
       email: '',
       password: ''
     });
-    if (!auth.isLoading && !userSlice.isLoading) {
-      navigate('/home');
-    }
   };
 
   return (
