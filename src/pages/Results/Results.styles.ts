@@ -123,6 +123,7 @@ export const Stack = styled.div`
   flex-direction: column;
   gap: 4em;
   width: 100%;
+  padding-bottom: 100px;
 `;
 
 export const CardContainer = styled.div`
