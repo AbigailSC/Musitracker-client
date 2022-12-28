@@ -86,13 +86,15 @@ export const Input = styled.input<IError>`
   transition: 0.2s ease-in;
   width: 100%;
   z-index: 1;
-  :focus {
+  &:focus {
     /* border-bottom: 2px solid #c9ccd0; */
     transition: 0.2s ease-in;
+    background-color: transparent;
   }
-  :focus + ${Label}, :valid + ${Label} {
+  &:focus + ${Label}, :valid + ${Label} {
     color: #fff;
     transform: translateY(-2rem);
+    background-color: transparent;
   }
 `;
 

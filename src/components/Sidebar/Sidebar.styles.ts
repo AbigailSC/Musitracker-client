@@ -19,6 +19,7 @@ export const SidebarContainer = styled.div`
   box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(6px);
   display: ${(props: ISidebar) => (props.isOpen ? 'block' : 'none')};
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
   z-index: 30;
 `;
 
