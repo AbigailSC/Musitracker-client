@@ -16,16 +16,18 @@ import { getGenres, getTrendingMusic, getTrendingArtists, getTopPlaylists, getTr
 import { useCustomDispatch, useCustomSelector } from '@hooks/redux/index';
 import Genres from '@components/Genres';
 import { IGenres } from '@components/Genres/types';
-import { ITrendingArtists } from '@redux/slices/music/types';
+import { ITopPlaylist, ITrendingArtists } from '@redux/slices/music/types';
 import GenreCard from '@components/GenreCard';
 import { ITitle } from '@pages/Results/types';
 import TopCard from '@components/TopCard';
+import PlaylistCard from '@components/PlaylistCard';
 
 const Home: React.FC = () => {
   const dispatch = useCustomDispatch();
   const { musicSlice } = useCustomSelector((state) => state);
   const trendingArtists = musicSlice.trendingArtists;
-  const trendingMusic = musicSlice.trendingMusic
+  const trendingMusic = musicSlice.trendingMusic;
+  const trendingPlaylists = musicSlice.topPlaylist;
   const genres = musicSlice.genres;
   useEffect(() => {
     dispatch(getGenres());
@@ -63,6 +65,19 @@ const Home: React.FC = () => {
                   <GenreCard artist={artist.name} id={artist.id} img={artist.picture_xl} key={index} link={artist.link} />
                 ))
                 }
+              </ArtistContainer>
+              <Title>Top Playlists</Title>
+              <ArtistContainer>
+                {trendingPlaylists instanceof Array && trendingPlaylists.map((playlist: ITopPlaylist) => (
+                  <PlaylistCard
+                    key={playlist.id}
+                    id={playlist.id}
+                    title={playlist.title}
+                    img={playlist.picture_xl}
+                    nbTracks={playlist.nb_tracks}
+                    tracklist={playlist.tracklist}
+                  />
+                ))}
               </ArtistContainer>
               <GenresContainer>
                 {genres instanceof Array

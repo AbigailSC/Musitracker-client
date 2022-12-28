@@ -28,7 +28,7 @@ export interface ITopPlaylist {
   id: number;
   title: string;
   nb_tracks: number;
-  picture_xl: number;
+  picture_xl: string;
   tracklist: string;
   creation_date: string;
   creator: {
