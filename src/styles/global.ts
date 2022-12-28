@@ -4,33 +4,7 @@ export default createGlobalStyle`
   :root{
     margin:0 auto;
     scroll-behavior: smooth;
-
-    /* Animations */
-
-    --sc-animation-duration: 0.2s;
-    --sc-animation-timing: ease;
-
-    /* Sizes */
-
-    --sc-spacing-1: 0;
-    --sc-spacing-2: 4;
-    --sc-spacing-3: 8;
-    --sc-spacing-4: 16;
-    --sc-spacing-5: 32;
-    --sc-spacing-6: 64;
-    --sc-spacing-7: 128;
-    --sc-spacing-8: 256;
-    --sc-spacing-tiny: 1/4;
-    --sc-spacing-small: 1/3;
-    --sc-spacing-medium: 1/2;
-
-    /* Weight */
-
-    --sc-font-weight-sm: 300;
-    --sc-font-weight-medium: 500;
-    --sc-font-weight-large: 700;
-    --sc-font-weight-xl: 900;
-
+    
     /* Breackpoints */
 
     --sc-breakpoints-mobile: 400px;
@@ -68,5 +42,8 @@ export default createGlobalStyle`
     font-size: 1em;
     box-sizing: border-box;
     /* border: 1px solid red; */
+  }
+  html {
+    scroll-behavior: smooth;
   }
 `;

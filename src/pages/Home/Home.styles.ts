@@ -25,16 +25,43 @@ export const SectionContentLeft = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   padding: 2em 4em;
   margin-top: 100px;
+  gap: 2em;
 `;
 
 export const GenresContainer = styled.div`
   display: flex;
   width: 100%;
-  justify-content: flex-start;
+  justify-content: space-between;
   padding-bottom: 100px;
   gap: 1em;
   flex-wrap: wrap;
+`;
+
+export const ArtistContainer = styled.div`
+  display: flex;
+  width: 100%;
+  gap: 1em;
+  scroll-snap-type: x mandatory;
+  overflow-x: scroll;
+  padding-bottom: 10px;
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2em;
+    background-color: rgba(195, 93, 247, 0.5);
+  }
+  &::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 2em;
+  }
+`;
+
+export const Title = styled.h3`
+  font-size: 2em;
+  color: #fff;
+  font-weight: 700;
 `;

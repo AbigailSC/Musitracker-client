@@ -7,16 +7,21 @@ import {
   Section,
   SectionContent,
   SectionContentLeft,
-  GenresContainer
+  GenresContainer,
+  ArtistContainer,
+  Title
 } from './Home.styles';
 import { getGenres, getTrendingMusic, getTrendingArtists, getTopPlaylists, getTrendingPodcasts } from '@redux/slices/music/index';
 import { useCustomDispatch, useCustomSelector } from '@hooks/redux/index';
 import Genres from '@components/Genres';
 import { IGenres } from '@components/Genres/types';
+import { ITrendingArtists } from '@redux/slices/music/types';
+import GenreCard from '@components/GenreCard';
 
 const Home: React.FC = () => {
   const dispatch = useCustomDispatch();
   const { musicSlice } = useCustomSelector((state) => state);
+  const trendingArtists = musicSlice.trendingArtists;
   const genres = musicSlice.genres;
   useEffect(() => {
     dispatch(getGenres());
@@ -32,8 +37,14 @@ const Home: React.FC = () => {
       <SectionContent>
         <Navbar />
         <SectionContentLeft>
-          <p>Trending Music</p>
-
+          <Title>Top Artists</Title>
+          <ArtistContainer>
+            {
+              trendingArtists instanceof Array && trendingArtists.map((artist: ITrendingArtists, index) => (
+                <GenreCard artist={artist.name} id={artist.id} img={artist.picture_xl} key={index} link={artist.link} />
+              ))
+            }
+          </ArtistContainer>
           {musicSlice.isLoading ? (
             <p>Loading</p>
           ) : (
@@ -50,7 +61,6 @@ const Home: React.FC = () => {
               }
             </GenresContainer>
           )}
-
         </SectionContentLeft>
       </SectionContent>
     </Section>
