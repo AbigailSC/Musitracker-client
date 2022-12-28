@@ -1,30 +1,29 @@
+import { useCustomDispatch } from '@hooks/redux';
+import { getPlaylistById } from '@redux/slices/music';
 import React from 'react';
-import {
-  PlaylisCardContainer,
-  PlaylistCardImg,
-  Title
-} from './PlaylistCard.styles';
+import { Link } from 'react-router-dom';
+import { PlaylisCardContainer, PlaylistCardImg } from './PlaylistCard.styles';
 
 interface IProps {
   id: number;
   title: string;
-  nbTracks: number;
   img: string;
-  tracklist: string;
   onClick?: () => void;
 }
 
-const PlaylistCard: React.FC<IProps> = ({
-  id,
-  title,
-  nbTracks,
-  img,
-  tracklist
-}) => {
+const PlaylistCard: React.FC<IProps> = ({ id, title, img }) => {
+  const dispatch = useCustomDispatch();
+
+  const handleClick = (id: number): void => {
+    dispatch(getPlaylistById(id));
+  };
+
   return (
-    <PlaylisCardContainer>
-      <PlaylistCardImg src={img} alt={title} />
-      <Title>{title}</Title>
+    <PlaylisCardContainer onClick={() => handleClick(id)}>
+      <Link to={`/playlist/${id}`}>
+        <PlaylistCardImg src={img} alt={title} />
+        {/* <Title>{title}</Title> */}
+      </Link>
     </PlaylisCardContainer>
   );
 };

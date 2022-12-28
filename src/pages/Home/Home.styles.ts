@@ -36,7 +36,7 @@ export const GenresContainer = styled.div`
   width: 100%;
   justify-content: space-between;
   padding-bottom: 100px;
-  gap: 1em;
+  gap: 2em;
   flex-wrap: wrap;
 `;
 export const TrendingContainer = styled.div`

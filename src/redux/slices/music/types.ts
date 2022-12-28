@@ -8,6 +8,7 @@ export interface IMusic {
   currentDominantColor: string;
   currentArtist: IArtistFull | null;
   currentAlbum: IAlbumFull | null;
+  currentPlaylist: IMusicSearched | [];
   artistAlbums: IArtistAlbums | [];
   trendingMusic: ITrending | [];
   trendingArtists: ITrendingArtists | [];

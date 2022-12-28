@@ -67,18 +67,16 @@ const Home: React.FC = () => {
                 }
               </ArtistContainer>
               <Title>Top Playlists</Title>
-              <ArtistContainer>
+              <GenresContainer>
                 {trendingPlaylists instanceof Array && trendingPlaylists.map((playlist: ITopPlaylist) => (
                   <PlaylistCard
                     key={playlist.id}
                     id={playlist.id}
                     title={playlist.title}
                     img={playlist.picture_xl}
-                    nbTracks={playlist.nb_tracks}
-                    tracklist={playlist.tracklist}
                   />
                 ))}
-              </ArtistContainer>
+              </GenresContainer>
               <GenresContainer>
                 {genres instanceof Array
                   && genres.map((genre: IGenres) => (

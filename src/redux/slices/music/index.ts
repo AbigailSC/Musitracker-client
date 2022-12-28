@@ -24,6 +24,7 @@ const initialState: IMusic = {
   currentDominantColor: '',
   currentArtist: null,
   currentAlbum: null,
+  currentPlaylist: [],
   artistAlbums: [],
   trendingMusic: [],
   trendingArtists: [],
@@ -74,6 +75,9 @@ const musicSlice = createSlice({
     },
     setTrendingPodcasts: (state, action: PayloadAction<ITrendingPodcasts>) => {
       state.trendingPodcasts = action.payload;
+    },
+    setCurrentPlaylist: (state, action: PayloadAction<IMusicSearched>) => {
+      state.currentPlaylist = action.payload;
     }
   }
 });
@@ -91,7 +95,8 @@ export const {
   setTrendingMusic,
   setTrendingArtists,
   setTopPlaylist,
-  setTrendingPodcasts
+  setTrendingPodcasts,
+  setCurrentPlaylist
 } = musicSlice.actions;
 
 export default musicSlice.reducer;
@@ -288,6 +293,23 @@ export const getTrendingPodcasts =
       const podcasts: AxiosResponse = await axios.get('/music/podcasts');
       dispatch(setTrendingPodcasts(podcasts.data));
       return podcasts;
+    } catch (error) {
+      return error as AxiosError;
+    } finally {
+      dispatch(setIsLoading(false));
+    }
+  };
+
+export const getPlaylistById =
+  (playlistId: number): Thunk =>
+  async (dispatch): Promise<AxiosResponse | AxiosError> => {
+    dispatch(setIsLoading(true));
+    try {
+      const playlist: AxiosResponse = await axios.get(
+        `/music/playlist/${playlistId}`
+      );
+      dispatch(setCurrentPlaylist(playlist.data));
+      return playlist;
     } catch (error) {
       return error as AxiosError;
     } finally {

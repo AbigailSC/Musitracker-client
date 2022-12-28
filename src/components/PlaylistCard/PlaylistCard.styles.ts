@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 
 export const PlaylisCardContainer = styled.div`
-  width: 100%;
+  width: 300px;
   display: flex;
   flex-direction: column;
   gap: 1em;
+  cursor: pointer;
 `;
 
 export const PlaylistCardImg = styled.img`
-  width: 300px;
+  width: 100%;
   border-radius: 1em;
 `;
 
