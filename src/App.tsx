@@ -94,7 +94,16 @@ const App: React.FC = () => {
         />
         <Route
           path="/profile"
-          element={user ? <Profile /> : <Navigate replace to="/" />}
+          element={
+            user ? (
+              <>
+                <Profile />
+                <Mediaplayer />
+              </>
+            ) : (
+              <Navigate replace to="/" />
+            )
+          }
         />
         <Route path="/404" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/404" replace />} />
