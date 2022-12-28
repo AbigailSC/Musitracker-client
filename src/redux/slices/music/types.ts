@@ -10,7 +10,31 @@ export interface IMusic {
   currentAlbum: IAlbumFull | null;
   artistAlbums: IArtistAlbums | [];
   trendingMusic: ITrending | [];
+  trendingArtists: ITrendingArtists | [];
+  topPlaylist: ITopPlaylist | [];
+  trendingPodcasts: ITrendingPodcasts | [];
   isLoading: boolean;
+}
+
+export interface ITrendingPodcasts {
+  id: number;
+  title: string;
+  description: string;
+  link: string;
+  picture: string;
+}
+
+export interface ITopPlaylist {
+  id: number;
+  title: string;
+  nb_tracks: number;
+  picture_xl: number;
+  tracklist: string;
+  creation_date: string;
+  creator: {
+    id: number;
+    name: string;
+  };
 }
 
 export interface ITrending {
@@ -25,6 +49,13 @@ export interface ITrending {
   type: string;
   album: IAlbum;
   contributors: IContributors;
+}
+
+export interface ITrendingArtists {
+  id: number;
+  name: string;
+  link: string;
+  picture_xl: string;
 }
 
 export interface IAlbumFull {

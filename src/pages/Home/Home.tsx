@@ -9,7 +9,7 @@ import {
   SectionContentLeft,
   GenresContainer
 } from './Home.styles';
-import { getGenres } from '@redux/slices/music/index';
+import { getGenres, getTrendingMusic, getTrendingArtists, getTopPlaylists, getTrendingPodcasts } from '@redux/slices/music/index';
 import { useCustomDispatch, useCustomSelector } from '@hooks/redux/index';
 import Genres from '@components/Genres';
 import { IGenres } from '@components/Genres/types';
@@ -20,6 +20,10 @@ const Home: React.FC = () => {
   const genres = musicSlice.genres;
   useEffect(() => {
     dispatch(getGenres());
+    dispatch(getTrendingMusic())
+    dispatch(getTrendingArtists())
+    dispatch(getTopPlaylists())
+    dispatch(getTrendingPodcasts())
   }, []);
 
   return (
@@ -28,6 +32,8 @@ const Home: React.FC = () => {
       <SectionContent>
         <Navbar />
         <SectionContentLeft>
+          <p>Trending Music</p>
+
           {musicSlice.isLoading ? (
             <p>Loading</p>
           ) : (
@@ -44,6 +50,7 @@ const Home: React.FC = () => {
               }
             </GenresContainer>
           )}
+
         </SectionContentLeft>
       </SectionContent>
     </Section>

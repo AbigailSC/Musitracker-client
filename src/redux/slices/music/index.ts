@@ -9,7 +9,11 @@ import {
   IArtistAlbums,
   IArtistFull,
   IMusic,
-  IMusicSearched
+  IMusicSearched,
+  ITopPlaylist,
+  ITrending,
+  ITrendingArtists,
+  ITrendingPodcasts
 } from './types';
 
 const initialState: IMusic = {
@@ -22,6 +26,9 @@ const initialState: IMusic = {
   currentAlbum: null,
   artistAlbums: [],
   trendingMusic: [],
+  trendingArtists: [],
+  topPlaylist: [],
+  trendingPodcasts: [],
   isLoading: false
 };
 
@@ -29,7 +36,7 @@ const musicSlice = createSlice({
   name: 'music',
   initialState,
   reducers: {
-    getMusicBySearch: (state, action: PayloadAction<IMusicSearched>) => {
+    setMusicBySearch: (state, action: PayloadAction<IMusicSearched>) => {
       state.musicFiltered = action.payload;
     },
     setIsLoading: (state, action: PayloadAction<boolean>) => {
@@ -55,12 +62,24 @@ const musicSlice = createSlice({
     },
     setCurrentAlbum: (state, action: PayloadAction<IAlbumFull>) => {
       state.currentAlbum = action.payload;
+    },
+    setTrendingMusic: (state, action: PayloadAction<ITrending>) => {
+      state.trendingMusic = action.payload;
+    },
+    setTrendingArtists: (state, action: PayloadAction<ITrendingArtists>) => {
+      state.trendingArtists = action.payload;
+    },
+    setTopPlaylist: (state, action: PayloadAction<ITopPlaylist>) => {
+      state.topPlaylist = action.payload;
+    },
+    setTrendingPodcasts: (state, action: PayloadAction<ITrendingPodcasts>) => {
+      state.trendingPodcasts = action.payload;
     }
   }
 });
 
 export const {
-  getMusicBySearch,
+  setMusicBySearch,
   setIsLoading,
   setCurrentSong,
   setDominantColor,
@@ -68,7 +87,11 @@ export const {
   setCurrentGenre,
   setCurrentArtist,
   setArtistAlbums,
-  setCurrentAlbum
+  setCurrentAlbum,
+  setTrendingMusic,
+  setTrendingArtists,
+  setTopPlaylist,
+  setTrendingPodcasts
 } = musicSlice.actions;
 
 export default musicSlice.reducer;
@@ -84,7 +107,7 @@ export const musicBySearch =
       const musicFiltered = musicData.data.map(
         (music: IMusicSearched) => music
       );
-      dispatch(getMusicBySearch(musicFiltered));
+      dispatch(setMusicBySearch(musicFiltered));
       return musicData;
     } catch (error) {
       return error as AxiosError;
@@ -203,6 +226,68 @@ export const getCurrentAlbum =
       );
       dispatch(setCurrentAlbum(albumSelected.data));
       return albumSelected;
+    } catch (error) {
+      return error as AxiosError;
+    } finally {
+      dispatch(setIsLoading(false));
+    }
+  };
+
+export const getTrendingMusic =
+  (): Thunk =>
+  async (dispatch): Promise<AxiosResponse | AxiosError> => {
+    dispatch(setIsLoading(true));
+    try {
+      const trendingMusic: AxiosResponse = await axios.get('/music/trending');
+      dispatch(setTrendingMusic(trendingMusic.data));
+      return trendingMusic;
+    } catch (error) {
+      return error as AxiosError;
+    } finally {
+      dispatch(setIsLoading(false));
+    }
+  };
+
+export const getTrendingArtists =
+  (): Thunk =>
+  async (dispatch): Promise<AxiosResponse | AxiosError> => {
+    dispatch(setIsLoading(true));
+    try {
+      const trendingArtist: AxiosResponse = await axios.get(
+        '/music/trending/artists'
+      );
+      dispatch(setTrendingArtists(trendingArtist.data));
+      return trendingArtist;
+    } catch (error) {
+      return error as AxiosError;
+    } finally {
+      dispatch(setIsLoading(false));
+    }
+  };
+
+export const getTopPlaylists =
+  (): Thunk =>
+  async (dispatch): Promise<AxiosResponse | AxiosError> => {
+    dispatch(setIsLoading(true));
+    try {
+      const topPlaylist: AxiosResponse = await axios.get('/music/topPlaylist');
+      dispatch(setTopPlaylist(topPlaylist.data));
+      return topPlaylist;
+    } catch (error) {
+      return error as AxiosError;
+    } finally {
+      dispatch(setIsLoading(false));
+    }
+  };
+
+export const getTrendingPodcasts =
+  (): Thunk =>
+  async (dispatch): Promise<AxiosResponse | AxiosError> => {
+    dispatch(setIsLoading(true));
+    try {
+      const podcasts: AxiosResponse = await axios.get('/music/podcasts');
+      dispatch(setTrendingPodcasts(podcasts.data));
+      return podcasts;
     } catch (error) {
       return error as AxiosError;
     } finally {
