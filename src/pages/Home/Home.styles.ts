@@ -39,7 +39,12 @@ export const GenresContainer = styled.div`
   gap: 1em;
   flex-wrap: wrap;
 `;
-
+export const TrendingContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+`;
 export const ArtistContainer = styled.div`
   display: flex;
   width: 100%;

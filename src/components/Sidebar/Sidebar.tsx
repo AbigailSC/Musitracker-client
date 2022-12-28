@@ -132,7 +132,7 @@ const Sidebar: React.FC = () => {
           <Button onClick={handleFalseActiveItem}>
             <div className='effectHover' />
             <HStack>
-              <AiOutlineUser className="icon" />Artists
+              <AiOutlineUser className="icon" />Top Artists
             </HStack>
           </Button>
         </Link>
@@ -140,7 +140,7 @@ const Sidebar: React.FC = () => {
           <Button onClick={handleFalseActiveItem}>
             <div className='effectHover' />
             <HStack>
-              <MdOutlineMusicVideo className="icon" />Albums
+              <MdOutlineMusicVideo className="icon" />Top Albums
             </HStack>
           </Button>
         </Link>

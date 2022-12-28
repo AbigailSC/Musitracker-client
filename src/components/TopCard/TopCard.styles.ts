@@ -13,6 +13,11 @@ export const Icon = styled.div`
 export const Text = styled.h4<IText>`
   color: #d4d4ea;
   cursor: ${(props) => (props.cursor !== 'default' ? props.cursor : 'default')};
+  transition: 0.2s ease;
+  &:hover {
+    color: #fff;
+    transition: 0.2s ease;
+  }
 `;
 
 export const Image = styled.img`

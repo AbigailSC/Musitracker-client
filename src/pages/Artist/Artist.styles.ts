@@ -93,7 +93,7 @@ export const AlbumCardContainer = styled.div`
 export const TopTracksContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
+  gap: 4px;
 `;
 
 export const Title = styled.h2`
