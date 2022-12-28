@@ -9,8 +9,8 @@ import {
   SectionContentLeft,
   GenresContainer
 } from './Home.styles';
-import { getGenres } from '../../redux/slices/music/index';
-import { useCustomDispatch, useCustomSelector } from '../../hooks/redux';
+import { getGenres } from '@redux/slices/music/index';
+import { useCustomDispatch, useCustomSelector } from '@hooks/redux/index';
 import Genres from '@components/Genres';
 import { IGenres } from '@components/Genres/types';
 

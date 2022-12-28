@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useState } from 'react';
 import { SearchbarContainer, SearchbarInput, Icon } from './Searchbar.styles';
 import { BsSearch } from 'react-icons/bs';
-import { useCustomDispatch } from '../../hooks/redux';
-import { musicBySearch } from '../../redux/slices/music/index';
+import { useCustomDispatch } from '@hooks/redux';
+import { musicBySearch } from '@redux/slices/music/index';
 import { Link } from 'react-router-dom';
 
 const Searchbar: React.FC = () => {

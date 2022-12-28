@@ -19,9 +19,9 @@ import {
 import { Container } from './SingIn.styles';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
-import { useCustomDispatch } from '../../hooks/redux';
-import { singInAuth } from '../../redux/slices/auth';
-import { singIn } from '../../redux/slices/user/user';
+import { useCustomDispatch } from '@hooks/redux';
+import { singInAuth } from '@redux/slices/auth';
+import { singIn } from '@redux/slices/user/user';
 interface IData {
   email?: string;
   password?: string;

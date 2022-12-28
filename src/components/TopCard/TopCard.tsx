@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-import { useCustomDispatch } from '../../hooks/redux/index';
+import { useCustomDispatch } from '@hooks/redux/index';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
-import getAverageColor from '../../utils/getAverageColor';
-import calculateTime from '../../utils/calculateTime';
-import {
-  getCurrentSong,
-  IMusicSearched,
-  getDominantColor
-} from '../../redux/slices/music/index';
+import getAverageColor from '@utils/getAverageColor';
+import calculateTime from '@utils/calculateTime';
+import { getCurrentSong, getDominantColor } from '@redux/slices/music/index';
 import { Container, Text, Image, HStack, Icon } from './TopCard.styles';
+import { IMusicSearched } from '@redux/slices/music/types';
 
 interface IProps {
   title: string;

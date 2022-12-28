@@ -6,10 +6,10 @@ import {
   UserDropdownItem,
   SkeletonAvatar
 } from './User.styles';
-import { getlogOut } from '../../redux/slices/auth/index';
-import { logOut } from '../../redux/slices/user/user';
+import { getlogOut } from '@redux/slices/auth/index';
+import { logOut } from '@redux/slices/user/user';
 import { Link, useNavigate } from 'react-router-dom';
-import { useCustomDispatch, useCustomSelector } from '../../hooks/redux';
+import { useCustomDispatch, useCustomSelector } from '@hooks/redux';
 
 const User: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);

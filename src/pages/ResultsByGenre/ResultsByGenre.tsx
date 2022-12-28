@@ -9,7 +9,7 @@ import {
   ContainerCards
 } from './ResultsByGenre.styles';
 import { useParams } from 'react-router-dom';
-import { useCustomSelector } from '../../hooks/redux/index';
+import { useCustomSelector } from '@hooks/redux/index';
 import { IGenres } from '@components/Genres/types';
 import GenreCard from '@components/GenreCard';
 import {

@@ -1,9 +1,6 @@
 import React from 'react';
-import {
-  getCurrentArtist,
-  getArtistAlbums
-} from '../../redux/slices/music/index';
-import { useCustomDispatch } from '../../hooks/redux';
+import { getCurrentArtist, getArtistAlbums } from '@redux/slices/music/index';
+import { useCustomDispatch } from '@hooks/redux';
 import { GenreCardContainer, Title, ImageArtist } from './GenreCard.styles';
 import { Link } from 'react-router-dom';
 

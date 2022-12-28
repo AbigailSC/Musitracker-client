@@ -4,7 +4,7 @@ import Navbar from '@components/Navbar';
 import Sidebar from '@components/Sidebar';
 import CardSkeleton from '@components/CardSkeleton/CardSkeleton';
 import Card from '@components/Card';
-import { useCustomSelector } from '../../hooks/redux/index';
+import { useCustomSelector } from '@hooks/redux/index';
 import {
   Section,
   SectionContent,

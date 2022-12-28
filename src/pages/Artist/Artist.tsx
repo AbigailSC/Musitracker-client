@@ -6,7 +6,7 @@ import {
   SectionContentLeft
 } from '@pages/Home/Home.styles';
 import React from 'react';
-import { useCustomSelector } from '../../hooks/redux';
+import { useCustomSelector } from '@hooks/redux';
 import {
   ArtistContainer,
   ArtistHeader,
@@ -19,10 +19,10 @@ import {
 } from './Artist.styles';
 import { FiExternalLink } from 'react-icons/fi';
 import AlbumCard from '@components/AlbumCard';
-import { IArtistAlbums } from '../../redux/slices/music/index';
 import TopCard from '@components/TopCard';
 import { ITitle } from '@pages/Results/types';
 import TopCardSkeleton from '@components/TopCardSkeleton/TopCardSkeleton';
+import { IArtistAlbums } from '@redux/slices/music/types';
 
 const Artist: React.FC = () => {
   const { musicSlice } = useCustomSelector((state) => state);

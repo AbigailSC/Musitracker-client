@@ -7,8 +7,8 @@ import {
   AlbumCardSubtitle,
   DotSpan
 } from './AlbumCard.styles';
-import { useCustomDispatch } from '../../hooks/redux/index';
-import { getCurrentAlbum } from '../../redux/slices/music/index';
+import { useCustomDispatch } from '@hooks/redux/index';
+import { getCurrentAlbum } from '@redux/slices/music/index';
 import { Link } from 'react-router-dom';
 
 interface IProps {

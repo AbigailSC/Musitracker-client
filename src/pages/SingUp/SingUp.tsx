@@ -18,11 +18,11 @@ import {
   Text
 } from './SingUp.styles';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-import { postUserAuth } from '../../redux/slices/auth/index';
+import { postUserAuth } from '@redux/slices/auth/index';
 import { Link, useNavigate } from 'react-router-dom';
-import { useCustomDispatch, useCustomSelector } from '../../hooks/redux';
+import { useCustomDispatch, useCustomSelector } from '@hooks/redux';
 import Swal from 'sweetalert2';
-import { getUsersInfo, singIn } from '../../redux/slices/user/user';
+import { getUsersInfo, singIn } from '@redux/slices/user/user';
 
 const SingUp: React.FC = () => {
   const dispatch = useCustomDispatch();

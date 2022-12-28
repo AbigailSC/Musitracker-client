@@ -19,8 +19,8 @@ import {
 } from 'react-icons/io5';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
-import { useCustomSelector } from '../../hooks/redux/index';
-import calculateTime from '../../utils/calculateTime';
+import { useCustomSelector } from '@hooks/redux/index';
+import calculateTime from '@utils/calculateTime';
 
 interface Props {
   current?: string;

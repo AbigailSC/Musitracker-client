@@ -18,8 +18,8 @@ import {
   Dot,
   AlbumHeaderImgArtist
 } from './AlbumDetails.styles';
-import getAverageColor from '../../utils/getAverageColor';
-import getTotalTime from '../../utils/getTotalTime';
+import getAverageColor from '@utils/getAverageColor';
+import getTotalTime from '@utils/getTotalTime';
 import Sidebar from '@components/Sidebar';
 import Navbar from '@components/Navbar';
 

@@ -16,7 +16,7 @@ import {
 } from './Profile.styles';
 import Sidebar from '@components/Sidebar';
 import Navbar from '@components/Navbar';
-import { useCustomSelector } from '../../hooks/redux';
+import { useCustomSelector } from '@hooks/redux';
 
 const Profile: React.FC = () => {
   const { userSlice } = useCustomSelector((state) => state);

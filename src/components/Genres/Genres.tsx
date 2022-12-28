@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Title } from './Genres.styles';
-import { useCustomDispatch } from '../../hooks/redux/index';
-import { getCurrentGenre } from '../../redux/slices/music/index';
+import { useCustomDispatch } from '@hooks/redux/index';
+import { getCurrentGenre } from '@redux/slices/music/index';
 
 interface IProps {
   name: string;

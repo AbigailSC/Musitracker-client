@@ -13,7 +13,7 @@ import ResultsByGenre from '@pages/ResultsByGenre';
 import Artist from '@pages/Artist';
 import AlbumDetails from '@pages/AlbumDetails';
 import GlobalStyle from './styles/global';
-import { useCustomSelector } from './hooks/redux/index';
+import { useCustomSelector } from '@hooks/redux/index';
 
 const App: React.FC = () => {
   const { auth } = useCustomSelector((state) => state);

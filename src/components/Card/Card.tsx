@@ -9,14 +9,15 @@ import {
   Icon
 } from './Card.styles';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
-import getAverageColor from '../../utils/getAverageColor';
-import calculateTime from '../../utils/calculateTime';
-import {
-  getCurrentSong, IMusicSearched, getDominantColor, getCurrentAlbum, getCurrentArtist,
-  getArtistAlbums
-} from '../../redux/slices/music/index';
-import { useCustomDispatch } from '../../hooks/redux/index';
+import getAverageColor from '@utils/getAverageColor';
+import calculateTime from '@utils/calculateTime';
+import { useCustomDispatch } from '@hooks/redux/index';
 import { Link } from 'react-router-dom';
+import { IMusicSearched } from '@redux/slices/music/types';
+import {
+  getCurrentSong, getDominantColor, getCurrentAlbum, getCurrentArtist,
+  getArtistAlbums
+} from '@redux/slices/music/index';
 
 interface IProps {
   title: string,
