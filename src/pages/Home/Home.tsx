@@ -12,7 +12,13 @@ import {
   Title,
   TrendingContainer
 } from './Home.styles';
-import { getGenres, getTrendingMusic, getTrendingArtists, getTopPlaylists, getTrendingPodcasts } from '@redux/slices/music/index';
+import {
+  getGenres,
+  getTrendingMusic,
+  getTrendingArtists,
+  getTopPlaylists,
+  getTrendingPodcasts
+} from '@redux/slices/music/index';
 import { useCustomDispatch, useCustomSelector } from '@hooks/redux/index';
 import Genres from '@components/Genres';
 import { IGenres } from '@components/Genres/types';
