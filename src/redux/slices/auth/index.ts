@@ -2,7 +2,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from '../../../utils/axios';
 import { AxiosResponse, AxiosError } from 'axios';
 import { Thunk } from 'src/redux/store/store';
-
 export interface IAuth {
   accessToken: string | null;
   isLoading: boolean;
@@ -65,6 +64,7 @@ export const singInAuth =
       dispatch(postUser(token));
       return token;
     } catch (error) {
+      console.log('ta mal chee rdxtk');
       return error as AxiosError;
     } finally {
       dispatch(setIsLoading(false));

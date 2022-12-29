@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-useless-escape */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Section,
   Box,
@@ -19,7 +19,7 @@ import {
 import { Container } from './SingIn.styles';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
-import { useCustomDispatch } from '@hooks/redux';
+import { useCustomDispatch, useCustomSelector } from '@hooks/redux';
 import { singInAuth } from '@redux/slices/auth';
 import { singIn } from '@redux/slices/user/user';
 interface IData {
@@ -41,12 +41,17 @@ const SingIn: React.FC = () => {
     password: ''
   });
   const [error, setError] = useState<IData>({});
+  const { auth } = useCustomSelector((state) => state);
   const validateEmail =
     /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
   const handleShowPass = (): void => {
     setShowPass(!showPass);
   };
+
+  useEffect(() => {
+    auth.accessToken !== null ? navigate('/home') : console.log('front ta mal');
+  }, [auth.accessToken]);
 
   const validation = (input: IInput): object => {
     const errors: IData = {};
@@ -76,8 +81,9 @@ const SingIn: React.FC = () => {
 
   const handleSubmit = (): void => {
     setError(validation(input));
+    dispatch(singIn(input));
     dispatch(singInAuth(input));
-    dispatch(singIn(input)).then(() => navigate('/home'));
+
     setInput({
       email: '',
       password: ''
