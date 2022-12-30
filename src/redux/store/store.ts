@@ -18,10 +18,16 @@ const persistCurrentMusicConfig = {
     'currentSong',
     'currentGenre',
     'musicFiltered',
+    'genres',
     'currentDominantColor',
     'currentArtist',
     'artistAlbums',
-    'currentAlbum'
+    'currentAlbum',
+    'currentPlaylist',
+    'trendingMusic',
+    'trendingArtists',
+    'topPlaylist',
+    'trendingPodcasts'
   ]
 };
 

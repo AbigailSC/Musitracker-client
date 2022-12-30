@@ -28,7 +28,7 @@ const User: React.FC = () => {
   };
   return (
     <UserContainer>
-      {userSlice.userInfo !== null ? (
+      {userSlice.userInfo != null ? (
         <Avatar
           src={userSlice.userInfo.imageProfile}
           alt="nombre"

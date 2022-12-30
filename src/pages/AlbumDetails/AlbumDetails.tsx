@@ -34,7 +34,7 @@ const AlbumDetails: React.FC = () => {
     setColor(color);
   };
   getColor(albumDetails?.cover_big as string);
-  console.log(albumDetails);
+  console.log(albumDetails?.tracks);
   return (
     <Section>
       <Sidebar />
@@ -79,6 +79,7 @@ const AlbumDetails: React.FC = () => {
                   </AlbumHeaderInfo>
                 </AlbumHeader>
               )}
+              holaaa
             </ArtistContainer>
           )}
         </SectionContentLeft>

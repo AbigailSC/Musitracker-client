@@ -24,7 +24,7 @@ const initialState: IMusic = {
   currentDominantColor: '',
   currentArtist: null,
   currentAlbum: null,
-  currentPlaylist: [],
+  currentPlaylist: null,
   artistAlbums: [],
   trendingMusic: [],
   trendingArtists: [],
@@ -76,7 +76,7 @@ const musicSlice = createSlice({
     setTrendingPodcasts: (state, action: PayloadAction<ITrendingPodcasts>) => {
       state.trendingPodcasts = action.payload;
     },
-    setCurrentPlaylist: (state, action: PayloadAction<IMusicSearched>) => {
+    setCurrentPlaylist: (state, action: PayloadAction<ITopPlaylist>) => {
       state.currentPlaylist = action.payload;
     }
   }

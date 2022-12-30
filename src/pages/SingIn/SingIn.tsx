@@ -50,7 +50,7 @@ const SingIn: React.FC = () => {
   };
 
   useEffect(() => {
-    auth.accessToken !== null ? navigate('/home') : console.log('front ta mal');
+    auth.accessToken !== null && navigate('/home');
   }, [auth.accessToken]);
 
   const validation = (input: IInput): object => {

@@ -8,7 +8,7 @@ export interface IMusic {
   currentDominantColor: string;
   currentArtist: IArtistFull | null;
   currentAlbum: IAlbumFull | null;
-  currentPlaylist: IMusicSearched | [];
+  currentPlaylist: ITopPlaylist | null;
   artistAlbums: IArtistAlbums | [];
   trendingMusic: ITrending | [];
   trendingArtists: ITrendingArtists | [];
@@ -32,10 +32,15 @@ export interface ITopPlaylist {
   picture_xl: string;
   tracklist: string;
   creation_date: string;
+  duration?: number;
+  public?: boolean;
+  fans?: number;
+  link?: string;
   creator: {
     id: number;
     name: string;
   };
+  tracks?: IMusicSearched;
 }
 
 export interface ITrending {
