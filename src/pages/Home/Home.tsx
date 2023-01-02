@@ -90,7 +90,8 @@ const Home: React.FC = () => {
                   />
                 ))}
               </GenresContainer>
-              <GenresContainer>
+              <Title>Genres</Title>
+              <GenresContainer className='last'>
                 {genres instanceof Array
                   && genres.map((genre: IGenres) => (
                     <Genres
