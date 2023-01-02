@@ -3,6 +3,7 @@ import { useCustomDispatch } from '@hooks/redux/index';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import getAverageColor from '@utils/getAverageColor';
 import calculateTime from '@utils/calculateTime';
+import numberWithCommas from '@utils/numberWithCommas';
 import { getCurrentSong, getDominantColor } from '@redux/slices/music/index';
 import { Container, Text, Image, HStack, Icon } from './TopCard.styles';
 import { IMusicSearched } from '@redux/slices/music/types';
@@ -44,10 +45,6 @@ const TopCard: React.FC<IProps> = ({
 
   const handleLike = (): void => {
     setLiked(!liked);
-  };
-
-  const numberWithCommas = (x: number): string => {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
 
   getColor(img);

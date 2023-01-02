@@ -9,6 +9,7 @@ import Navbar from '@components/Navbar';
 import { useCustomSelector } from '@hooks/redux/index';
 import { TextPlaylist } from './Playlist.styles';
 import {
+  CardContainer,
   HStack as HStackResults,
   Text as TextResults
 } from '@pages/Results/Results.styles';
@@ -29,6 +30,9 @@ import {
 } from '@pages/AlbumDetails/AlbumDetails.styles';
 import getAverageColor from '@utils/getAverageColor';
 import getTotalTime from '@utils/getTotalTime';
+import numberWithCommas from '@utils/numberWithCommas';
+import { ITitle } from '@pages/Results/types';
+import Card from '@components/Card';
 
 const Playlist: React.FC = () => {
   const { musicSlice } = useCustomSelector((state) => state);
@@ -36,10 +40,13 @@ const Playlist: React.FC = () => {
   const { currentPlaylist } = musicSlice;
   const time = getTotalTime(currentPlaylist?.duration as number);
   const name = currentPlaylist?.creator.name.split('-')[0];
+  const tracks = currentPlaylist?.tracks;
+
   const getColor = async (img: string): Promise<void> => {
     const color = await getAverageColor(img);
     setColor(color);
   };
+
   getColor(currentPlaylist?.picture_xl as string);
   console.log(currentPlaylist);
   return (
@@ -87,7 +94,7 @@ const Playlist: React.FC = () => {
                       </Text>
                       <Dot />
                       <Text color="#fff" weight="400" size="1em">
-                        {currentPlaylist.fans}
+                        {numberWithCommas(currentPlaylist.fans as number)} fans
                       </Text>
                       <Dot />
                       <Text color="#d4d4ea" weight="400" size="1em">
@@ -110,6 +117,21 @@ const Playlist: React.FC = () => {
                   <AiOutlineClockCircle />
                 </TextResults>
               </HStackResults>
+              <CardContainer>
+                {tracks instanceof Array &&
+                  tracks.map((card: ITitle, index: number) => (
+                    <Card
+                      key={card.id}
+                      obj={card}
+                      title={card.title}
+                      artist={card.artist.name}
+                      album={card.album.title}
+                      duration={card.duration}
+                      img={card.album.cover}
+                      index={index + 1}
+                    />
+                  ))}
+              </CardContainer>
             </ArtistContainer>
           )}
         </SectionContentLeft>

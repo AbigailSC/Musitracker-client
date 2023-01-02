@@ -49,6 +49,7 @@ export const ArtistContainer = styled.section`
   display: flex;
   flex-direction: column;
   gap: 3em;
+  padding-bottom: 100px;
 `;
 
 export const ArtistHeader = styled.div<IHeader>`
