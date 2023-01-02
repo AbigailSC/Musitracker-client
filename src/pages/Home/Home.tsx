@@ -10,7 +10,9 @@ import {
   GenresContainer,
   ArtistContainer,
   Title,
-  TrendingContainer
+  TrendingContainer,
+  ArtistHeader,
+  ArtistBg
 } from './Home.styles';
 import {
   getGenres,
@@ -27,6 +29,7 @@ import GenreCard from '@components/GenreCard';
 import { ITitle } from '@pages/Results/types';
 import TopCard from '@components/TopCard';
 import PlaylistCard from '@components/PlaylistCard';
+import Spinner from '@components/Spinner/Spinner';
 
 const Home: React.FC = () => {
   const dispatch = useCustomDispatch();
@@ -50,9 +53,13 @@ const Home: React.FC = () => {
         <Navbar />
         <SectionContentLeft>
           {musicSlice.isLoading ? (
-            <p>Loading</p>
+            <Spinner />
           ) : (
             <>
+              <ArtistHeader>
+                <ArtistBg />
+                <h3>Find the path to millions of songs. & jump start your musical journey ♫</h3>
+              </ArtistHeader>
               <Title>Trending Music</Title>
               <TrendingContainer>
                 {trendingMusic instanceof Array && trendingMusic.map((music: ITitle, index) => (

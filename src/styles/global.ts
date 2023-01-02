@@ -1,6 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
+
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+  
   :root{
     margin:0 auto;
     

@@ -70,3 +70,33 @@ export const Title = styled.h3`
   color: #fff;
   font-weight: 700;
 `;
+
+export const ArtistHeader = styled.div`
+  background: linear-gradient(#c3efc8, #64cdbc);
+  width: 100%;
+  height: 420px;
+  position: relative;
+  border-radius: 1em;
+  & > h3 {
+    position: absolute;
+    top: 40%;
+    bottom: 60%;
+    width: 70%;
+    padding: 0 2em;
+    font-size: 3em;
+    font-weight: 700;
+    color: #ff4d38;
+  }
+`;
+
+export const ArtistBg = styled.div`
+  width: 100%;
+  height: 100%;
+  border-radius: 1em;
+  background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/45532e153848787.633b3013a2043.gif');
+  background-repeat: no-repeat;
+  background-size: 40% 100%;
+  background-position: right;
+  display: flex;
+  clip-path: circle(30% at 90% 50%);
+`;
