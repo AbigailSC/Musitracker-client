@@ -79,6 +79,9 @@ export const MediaPlayerContent = styled.div`
   }
   & > .volumeIcon {
   }
+  & > input {
+    cursor: pointer;
+  }
   & > .icon {
     cursor: pointer;
   }

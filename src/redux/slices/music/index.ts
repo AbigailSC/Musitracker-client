@@ -40,6 +40,9 @@ const musicSlice = createSlice({
     setMusicBySearch: (state, action: PayloadAction<IMusicSearched>) => {
       state.musicFiltered = action.payload;
     },
+    setOutMusicBySearch: (state) => {
+      state.musicFiltered = [];
+    },
     setIsLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     },
@@ -55,14 +58,26 @@ const musicSlice = createSlice({
     setCurrentGenre: (state, action: PayloadAction<IGenres>) => {
       state.currentGenre = action.payload;
     },
+    setOutCurrentGenre: (state) => {
+      state.currentGenre = null;
+    },
     setCurrentArtist: (state, action: PayloadAction<IArtistFull>) => {
       state.currentArtist = action.payload;
+    },
+    setOutCurrentArtist: (state) => {
+      state.currentArtist = null;
     },
     setArtistAlbums: (state, action: PayloadAction<IArtistAlbums>) => {
       state.artistAlbums = action.payload;
     },
+    setOutArtistAlbums: (state) => {
+      state.artistAlbums = [];
+    },
     setCurrentAlbum: (state, action: PayloadAction<IAlbumFull>) => {
       state.currentAlbum = action.payload;
+    },
+    setOutCurrentAlbum: (state) => {
+      state.currentAlbum = null;
     },
     setTrendingMusic: (state, action: PayloadAction<ITrending>) => {
       state.trendingMusic = action.payload;
@@ -78,25 +93,34 @@ const musicSlice = createSlice({
     },
     setCurrentPlaylist: (state, action: PayloadAction<ITopPlaylist>) => {
       state.currentPlaylist = action.payload;
+    },
+    setOutCurrentPlaylist: (state) => {
+      state.currentPlaylist = null;
     }
   }
 });
 
 export const {
   setMusicBySearch,
+  setOutMusicBySearch,
   setIsLoading,
   setCurrentSong,
   setDominantColor,
   setGenres,
   setCurrentGenre,
+  setOutCurrentGenre,
   setCurrentArtist,
+  setOutCurrentArtist,
   setArtistAlbums,
+  setOutArtistAlbums,
   setCurrentAlbum,
+  setOutCurrentAlbum,
   setTrendingMusic,
   setTrendingArtists,
   setTopPlaylist,
   setTrendingPodcasts,
-  setCurrentPlaylist
+  setCurrentPlaylist,
+  setOutCurrentPlaylist
 } = musicSlice.actions;
 
 export default musicSlice.reducer;
@@ -105,6 +129,7 @@ export const musicBySearch =
   (title: string): Thunk =>
   async (dispatch): Promise<AxiosResponse | AxiosError> => {
     dispatch(setIsLoading(true));
+    dispatch(setOutMusicBySearch());
     try {
       const musicData: AxiosResponse = await axios.get(
         `/music/search?title=${title.trim()}`
@@ -118,6 +143,16 @@ export const musicBySearch =
       return error as AxiosError;
     } finally {
       dispatch(setIsLoading(false));
+    }
+  };
+
+export const clearMusicBySearch =
+  (): Thunk =>
+  (dispatch): any => {
+    try {
+      dispatch(setOutMusicBySearch());
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -162,6 +197,7 @@ export const getGenres =
 export const getCurrentGenre =
   (genre: number): Thunk =>
   async (dispatch): Promise<AxiosResponse | AxiosError> => {
+    dispatch(setOutCurrentGenre());
     dispatch(setIsLoading(true));
     try {
       const genreSelected: AxiosResponse = await axios.get(
@@ -180,6 +216,7 @@ export const getCurrentGenre =
 export const getCurrentArtist =
   (artistId: number): Thunk =>
   async (dispatch): Promise<AxiosResponse | AxiosError> => {
+    dispatch(setOutCurrentArtist());
     dispatch(setIsLoading(true));
     try {
       const artistSelected: AxiosResponse = await axios.get(
@@ -204,6 +241,7 @@ export const getCurrentArtist =
 export const getArtistAlbums =
   (artistId: number): Thunk =>
   async (dispatch): Promise<AxiosResponse | AxiosError> => {
+    dispatch(setOutArtistAlbums());
     dispatch(setIsLoading(true));
     try {
       const artistSelected: AxiosResponse = await axios.get(
@@ -224,6 +262,7 @@ export const getArtistAlbums =
 export const getCurrentAlbum =
   (albumId: number): Thunk =>
   async (dispatch): Promise<AxiosResponse | AxiosError> => {
+    dispatch(setOutCurrentAlbum());
     dispatch(setIsLoading(true));
     try {
       const albumSelected: AxiosResponse = await axios.get(
@@ -303,6 +342,7 @@ export const getTrendingPodcasts =
 export const getPlaylistById =
   (playlistId: number): Thunk =>
   async (dispatch): Promise<AxiosResponse | AxiosError> => {
+    dispatch(setOutCurrentPlaylist());
     dispatch(setIsLoading(true));
     try {
       const playlist: AxiosResponse = await axios.get(

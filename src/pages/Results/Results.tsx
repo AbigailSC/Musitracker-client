@@ -41,6 +41,12 @@ const Results: React.FC = () => {
       return false;
     }
   };
+  // useEffect(() => {
+  //   return () => {
+  //     dispatch(clearMusicBySearch());
+  //   };
+  // }, [dispatch]);
+
   return (
     <Section>
       <Sidebar />
