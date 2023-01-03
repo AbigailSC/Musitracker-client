@@ -77,6 +77,11 @@ export const MediaPlayerContent = styled.div`
     width: 20%;
     justify-content: flex-end;
   }
+  & > .volumeIcon {
+  }
+  & > .icon {
+    cursor: pointer;
+  }
 `;
 
 export const HStack = styled.div`

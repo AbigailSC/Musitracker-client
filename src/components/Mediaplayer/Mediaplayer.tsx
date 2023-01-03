@@ -41,7 +41,7 @@ const Mediaplayer: React.FC = () => {
 
   const currentAudio = useRef<HTMLAudioElement>(null);
   const progressBar = useRef<HTMLInputElement>(null);
-  // const volumeBar = useRef();
+  const volumeBar = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (currentAudio.current !== null) {
@@ -102,7 +102,7 @@ const Mediaplayer: React.FC = () => {
         ref={currentAudio}
         src={currentMusic?.preview}
         onTimeUpdate={handlePlay}
-      ></audio>
+      />
       <MediaPlayerContent>
         <MediaPlayerImg
           background={musicSlice.currentDominantColor}
@@ -157,11 +157,23 @@ const Mediaplayer: React.FC = () => {
       </MediaPlayerContent>
       <MediaPlayerContent>
         {isLiked ? (
-          <AiFillHeart onClick={() => handleLike()} />
+          <AiFillHeart onClick={() => handleLike()} className="icon" />
         ) : (
-          <AiOutlineHeart onClick={() => handleLike()} />
+          <AiOutlineHeart onClick={() => handleLike()} className="icon" />
         )}
-        <IoVolumeMediumOutline />
+        <IoVolumeMediumOutline className="volumeIcon" />
+        {currentAudio.current !== null && (
+          <input
+            type="range"
+            min="0"
+            max="10"
+            defaultValue="5"
+            ref={volumeBar}
+            onChange={() => {
+              currentAudio.current.volume = volumeBar.current.value / 10;
+            }}
+          />
+        )}
         {/* <input type="range" min="0" max="100" value="50" /> */}
       </MediaPlayerContent>
     </MediaPlayerContainer>
