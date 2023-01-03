@@ -93,9 +93,11 @@ const Home: React.FC = () => {
                 ))}
               </GenresContainer>
               <Title>Trending Podcasts</Title>
-              {podcasts instanceof Array && podcasts.map((podcast: ITrendingPodcasts) => (
-                <PodcastCard key={podcast.id} id={podcast.id} title={podcast.title} link={podcast.link} picture={podcast.picture} />
-              ))}
+              <GenresContainer>
+                {podcasts instanceof Array && podcasts.map((podcast: ITrendingPodcasts) => (
+                  <PodcastCard key={podcast.id} id={podcast.id} title={podcast.title} link={podcast.link} picture={podcast.picture} />
+                ))}
+              </GenresContainer>
               <Title>Genres</Title>
               <GenresContainer className='last'>
                 {genres instanceof Array
