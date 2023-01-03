@@ -111,6 +111,15 @@ export const Stack = styled.div`
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+  & > .anchor,
+  .anchor:link,
+  .anchor:visited,
+  .anchor:hover {
+    text-decoration: none;
+    color: #d4d4ea;
+    cursor: pointer;
+    outline: 0;
+  }
 `;
 
 export const MediaPlayerImg = styled.img<IMediaPlayerContainer>`

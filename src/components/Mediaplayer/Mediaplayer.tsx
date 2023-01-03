@@ -19,8 +19,10 @@ import {
 } from 'react-icons/io5';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
-import { useCustomSelector } from '@hooks/redux/index';
+import { useCustomSelector, useCustomDispatch } from '@hooks/redux/index';
 import calculateTime from '@utils/calculateTime';
+import { getCurrentArtist, getArtistAlbums } from '@redux/slices/music/index';
+import { Link } from 'react-router-dom';
 
 interface Props {
   current?: string;
@@ -28,6 +30,7 @@ interface Props {
 }
 
 const Mediaplayer: React.FC = () => {
+  const dispatch = useCustomDispatch();
   const { musicSlice } = useCustomSelector((state) => state);
   const currentMusic = musicSlice.currentSong;
   // const allMusic = musicSlice.musicFiltered;
@@ -87,6 +90,12 @@ const Mediaplayer: React.FC = () => {
       );
     }
   };
+
+  const handleArtistInfo = (): void => {
+    dispatch(getCurrentArtist(currentMusic?.artist.id as number));
+    dispatch(getArtistAlbums(currentMusic?.artist.id as number));
+  };
+
   return (
     <MediaPlayerContainer>
       <audio
@@ -107,9 +116,17 @@ const Mediaplayer: React.FC = () => {
         />
         <Stack>
           <h3>{currentMusic !== null ? currentMusic?.title : 'Title'}</h3>
-          <h4>
-            {currentMusic !== null ? currentMusic?.artist.name : 'Artist'}
-          </h4>
+          {currentMusic !== null && (
+            <Link
+              to={`/artist/${currentMusic?.artist.id}`}
+              className="anchor"
+              style={{ textDecoration: 'none' }}
+            >
+              <h4 onClick={() => handleArtistInfo()} aria-hidden="true">
+                {currentMusic?.artist.name}
+              </h4>
+            </Link>
+          )}
         </Stack>
       </MediaPlayerContent>
       <MediaPlayerContent>
@@ -127,6 +144,7 @@ const Mediaplayer: React.FC = () => {
             <p>{dataCurrentMusic.current}</p>
             <ProgressBar
               background={musicSlice.currentDominantColor}
+              active={currentAudio.current?.paused ?? false}
               type="range"
               defaultValue="0"
               step="1"
