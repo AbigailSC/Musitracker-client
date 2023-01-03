@@ -24,12 +24,13 @@ import {
 import { useCustomDispatch, useCustomSelector } from '@hooks/redux/index';
 import Genres from '@components/Genres';
 import { IGenres } from '@components/Genres/types';
-import { ITopPlaylist, ITrendingArtists } from '@redux/slices/music/types';
+import { ITopPlaylist, ITrendingArtists, ITrendingPodcasts } from '@redux/slices/music/types';
 import GenreCard from '@components/GenreCard';
 import { ITitle } from '@pages/Results/types';
 import TopCard from '@components/TopCard';
 import PlaylistCard from '@components/PlaylistCard';
 import Spinner from '@components/Spinner/Spinner';
+import PodcastCard from '@components/PodcastCard';
 
 const Home: React.FC = () => {
   const dispatch = useCustomDispatch();
@@ -37,6 +38,7 @@ const Home: React.FC = () => {
   const trendingArtists = musicSlice.trendingArtists;
   const trendingMusic = musicSlice.trendingMusic;
   const trendingPlaylists = musicSlice.topPlaylist;
+  const podcasts = musicSlice.trendingPodcasts
   const genres = musicSlice.genres;
   useEffect(() => {
     dispatch(getGenres());
@@ -90,6 +92,10 @@ const Home: React.FC = () => {
                   />
                 ))}
               </GenresContainer>
+              <Title>Trending Podcasts</Title>
+              {podcasts instanceof Array && podcasts.map((podcast: ITrendingPodcasts) => (
+                <PodcastCard key={podcast.id} id={podcast.id} title={podcast.title} link={podcast.link} picture={podcast.picture} />
+              ))}
               <Title>Genres</Title>
               <GenresContainer className='last'>
                 {genres instanceof Array
