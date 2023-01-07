@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Section,
   SectionContent,
@@ -16,11 +16,27 @@ import {
 } from './Profile.styles';
 import Sidebar from '@components/Sidebar';
 import Navbar from '@components/Navbar';
-import { useCustomSelector } from '@hooks/redux';
+import { useCustomDispatch, useCustomSelector } from '@hooks/redux';
+import { addFavorite } from '@redux/slices/favorites/index';
 
 const Profile: React.FC = () => {
+  const dispatch = useCustomDispatch();
   const { userSlice } = useCustomSelector((state) => state);
+  const { auth } = useCustomSelector((state) => state);
   const user = userSlice.userInfo;
+  useEffect(() => {
+    dispatch(
+      addFavorite(
+        {
+          idTitle: 1272477112,
+          idUser: '63b9ed562a8ebeab8231e5d3',
+          active: true
+        },
+        auth.accessToken as string
+      )
+    );
+  }, [auth.accessToken, dispatch]);
+
   return (
     <Section>
       <Sidebar />
