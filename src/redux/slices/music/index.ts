@@ -30,6 +30,7 @@ const initialState: IMusic = {
   trendingArtists: [],
   topPlaylist: [],
   trendingPodcasts: [],
+  myPlaylist: [],
   isLoading: false
 };
 
@@ -96,6 +97,9 @@ const musicSlice = createSlice({
     },
     setOutCurrentPlaylist: (state) => {
       state.currentPlaylist = null;
+    },
+    setMyPlaylist: (state, action: PayloadAction<IMusicSearched>) => {
+      state.myPlaylist = state.myPlaylist.concat(action.payload);
     }
   }
 });
@@ -120,7 +124,8 @@ export const {
   setTopPlaylist,
   setTrendingPodcasts,
   setCurrentPlaylist,
-  setOutCurrentPlaylist
+  setOutCurrentPlaylist,
+  setMyPlaylist
 } = musicSlice.actions;
 
 export default musicSlice.reducer;
@@ -350,6 +355,23 @@ export const getPlaylistById =
       );
       dispatch(setCurrentPlaylist(playlist.data));
       return playlist;
+    } catch (error) {
+      return error as AxiosError;
+    } finally {
+      dispatch(setIsLoading(false));
+    }
+  };
+
+export const getFavoritesById =
+  (idTitle: number): Thunk =>
+  async (dispatch): Promise<AxiosResponse | AxiosError> => {
+    dispatch(setIsLoading(true));
+    try {
+      const favorites: AxiosResponse = await axios.get(
+        `/music/title/${idTitle}`
+      );
+      dispatch(setMyPlaylist(favorites.data));
+      return favorites;
     } catch (error) {
       return error as AxiosError;
     } finally {

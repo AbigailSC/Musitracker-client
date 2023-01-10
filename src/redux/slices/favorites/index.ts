@@ -11,7 +11,6 @@ export interface IFavorites {
 export interface Data {
   idTitle: number;
   idUser: string;
-  active: boolean;
 }
 
 const initialState: IFavorites = {
@@ -26,13 +25,13 @@ const authSlice = createSlice({
     setIsLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     },
-    setFavorite: (state, action: PayloadAction<Data>) => {
+    setAllFavorites: (state, action: PayloadAction<Data>) => {
       state.favorites = action.payload;
     }
   }
 });
 
-export const { setIsLoading, setFavorite } = authSlice.actions;
+export const { setIsLoading, setAllFavorites } = authSlice.actions;
 
 export default authSlice.reducer;
 
@@ -52,7 +51,54 @@ export const addFavorite =
         userInfo,
         config
       );
-      dispatch(setFavorite(newUser.data));
+      return newUser;
+    } catch (error) {
+      return error as AxiosError;
+    } finally {
+      dispatch(setIsLoading(false));
+    }
+  };
+
+export const getFavorites =
+  (token: string, idUser: string): Thunk =>
+  async (dispatch): Promise<AxiosResponse | AxiosError> => {
+    dispatch(setIsLoading(true));
+    try {
+      // import header
+      const config = {
+        headers: {
+          authToken: token
+        }
+      };
+      const newUser: AxiosResponse = await axios.get(
+        `/user/favorites/${idUser}`,
+        config
+      );
+      dispatch(setAllFavorites(newUser.data));
+      return newUser;
+    } catch (error) {
+      return error as AxiosError;
+    } finally {
+      dispatch(setIsLoading(false));
+    }
+  };
+
+export const removeFavorite =
+  (token: string, idFavorite: string, idUser: string): Thunk =>
+  async (dispatch): Promise<AxiosResponse | AxiosError> => {
+    dispatch(setIsLoading(true));
+    try {
+      // import header
+      const config = {
+        headers: {
+          authToken: token
+        }
+      };
+      const newUser: AxiosResponse = await axios.put(
+        `/user/favorites/${idFavorite}`,
+        idUser,
+        config
+      );
       return newUser;
     } catch (error) {
       return error as AxiosError;

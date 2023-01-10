@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage';
 import authReducer from '../slices/auth';
 import userSlice from '../slices/user/user';
 import musicReducer from '../slices/music';
+import favorites from '@redux/slices/favorites';
 
 const persistAuthConfig = {
   key: 'authToken',
@@ -50,7 +51,8 @@ const store = configureStore({
     musicSlice: persistReducer<ReturnType<typeof musicReducer>>(
       persistCurrentMusicConfig,
       musicReducer
-    )
+    ),
+    favorites
   },
   middleware: (defaultMiddleware) =>
     defaultMiddleware({

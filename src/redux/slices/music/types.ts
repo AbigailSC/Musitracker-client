@@ -14,6 +14,7 @@ export interface IMusic {
   trendingArtists: ITrendingArtists | [];
   topPlaylist: ITopPlaylist | [];
   trendingPodcasts: ITrendingPodcasts | [];
+  myPlaylist: IMusicSearched | [];
   isLoading: boolean;
 }
 
