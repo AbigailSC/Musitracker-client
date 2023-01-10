@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import { Button } from './Favorite.styles';
 // import { useCustomSelector } from '@hooks/redux';
 
 const Favorite: React.FC = () => {
@@ -10,9 +11,9 @@ const Favorite: React.FC = () => {
     setFavorite(!favorite);
   };
   return (
-    <button onClick={() => handleFavorite()}>
-      {favorite ? <AiOutlineHeart /> : <AiFillHeart />}
-    </button>
+    <Button onClick={() => handleFavorite()}>
+      {favorite ? <AiFillHeart /> : <AiOutlineHeart />}
+    </Button>
   );
 };
 

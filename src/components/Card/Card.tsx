@@ -5,10 +5,9 @@ import {
   HStack,
   Figure,
   Stack,
-  HeaderText,
-  Icon
+  HeaderText
 } from './Card.styles';
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+// import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import getAverageColor from '@utils/getAverageColor';
 import calculateTime from '@utils/calculateTime';
 import { useCustomDispatch } from '@hooks/redux/index';
@@ -18,6 +17,7 @@ import {
   getCurrentSong, getDominantColor, getCurrentAlbum, getCurrentArtist,
   getArtistAlbums
 } from '@redux/slices/music/index';
+import Favorite from '@components/Favorite';
 
 interface IProps {
   title: string,
@@ -33,7 +33,7 @@ interface IProps {
 const Card: React.FC<IProps> = ({ title, artist, album, duration, img, index, obj }) => {
   const dispatch = useCustomDispatch();
   const [color, setColor] = useState<string>('');
-  const [liked, setLiked] = useState<boolean>(false);
+  // const [liked, setLiked] = useState<boolean>(false);
 
   const getColor = async (img: string): Promise<void> => {
     const color = await getAverageColor(img);
@@ -57,9 +57,9 @@ const Card: React.FC<IProps> = ({ title, artist, album, duration, img, index, ob
     dispatch(getArtistAlbums(obj.artist.id));
   };
 
-  const handleLike = (): void => {
-    setLiked(!liked)
-  }
+  // const handleLike = (): void => {
+  //   setLiked(!liked)
+  // }
 
   getColor(img);
 
@@ -85,9 +85,10 @@ const Card: React.FC<IProps> = ({ title, artist, album, duration, img, index, ob
         </Link>
       </HStack>
       <HStack>
-        <Icon onClick={() => handleLike()}>
+        {/* <Icon onClick={() => handleLike()}>
           {liked ? <AiFillHeart /> : <AiOutlineHeart />}
-        </Icon>
+        </Icon> */}
+        <Favorite />
         <h3>
           {calculateTime(duration)}
         </h3>
