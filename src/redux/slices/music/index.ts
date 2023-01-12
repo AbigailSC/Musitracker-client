@@ -30,7 +30,6 @@ const initialState: IMusic = {
   trendingArtists: [],
   topPlaylist: [],
   trendingPodcasts: [],
-  myPlaylist: [],
   isLoading: false
 };
 
@@ -98,8 +97,16 @@ const musicSlice = createSlice({
     setOutCurrentPlaylist: (state) => {
       state.currentPlaylist = null;
     },
-    setMyPlaylist: (state, action: PayloadAction<IMusicSearched>) => {
-      state.myPlaylist = state.myPlaylist.concat(action.payload);
+    setAddLiked: (state, action: PayloadAction<number>) => {
+      state.musicFiltered = state.musicFiltered.map((music: IMusicSearched) => {
+        if (music.id === action.payload) {
+          return {
+            ...music,
+            liked: true
+          };
+        }
+        return music;
+      });
     }
   }
 });
@@ -125,7 +132,7 @@ export const {
   setTrendingPodcasts,
   setCurrentPlaylist,
   setOutCurrentPlaylist,
-  setMyPlaylist
+  setAddLiked
 } = musicSlice.actions;
 
 export default musicSlice.reducer;
@@ -139,9 +146,12 @@ export const musicBySearch =
       const musicData: AxiosResponse = await axios.get(
         `/music/search?title=${title.trim()}`
       );
-      const musicFiltered = musicData.data.map(
-        (music: IMusicSearched) => music
-      );
+      const musicFiltered = musicData.data.map((music: IMusicSearched) => {
+        return {
+          ...music,
+          liked: false
+        };
+      });
       dispatch(setMusicBySearch(musicFiltered));
       return musicData;
     } catch (error) {
@@ -362,18 +372,14 @@ export const getPlaylistById =
     }
   };
 
-export const getFavoritesById =
-  (idTitle: number): Thunk =>
-  async (dispatch): Promise<AxiosResponse | AxiosError> => {
+export const addLiked =
+  (id: number): Thunk =>
+  async (dispatch): Promise<void> => {
     dispatch(setIsLoading(true));
     try {
-      const favorites: AxiosResponse = await axios.get(
-        `/music/title/${idTitle}`
-      );
-      dispatch(setMyPlaylist(favorites.data));
-      return favorites;
+      dispatch(setAddLiked(id));
     } catch (error) {
-      return error as AxiosError;
+      return error;
     } finally {
       dispatch(setIsLoading(false));
     }

@@ -38,6 +38,12 @@ const persistUserConfig = {
   whitelist: ['userInfo']
 };
 
+const persistFavoritesConfig = {
+  key: 'favorites',
+  storage,
+  whitelist: ['musicFav', 'favorites']
+};
+
 const store = configureStore({
   reducer: {
     auth: persistReducer<ReturnType<typeof authReducer>>(
@@ -52,7 +58,10 @@ const store = configureStore({
       persistCurrentMusicConfig,
       musicReducer
     ),
-    favorites
+    favorites: persistReducer<ReturnType<typeof favorites>>(
+      persistFavoritesConfig,
+      favorites
+    )
   },
   middleware: (defaultMiddleware) =>
     defaultMiddleware({

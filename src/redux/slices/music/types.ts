@@ -14,7 +14,6 @@ export interface IMusic {
   trendingArtists: ITrendingArtists | [];
   topPlaylist: ITopPlaylist | [];
   trendingPodcasts: ITrendingPodcasts | [];
-  myPlaylist: IMusicSearched | [];
   isLoading: boolean;
 }
 
@@ -112,6 +111,7 @@ export interface IMusicSearched {
   preview: string;
   artist: IArtist;
   album: IAlbum;
+  liked: boolean;
 }
 
 export interface IArtistFull {

@@ -1,18 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { Button } from './Favorite.styles';
-// import { useCustomSelector } from '@hooks/redux';
+import { addMusicFav } from '@redux/slices/favorites/index';
+import { addLiked } from '@redux/slices/music/index';
+import { useCustomDispatch } from '@hooks/redux';
+import { IProps } from '@components/Card/Card';
 
-const Favorite: React.FC = () => {
+interface IFavorite {
+  obj: IProps;
+}
+
+const Favorite: React.FC<IFavorite> = ({ obj }) => {
   // const { favorites } = useCustomSelector((state) => state);
-  const [favorite, setFavorite] = useState<boolean>(false);
+  const dispatch = useCustomDispatch();
 
   const handleFavorite = (): void => {
-    setFavorite(!favorite);
+    dispatch(addLiked(obj.obj.id)).then(() => {
+      dispatch(addMusicFav(obj));
+    });
   };
+
   return (
     <Button onClick={() => handleFavorite()}>
-      {favorite ? <AiFillHeart /> : <AiOutlineHeart />}
+      {obj.obj.liked ? <AiFillHeart /> : <AiOutlineHeart />}
     </Button>
   );
 };

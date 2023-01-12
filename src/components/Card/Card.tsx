@@ -19,7 +19,7 @@ import {
 } from '@redux/slices/music/index';
 import Favorite from '@components/Favorite';
 
-interface IProps {
+export interface IProps {
   title: string,
   artist: string,
   album: string;
@@ -88,7 +88,17 @@ const Card: React.FC<IProps> = ({ title, artist, album, duration, img, index, ob
         {/* <Icon onClick={() => handleLike()}>
           {liked ? <AiFillHeart /> : <AiOutlineHeart />}
         </Icon> */}
-        <Favorite />
+        <Favorite obj={
+          {
+            title,
+            artist,
+            album,
+            duration,
+            img,
+            index,
+            obj
+          }
+        } />
         <h3>
           {calculateTime(duration)}
         </h3>

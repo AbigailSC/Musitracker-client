@@ -2,9 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from '../../../utils/axios';
 import { AxiosResponse, AxiosError } from 'axios';
 import { Thunk } from 'src/redux/store/store';
+import { IProps } from '@components/Card/Card';
 
 export interface IFavorites {
   favorites: Data | [];
+  musicFav: IProps | [];
   isLoading: boolean;
 }
 
@@ -15,11 +17,12 @@ export interface Data {
 
 const initialState: IFavorites = {
   favorites: [],
+  musicFav: [],
   isLoading: false
 };
 
-const authSlice = createSlice({
-  name: 'auth',
+const favoritesSlice = createSlice({
+  name: 'favorites',
   initialState,
   reducers: {
     setIsLoading: (state, action: PayloadAction<boolean>) => {
@@ -27,13 +30,17 @@ const authSlice = createSlice({
     },
     setAllFavorites: (state, action: PayloadAction<Data>) => {
       state.favorites = action.payload;
+    },
+    setAddMusicFav: (state, action: PayloadAction<IProps>) => {
+      state.musicFav = [...state.musicFav, action.payload];
     }
   }
 });
 
-export const { setIsLoading, setAllFavorites } = authSlice.actions;
+export const { setIsLoading, setAllFavorites, setAddMusicFav } =
+  favoritesSlice.actions;
 
-export default authSlice.reducer;
+export default favoritesSlice.reducer;
 
 export const addFavorite =
   (userInfo: Data, token: string): Thunk =>
@@ -104,5 +111,15 @@ export const removeFavorite =
       return error as AxiosError;
     } finally {
       dispatch(setIsLoading(false));
+    }
+  };
+
+export const addMusicFav =
+  (obj: IProps): Thunk =>
+  async (dispatch): Promise<void> => {
+    try {
+      dispatch(setAddMusicFav(obj));
+    } catch (error) {
+      console.log(error);
     }
   };
