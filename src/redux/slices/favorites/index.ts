@@ -33,12 +33,22 @@ const favoritesSlice = createSlice({
     },
     setAddMusicFav: (state, action: PayloadAction<IProps>) => {
       state.musicFav = [...state.musicFav, action.payload];
+    },
+    setRemoveMusicFav: (state, action: PayloadAction<IProps>) => {
+      // state.musicFav = [];
+      state.musicFav = state.musicFav.filter(
+        (music: IProps) => music.obj.id !== action.payload.obj.id
+      );
     }
   }
 });
 
-export const { setIsLoading, setAllFavorites, setAddMusicFav } =
-  favoritesSlice.actions;
+export const {
+  setIsLoading,
+  setAllFavorites,
+  setAddMusicFav,
+  setRemoveMusicFav
+} = favoritesSlice.actions;
 
 export default favoritesSlice.reducer;
 
@@ -119,6 +129,17 @@ export const addMusicFav =
   async (dispatch): Promise<void> => {
     try {
       dispatch(setAddMusicFav(obj));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+export const removeMusicFav =
+  (obj: IProps): Thunk =>
+  async (dispatch): Promise<void> => {
+    try {
+      console.log(obj);
+      dispatch(setRemoveMusicFav(obj));
     } catch (error) {
       console.log(error);
     }

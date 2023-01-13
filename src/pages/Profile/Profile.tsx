@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   Section,
   SectionContent,
@@ -16,43 +16,15 @@ import {
 } from './Profile.styles';
 import Sidebar from '@components/Sidebar';
 import Navbar from '@components/Navbar';
-import { useCustomDispatch, useCustomSelector } from '@hooks/redux';
-import {
-  addFavorite,
-  removeFavorite,
-  getFavorites
-} from '@redux/slices/favorites/index';
+import { useCustomSelector } from '@hooks/redux';
+import Card from '@components/Card';
+import { IFavs } from '@pages/Results/types';
 
 const Profile: React.FC = () => {
-  const dispatch = useCustomDispatch();
   const { userSlice } = useCustomSelector((state) => state);
-  const { auth } = useCustomSelector((state) => state);
+  const { favorites } = useCustomSelector((state) => state);
   const user = userSlice.userInfo;
-
-  const idUser = '63b9fa4850743147bcb8fcc1';
-  const idFavorite = '63c040a3b6e4d09d3556f37b';
-  const idTitle = 1272472232;
-
-  useEffect(() => {
-    dispatch(getFavorites(auth.accessToken as string, idUser));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
-
-  const handleAddFavorite = (): void => {
-    dispatch(
-      addFavorite(
-        {
-          idTitle,
-          idUser
-        },
-        auth.accessToken as string
-      )
-    );
-  };
-
-  const handleRemoveFavorite = (): void => {
-    dispatch(removeFavorite(auth.accessToken as string, idFavorite, idUser));
-  };
+  const favoritesSongs = favorites.musicFav;
 
   return (
     <Section>
@@ -70,9 +42,20 @@ const Profile: React.FC = () => {
             </ProfileHeader>
             <ProfileBody>
               <StackTitle>Favorites</StackTitle>
-              <StackTitle>Recently Played</StackTitle>
-              <button onClick={handleAddFavorite}>add</button>
-              <button onClick={handleRemoveFavorite}>remove</button>
+              {favoritesSongs instanceof Array &&
+                favoritesSongs.map((card: IFavs, index: number) => (
+                  <Card
+                    key={card.obj.id}
+                    obj={card.obj}
+                    title={card.obj.title}
+                    artist={card.obj.artist.name}
+                    album={card.obj.album.title}
+                    duration={card.obj.duration}
+                    img={card.obj.album.cover}
+                    index={index + 1}
+                    active={true}
+                  />
+                ))}
             </ProfileBody>
           </ProfileContainer>
         </SectionContentLeft>

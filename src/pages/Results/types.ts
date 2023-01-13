@@ -5,6 +5,7 @@ export interface ITitle {
   preview: string;
   rank: number;
   title: string;
+  liked: boolean;
   album: IAlbum;
   artist: IArtist;
 }
@@ -21,4 +22,8 @@ interface IArtist {
   link: string;
   name: string;
   picture: string;
+}
+
+export interface IFavs {
+  obj: ITitle;
 }

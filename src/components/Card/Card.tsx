@@ -18,6 +18,7 @@ import {
   getArtistAlbums
 } from '@redux/slices/music/index';
 import Favorite from '@components/Favorite';
+import RemoveFav from '@components/RemoveFav';
 
 export interface IProps {
   title: string,
@@ -28,9 +29,10 @@ export interface IProps {
   index: number;
   obj: IMusicSearched;
   onClick?: (song: React.MouseEvent<HTMLElement>) => void;
+  active?: boolean | undefined;
 }
 
-const Card: React.FC<IProps> = ({ title, artist, album, duration, img, index, obj }) => {
+const Card: React.FC<IProps> = ({ title, artist, album, duration, img, index, obj, active }) => {
   const dispatch = useCustomDispatch();
   const [color, setColor] = useState<string>('');
   // const [liked, setLiked] = useState<boolean>(false);
@@ -88,7 +90,7 @@ const Card: React.FC<IProps> = ({ title, artist, album, duration, img, index, ob
         {/* <Icon onClick={() => handleLike()}>
           {liked ? <AiFillHeart /> : <AiOutlineHeart />}
         </Icon> */}
-        <Favorite obj={
+        {active === undefined ? <Favorite obj={
           {
             title,
             artist,
@@ -98,7 +100,17 @@ const Card: React.FC<IProps> = ({ title, artist, album, duration, img, index, ob
             index,
             obj
           }
-        } />
+        } /> : <RemoveFav obj={
+          {
+            title,
+            artist,
+            album,
+            duration,
+            img,
+            index,
+            obj
+          }
+        } />}
         <h3>
           {calculateTime(duration)}
         </h3>

@@ -96,17 +96,6 @@ const musicSlice = createSlice({
     },
     setOutCurrentPlaylist: (state) => {
       state.currentPlaylist = null;
-    },
-    setAddLiked: (state, action: PayloadAction<number>) => {
-      state.musicFiltered = state.musicFiltered.map((music: IMusicSearched) => {
-        if (music.id === action.payload) {
-          return {
-            ...music,
-            liked: true
-          };
-        }
-        return music;
-      });
     }
   }
 });
@@ -131,8 +120,7 @@ export const {
   setTopPlaylist,
   setTrendingPodcasts,
   setCurrentPlaylist,
-  setOutCurrentPlaylist,
-  setAddLiked
+  setOutCurrentPlaylist
 } = musicSlice.actions;
 
 export default musicSlice.reducer;
@@ -367,19 +355,6 @@ export const getPlaylistById =
       return playlist;
     } catch (error) {
       return error as AxiosError;
-    } finally {
-      dispatch(setIsLoading(false));
-    }
-  };
-
-export const addLiked =
-  (id: number): Thunk =>
-  async (dispatch): Promise<void> => {
-    dispatch(setIsLoading(true));
-    try {
-      dispatch(setAddLiked(id));
-    } catch (error) {
-      return error;
     } finally {
       dispatch(setIsLoading(false));
     }
