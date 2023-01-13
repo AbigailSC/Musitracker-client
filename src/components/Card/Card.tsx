@@ -87,30 +87,8 @@ const Card: React.FC<IProps> = ({ title, artist, album, duration, img, index, ob
         </Link>
       </HStack>
       <HStack>
-        {/* <Icon onClick={() => handleLike()}>
-          {liked ? <AiFillHeart /> : <AiOutlineHeart />}
-        </Icon> */}
-        {active === undefined ? <Favorite obj={
-          {
-            title,
-            artist,
-            album,
-            duration,
-            img,
-            index,
-            obj
-          }
-        } /> : <RemoveFav obj={
-          {
-            title,
-            artist,
-            album,
-            duration,
-            img,
-            index,
-            obj
-          }
-        } />}
+        {active === undefined ? <Favorite obj={obj} /> : <RemoveFav obj={obj} />
+        }
         <h3>
           {calculateTime(duration)}
         </h3>

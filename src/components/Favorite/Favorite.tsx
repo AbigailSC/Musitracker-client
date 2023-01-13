@@ -3,16 +3,17 @@ import { AiOutlineHeart } from 'react-icons/ai';
 import { Button } from './Favorite.styles';
 import { addMusicFav } from '@redux/slices/favorites/index';
 import { useCustomDispatch } from '@hooks/redux';
-import { IProps } from '@components/Card/Card';
+import { IMusicSearched } from '@redux/slices/music/types';
 
-interface IFavorite {
-  obj: IProps;
+export interface IContainerFav {
+  obj: IMusicSearched;
 }
 
-const Favorite: React.FC<IFavorite> = ({ obj }) => {
+const Favorite: React.FC<IContainerFav> = ({ obj }) => {
   const dispatch = useCustomDispatch();
   const handleFavorite = (): void => {
     dispatch(addMusicFav(obj));
+    console.log(obj);
   };
 
   return (

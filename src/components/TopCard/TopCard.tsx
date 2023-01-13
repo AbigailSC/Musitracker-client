@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useCustomDispatch } from '@hooks/redux/index';
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import getAverageColor from '@utils/getAverageColor';
 import calculateTime from '@utils/calculateTime';
 import numberWithCommas from '@utils/numberWithCommas';
 import { getCurrentSong, getDominantColor } from '@redux/slices/music/index';
-import { Container, Text, Image, HStack, Icon } from './TopCard.styles';
+import { Container, Text, Image, HStack } from './TopCard.styles';
 import { IMusicSearched } from '@redux/slices/music/types';
+import Favorite from '@components/Favorite';
 
 interface IProps {
   title: string;
@@ -28,7 +28,6 @@ const TopCard: React.FC<IProps> = ({
 }) => {
   const dispatch = useCustomDispatch();
   const [color, setColor] = useState<string>('');
-  const [liked, setLiked] = useState<boolean>(false);
 
   const getColor = async (img: string): Promise<void> => {
     const color = await getAverageColor(img);
@@ -41,10 +40,6 @@ const TopCard: React.FC<IProps> = ({
 
   const handleCurrentDominantColor = (color: string): void => {
     dispatch(getDominantColor(color));
-  };
-
-  const handleLike = (): void => {
-    setLiked(!liked);
   };
 
   getColor(img);
@@ -74,9 +69,7 @@ const TopCard: React.FC<IProps> = ({
         <Text>{numberWithCommas(rank)}</Text>
       </HStack>
       <HStack>
-        <Icon onClick={() => handleLike()}>
-          {liked ? <AiFillHeart /> : <AiOutlineHeart />}
-        </Icon>
+        <Favorite obj={obj} />
         <h3>{calculateTime(duration)}</h3>
       </HStack>
     </Container>

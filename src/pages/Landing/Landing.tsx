@@ -8,8 +8,6 @@ import {
   Button,
   Navbar,
   Logo,
-  List,
-  AList,
   HyperText,
   Span
 } from './Landing.styles';
@@ -22,19 +20,6 @@ const Landing: React.FC = () => {
         <HStack>
           <Logo src="./logo.png" alt="musitracker" />
           <HyperText>Musitracker</HyperText>
-        </HStack>
-        <HStack>
-          <List>
-            <li>
-              <AList href="#landing">Home</AList>
-            </li>
-            <li>
-              <AList href="#about">About</AList>
-            </li>
-            <li>
-              <AList href="#contact">Contact</AList>
-            </li>
-          </List>
         </HStack>
         <HStack>
           <Link to="/singin">
@@ -56,11 +41,8 @@ const Landing: React.FC = () => {
             <Span>music</Span>.
           </Header>
           <Text>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur
-            quam optio suscipit neque! Exercitationem unde libero iure, vero
-            maxime maiores aspernatur deserunt quidem numquam reprehenderit sunt
-            totam porro corrupti quo? trum reiciendis minus, architecto eaque
-            placeat aliquam accusamus?
+            Discover, listen and share an ever-growing music catalog of emerging
+            and established artists from around the world.
           </Text>
         </Container>
       </LandingContainer>

@@ -18,13 +18,15 @@ import Sidebar from '@components/Sidebar';
 import Navbar from '@components/Navbar';
 import { useCustomSelector } from '@hooks/redux';
 import Card from '@components/Card';
-import { IFavs } from '@pages/Results/types';
+import { ITitle } from '@pages/Results/types';
 
 const Profile: React.FC = () => {
   const { userSlice } = useCustomSelector((state) => state);
   const { favorites } = useCustomSelector((state) => state);
   const user = userSlice.userInfo;
   const favoritesSongs = favorites.musicFav;
+
+  console.log(favoritesSongs);
 
   return (
     <Section>
@@ -42,20 +44,24 @@ const Profile: React.FC = () => {
             </ProfileHeader>
             <ProfileBody>
               <StackTitle>Favorites</StackTitle>
-              {favoritesSongs instanceof Array &&
-                favoritesSongs.map((card: IFavs, index: number) => (
+              {favoritesSongs === undefined ? (
+                <p>loading</p>
+              ) : (
+                favoritesSongs instanceof Array &&
+                favoritesSongs.map((card: ITitle, index: number) => (
                   <Card
-                    key={card.obj.id}
-                    obj={card.obj}
-                    title={card.obj.title}
-                    artist={card.obj.artist.name}
-                    album={card.obj.album.title}
-                    duration={card.obj.duration}
-                    img={card.obj.album.cover}
+                    key={index}
+                    obj={card}
+                    title={card.title}
+                    artist={card.artist.name}
+                    album={card.album.title}
+                    duration={card.duration}
+                    img={card.album.cover}
                     index={index + 1}
                     active={true}
                   />
-                ))}
+                ))
+              )}
             </ProfileBody>
           </ProfileContainer>
         </SectionContentLeft>

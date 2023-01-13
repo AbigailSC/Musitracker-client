@@ -3,13 +3,9 @@ import { Button } from '@components/Favorite/Favorite.styles';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { useCustomDispatch } from '@hooks/redux';
 import { removeMusicFav } from '@redux/slices/favorites/index';
-import { IProps } from '@components/Card/Card';
+import { IContainerFav } from '@components/Favorite/Favorite';
 
-interface IFavorite {
-  obj: IProps;
-}
-
-const RemoveFav: React.FC<IFavorite> = ({ obj }) => {
+const RemoveFav: React.FC<IContainerFav> = ({ obj }) => {
   const dispatch = useCustomDispatch();
 
   const handleFavorite = (): void => {

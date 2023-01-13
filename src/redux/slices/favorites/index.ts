@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from '../../../utils/axios';
 import { AxiosResponse, AxiosError } from 'axios';
 import { Thunk } from 'src/redux/store/store';
-import { IProps } from '@components/Card/Card';
+import { IMusicSearched } from '../music/types';
 
 export interface IFavorites {
   favorites: Data | [];
-  musicFav: IProps | [];
+  musicFav: IMusicSearched[] | [];
   isLoading: boolean;
 }
 
@@ -31,13 +31,13 @@ const favoritesSlice = createSlice({
     setAllFavorites: (state, action: PayloadAction<Data>) => {
       state.favorites = action.payload;
     },
-    setAddMusicFav: (state, action: PayloadAction<IProps>) => {
+    setAddMusicFav: (state, action: PayloadAction<IMusicSearched>) => {
       state.musicFav = [...state.musicFav, action.payload];
     },
-    setRemoveMusicFav: (state, action: PayloadAction<IProps>) => {
+    setRemoveMusicFav: (state, action: PayloadAction<IMusicSearched>) => {
       // state.musicFav = [];
       state.musicFav = state.musicFav.filter(
-        (music: IProps) => music.obj.id !== action.payload.obj.id
+        (music: IMusicSearched) => music.id !== action.payload.id
       );
     }
   }
@@ -125,7 +125,7 @@ export const removeFavorite =
   };
 
 export const addMusicFav =
-  (obj: IProps): Thunk =>
+  (obj: IMusicSearched): Thunk =>
   async (dispatch): Promise<void> => {
     try {
       dispatch(setAddMusicFav(obj));
@@ -135,10 +135,9 @@ export const addMusicFav =
   };
 
 export const removeMusicFav =
-  (obj: IProps): Thunk =>
+  (obj: IMusicSearched): Thunk =>
   async (dispatch): Promise<void> => {
     try {
-      console.log(obj);
       dispatch(setRemoveMusicFav(obj));
     } catch (error) {
       console.log(error);

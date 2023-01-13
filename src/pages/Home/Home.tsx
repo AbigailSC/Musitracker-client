@@ -62,7 +62,7 @@ const Home: React.FC = () => {
                 <ArtistBg />
                 <h3>Find the path to millions of songs. & jump start your musical journey ♫</h3>
               </ArtistHeader>
-              <Title>Trending Music</Title>
+              <Title id="trendingMusic">Trending Music</Title>
               <TrendingContainer>
                 {trendingMusic instanceof Array && trendingMusic.map((music: ITitle, index) => (
                   <TopCard key={music.id}
@@ -98,7 +98,7 @@ const Home: React.FC = () => {
                   <PodcastCard key={podcast.id} id={podcast.id} title={podcast.title} link={podcast.link} picture={podcast.picture} />
                 ))}
               </GenresContainer>
-              <Title>Genres</Title>
+              <Title id="genres">Genres</Title>
               <GenresContainer className='last'>
                 {genres instanceof Array
                   && genres.map((genre: IGenres) => (

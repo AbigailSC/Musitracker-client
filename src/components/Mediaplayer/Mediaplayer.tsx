@@ -18,11 +18,11 @@ import {
   IoVolumeMediumOutline
 } from 'react-icons/io5';
 import { FaPlay, FaPause } from 'react-icons/fa';
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { useCustomSelector, useCustomDispatch } from '@hooks/redux/index';
 import calculateTime from '@utils/calculateTime';
 import { getCurrentArtist, getArtistAlbums } from '@redux/slices/music/index';
 import { Link } from 'react-router-dom';
+import Favorite from '@components/Favorite';
 
 interface Props {
   current?: string;
@@ -34,7 +34,6 @@ const Mediaplayer: React.FC = () => {
   const { musicSlice } = useCustomSelector((state) => state);
   const currentMusic = musicSlice.currentSong;
   // const allMusic = musicSlice.musicFiltered;
-  const [isLiked, setIsLiked] = useState(false);
   const [dataCurrentMusic, setDataCurrentMusic] = useState<Props>({});
   // const [dataAllMusic, setDataAllMusic] = useState([]);
   // const [count, setCount] = useState(0);
@@ -61,10 +60,6 @@ const Mediaplayer: React.FC = () => {
         currentAudio.current.pause();
       }
     }
-  };
-
-  const handleLike = (): void => {
-    setIsLiked(!isLiked);
   };
 
   const handlePlay = (): void => {
@@ -156,11 +151,7 @@ const Mediaplayer: React.FC = () => {
         </Stack>
       </MediaPlayerContent>
       <MediaPlayerContent>
-        {isLiked ? (
-          <AiFillHeart onClick={() => handleLike()} className="icon" />
-        ) : (
-          <AiOutlineHeart onClick={() => handleLike()} className="icon" />
-        )}
+        <Favorite obj={currentMusic} />
         <IoVolumeMediumOutline className="volumeIcon" />
         {currentAudio.current !== null && (
           <input
