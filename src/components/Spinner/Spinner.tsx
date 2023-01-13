@@ -1,8 +1,12 @@
 import React from 'react';
-import { SpinnerLoader } from './Spinner.styles';
+import { SpinnerLoader, Container } from './Spinner.styles';
 
 const Spinner: React.FC = () => {
-  return <SpinnerLoader />;
+  return (
+    <Container>
+      <SpinnerLoader />
+    </Container>
+  );
 };
 
 export default Spinner;

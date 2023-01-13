@@ -51,3 +51,12 @@ export const SpinnerLoader = styled.span`
   transform: translateZ(0);
   animation: ${loading} 1.7s infinite ease, ${round} 1.7s infinite ease;
 `;
+
+export const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  padding-bottom: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
