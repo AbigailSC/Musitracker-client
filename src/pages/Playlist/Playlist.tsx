@@ -48,7 +48,6 @@ const Playlist: React.FC = () => {
   };
 
   getColor(currentPlaylist?.picture_xl as string);
-  console.log(currentPlaylist);
   return (
     <Section>
       <Sidebar />

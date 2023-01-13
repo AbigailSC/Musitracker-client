@@ -91,6 +91,12 @@ const Mediaplayer: React.FC = () => {
     dispatch(getArtistAlbums(currentMusic?.artist.id as number));
   };
 
+  const handleVolume = (): void => {
+    if (currentAudio.current !== null) {
+      currentAudio.current.volume =
+        (volumeBar.current?.value as unknown as number) / 10;
+    }
+  };
   return (
     <MediaPlayerContainer>
       <audio
@@ -151,7 +157,7 @@ const Mediaplayer: React.FC = () => {
         </Stack>
       </MediaPlayerContent>
       <MediaPlayerContent>
-        <Favorite obj={currentMusic} />
+        {currentMusic != null && <Favorite obj={currentMusic} />}
         <IoVolumeMediumOutline className="volumeIcon" />
         {currentAudio.current !== null && (
           <input
@@ -160,9 +166,7 @@ const Mediaplayer: React.FC = () => {
             max="10"
             defaultValue="5"
             ref={volumeBar}
-            onChange={() => {
-              currentAudio.current.volume = volumeBar.current.value / 10;
-            }}
+            onChange={() => handleVolume()}
           />
         )}
         {/* <input type="range" min="0" max="100" value="50" /> */}

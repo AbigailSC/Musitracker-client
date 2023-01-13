@@ -26,8 +26,6 @@ const Profile: React.FC = () => {
   const user = userSlice.userInfo;
   const favoritesSongs = favorites.musicFav;
 
-  console.log(favoritesSongs);
-
   return (
     <Section>
       <Sidebar />

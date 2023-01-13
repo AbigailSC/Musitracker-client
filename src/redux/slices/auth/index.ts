@@ -64,7 +64,6 @@ export const singInAuth =
       dispatch(postUser(token));
       return token;
     } catch (error) {
-      console.log('ta mal chee rdxtk');
       return error as AxiosError;
     } finally {
       dispatch(setIsLoading(false));

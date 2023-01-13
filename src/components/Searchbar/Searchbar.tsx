@@ -20,13 +20,6 @@ const Searchbar: React.FC = () => {
     }
   };
 
-  // const handleKeyDown = (e: KeyboardEvent<HTMLElement>): void => {
-  //   if (e.key === 'Enter') {
-  //     handleSearch();
-  //   }
-  // };
-
-  // onKeyDown={handleKeyDown} in searchbar input
   return (
     <SearchbarContainer>
       <SearchbarInput

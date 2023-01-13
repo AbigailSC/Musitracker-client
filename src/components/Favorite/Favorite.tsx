@@ -13,7 +13,6 @@ const Favorite: React.FC<IContainerFav> = ({ obj }) => {
   const dispatch = useCustomDispatch();
   const handleFavorite = (): void => {
     dispatch(addMusicFav(obj));
-    console.log(obj);
   };
 
   return (

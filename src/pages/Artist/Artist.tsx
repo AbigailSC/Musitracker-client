@@ -30,7 +30,7 @@ const Artist: React.FC = () => {
   const artistAlbums = musicSlice.artistAlbums;
   const topTracks = musicSlice.currentArtist?.topTracks;
   const skeletonFill = [1, 2, 3, 4, 5];
-  // console.log(musicSlice.currentAlbum);
+
   return (
     <Section>
       <Sidebar />

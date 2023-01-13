@@ -22,7 +22,6 @@ const PlaylistCard: React.FC<IProps> = ({ id, title, img }) => {
     <PlaylisCardContainer onClick={() => handleClick(id)}>
       <Link to={`/playlist/${id}`}>
         <PlaylistCardImg src={img} alt={title} />
-        {/* <Title>{title}</Title> */}
       </Link>
     </PlaylisCardContainer>
   );

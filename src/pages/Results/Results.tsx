@@ -28,24 +28,39 @@ const Results: React.FC = () => {
   const musicData = musicSlice.musicFiltered;
   const skeletonFill = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  const heroImage: string = musicData[0]?.artist.picture;
-  const heroName: string = musicData[0]?.artist.name;
+  const firstObject = musicData[0 as keyof typeof musicData];
+
+  const heroImage = firstObject?.artist?.picture;
+  const heroName = firstObject?.artist?.name;
+
   // Math.floor(Math.random() * musicData.length)
   // * En caso de reloguear la pagina, se pierde el estado de la busqueda
   // * por lo que se debe volver a buscar por el parametro de la url
+  //  const handleNext = (): void => {
+  //    if (count < dataAllMusic.length - 1) {
+  //      setCount(count + 1);
+  //      dispatch(getCurrentArtist(dataAllMusic[count + 1].artist.id));
+  //      dispatch(getArtistAlbums(dataAllMusic[count + 1].artist.id));
+  //    }
+  //  };
+  //
+  //  const handlePrev = (): void => {
+  //    if (count > 0) {
+  //      setCount(count - 1);
+  //      dispatch(getCurrentArtist(dataAllMusic[count - 1].artist.id));
+  //      dispatch(getArtistAlbums(dataAllMusic[count - 1].artist.id));
+  //    }
+  //  };
+  //
+  // if (
+  //   musicData instanceof Array &&
+  //   musicData !== undefined &&
+  //   musicData.length > 0
+  // ) {
+  //   console.log(musicData[0]?.artist.name);
+  // }
 
-  const verifyArray = (array: []): boolean => {
-    if (array.length === 0) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-  // useEffect(() => {
-  //   return () => {
-  //     dispatch(clearMusicBySearch());
-  //   };
-  // }, [dispatch]);
+  // console.log(firstObject);
 
   return (
     <Section>
@@ -64,7 +79,7 @@ const Results: React.FC = () => {
                 ))}
               </CardContainer>
             </Stack>
-          ) : verifyArray(musicData) ? (
+          ) : musicData instanceof Array && musicData.length === 0 ? (
             <ErrorContainer>
               <h3>
                 No results found with{' '}
@@ -87,7 +102,7 @@ const Results: React.FC = () => {
                     <h3>Artist</h3>
                     <h2>{heroName}</h2>
                   </HeroContainerHeader>
-                  <img src={heroImage} alt="hero" />
+                  <img src={heroImage as string} alt="hero" />
                 </HeroContainer>
               </Container>
               <HStack>
