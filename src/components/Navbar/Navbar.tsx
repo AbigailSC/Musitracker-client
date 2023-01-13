@@ -14,8 +14,10 @@ const Navbar: React.FC = () => {
     }
   };
   window.addEventListener('scroll', changeBackground);
+
+  // className={navbar ? 'activeColor' : null}
   return (
-    <NavbarContainer className={navbar && 'activeColor'}>
+    <NavbarContainer activeColor={navbar} className="activeColor">
       <Searchbar />
       <User />
     </NavbarContainer>
