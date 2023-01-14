@@ -42,8 +42,8 @@ const Profile: React.FC = () => {
             </ProfileHeader>
             <ProfileBody>
               <StackTitle>Favorites</StackTitle>
-              {favoritesSongs === undefined ? (
-                <p>loading</p>
+              {favoritesSongs.length === 0 ? (
+                <p>You haven{"'"}t added any favorites yet</p>
               ) : (
                 favoritesSongs instanceof Array &&
                 favoritesSongs.map((card: ITitle, index: number) => (

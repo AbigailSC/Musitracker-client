@@ -101,7 +101,7 @@ const SingIn: React.FC = () => {
             </Header>
             <Text>
               Do not you have an account yet?{' '}
-              <Link to="/singin" style={{ textDecoration: 'none' }}>
+              <Link to="/singup" style={{ textDecoration: 'none' }}>
                 <HyperText>Sing up</HyperText>
               </Link>
             </Text>

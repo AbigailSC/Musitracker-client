@@ -43,8 +43,11 @@ export const ProfileBody = styled.div`
   width: 80%;
   border: 1px dotted rgba(255, 255, 255, 0.1);
   align-items: flex-start;
-  padding: 2em 1em;
+  padding: 2em;
   border-radius: 1em;
+  & > p {
+    color: #d4d4ea;
+  }
 `;
 
 export const Stack = styled.div`
