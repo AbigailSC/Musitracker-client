@@ -146,7 +146,7 @@ const SingIn: React.FC = () => {
                 input.password.length === 0
               }
             >
-              Create account
+              Submit
             </Button>
           </Box>
         </Stack>
