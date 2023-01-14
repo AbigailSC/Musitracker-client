@@ -21,6 +21,7 @@ import {
 } from './Results.styles';
 import { ITitle } from './types';
 import { AiOutlineClockCircle } from 'react-icons/ai';
+import { IMusicSearched } from '@redux/slices/music/types';
 
 const Results: React.FC = () => {
   const { name } = useParams();
@@ -28,7 +29,7 @@ const Results: React.FC = () => {
   const musicData = musicSlice.musicFiltered;
   const skeletonFill = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  const firstObject = musicData[0 as keyof typeof musicData];
+  const firstObject: IMusicSearched = musicData[0 as keyof typeof musicData];
 
   const heroImage = firstObject?.artist?.picture;
   const heroName = firstObject?.artist?.name;
@@ -102,7 +103,7 @@ const Results: React.FC = () => {
                     <h3>Artist</h3>
                     <h2>{heroName}</h2>
                   </HeroContainerHeader>
-                  <img src={heroImage as string} alt="hero" />
+                  <img src={heroImage} alt="hero" />
                 </HeroContainer>
               </Container>
               <HStack>
