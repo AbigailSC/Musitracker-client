@@ -23,19 +23,19 @@
 
 # 📌 Table of Contents
 
-- [Deploy Website](#eyes-deploy-website)
-- [Technologies](#💻)
-- [Features](#⚡)
-- [How to run](#👷)
-- [Found a bug? Missing a specific feature?](#🔥)
+- [Deploy Website](#rocket-deploy-website)
+- [Technologies](#computer-technologies)
+- [Features](#rainbow-features)
+- [How to run](#construction_worker-how-to-run)
+- [Found a bug? Missing a specific feature?](#:space_invader:)
 
 ---
 
-# :eyes: Deploy website
+# :rocket: Deploy website
 
 👉 deploy: https://musitracker-client.vercel.app/
 
-# 💻 Technologies
+# :computer: Technologies
 
 This project was made using the follow technologies:
 
@@ -50,7 +50,7 @@ This project was made using the follow technologies:
   <li><a href="https://sweetalert2.github.io/">Sweet Alert 2</a></li>
 </ul>
 
-# ⚡ Features
+# :rainbow: Features
 
 - Sing up user (with form controlled)
 
@@ -116,7 +116,7 @@ This project was made using the follow technologies:
 
   <img src="https://res.cloudinary.com/dbhb8sohh/image/upload/v1673833237/sc17_h4pxxy.png" width="600" />
 
-# 👷 Installation
+# :construction_worker: Installation
 
 **1. Clone this repo by running the following command :-**
 
@@ -146,3 +146,9 @@ npm run dev
 ```
 
 **5.** **🎉 Open your browser and go to `http://127.0.0.1:5173/`**
+
+# :space_invader: Issues
+
+Feel free to **file a new issue** with a respective title and description on the the [Musitracker Client](https://github.com/AbigailSC/Musitracker-client/issues) repository. If you already found a solution to your problem, **i would love to review your pull request**!
+
+Made with love by [AbigailSC](https://github.com/AbigailSC) 🚀
