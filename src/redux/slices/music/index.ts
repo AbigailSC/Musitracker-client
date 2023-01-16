@@ -13,7 +13,8 @@ import {
   ITopPlaylist,
   ITrending,
   ITrendingArtists,
-  ITrendingPodcasts
+  ITrendingPodcasts,
+  IArtistSimilars
 } from './types';
 
 const initialState: IMusic = {
@@ -30,6 +31,7 @@ const initialState: IMusic = {
   trendingArtists: [],
   topPlaylist: [],
   trendingPodcasts: [],
+  artistSimilars: [],
   isLoading: false
 };
 
@@ -96,6 +98,12 @@ const musicSlice = createSlice({
     },
     setOutCurrentPlaylist: (state) => {
       state.currentPlaylist = null;
+    },
+    setSimilarArtists: (state, action: PayloadAction<IArtistSimilars>) => {
+      state.artistSimilars = action.payload;
+    },
+    setOutSimilarArsits: (state) => {
+      state.artistSimilars = [];
     }
   }
 });
@@ -120,7 +128,9 @@ export const {
   setTopPlaylist,
   setTrendingPodcasts,
   setCurrentPlaylist,
-  setOutCurrentPlaylist
+  setOutCurrentPlaylist,
+  setSimilarArtists,
+  setOutSimilarArsits
 } = musicSlice.actions;
 
 export default musicSlice.reducer;
@@ -352,6 +362,24 @@ export const getPlaylistById =
         `/music/playlist/${playlistId}`
       );
       dispatch(setCurrentPlaylist(playlist.data));
+      return playlist;
+    } catch (error) {
+      return error as AxiosError;
+    } finally {
+      dispatch(setIsLoading(false));
+    }
+  };
+
+export const getRelatedArtists =
+  (artistId: number): Thunk =>
+  async (dispatch): Promise<AxiosResponse | AxiosError> => {
+    dispatch(setOutSimilarArsits());
+    dispatch(setIsLoading(true));
+    try {
+      const playlist: AxiosResponse = await axios.get(
+        `/music/related/${artistId}`
+      );
+      dispatch(setSimilarArtists(playlist.data));
       return playlist;
     } catch (error) {
       return error as AxiosError;

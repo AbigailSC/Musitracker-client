@@ -14,7 +14,17 @@ export interface IMusic {
   trendingArtists: ITrendingArtists | [];
   topPlaylist: ITopPlaylist | [];
   trendingPodcasts: ITrendingPodcasts | [];
+  artistSimilars: IArtistSimilars | [];
   isLoading: boolean;
+}
+
+export interface IArtistSimilars {
+  id: number;
+  name: string;
+  picture_xl: string;
+  link: string;
+  nb_album: number;
+  nb_fan: number;
 }
 
 export interface ITrendingPodcasts {

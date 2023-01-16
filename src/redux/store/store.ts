@@ -28,7 +28,8 @@ const persistCurrentMusicConfig = {
     'trendingMusic',
     'trendingArtists',
     'topPlaylist',
-    'trendingPodcasts'
+    'trendingPodcasts',
+    'artistSimilars'
   ]
 };
 

@@ -131,3 +131,26 @@ export const HStack = styled.div`
     }
   }
 `;
+
+export const RelatedArtistsContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: space-between;
+  align-items: flex-end;
+  & > .anchor,
+  .anchor:link,
+  .anchor:visited,
+  .anchor:hover {
+    text-decoration: none;
+    color: #d4d4ea;
+    cursor: pointer;
+    outline: 0;
+    &:hover {
+      color: #fff;
+      transition: 0.2s ease-out;
+      text-decoration: underline;
+    }
+  }
+`;

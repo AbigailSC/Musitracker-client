@@ -15,6 +15,7 @@ import AlbumDetails from '@pages/AlbumDetails';
 import GlobalStyle from './styles/global';
 import { useCustomSelector } from '@hooks/redux/index';
 import Playlist from '@pages/Playlist';
+import RelatedArtists from '@pages/RelatedArtists';
 
 const App: React.FC = () => {
   const { auth } = useCustomSelector((state) => state);
@@ -86,6 +87,19 @@ const App: React.FC = () => {
             user ? (
               <>
                 <AlbumDetails />
+                <Mediaplayer />
+              </>
+            ) : (
+              <Navigate replace to="/" />
+            )
+          }
+        />
+        <Route
+          path="/related/:idArtist"
+          element={
+            user ? (
+              <>
+                <RelatedArtists />
                 <Mediaplayer />
               </>
             ) : (

@@ -5,8 +5,8 @@ import {
   SectionContent,
   SectionContentLeft
 } from '@pages/Home/Home.styles';
-import React from 'react';
-import { useCustomSelector } from '@hooks/redux';
+import React, { useEffect } from 'react';
+import { useCustomSelector, useCustomDispatch } from '@hooks/redux';
 import {
   ArtistContainer,
   ArtistHeader,
@@ -15,21 +15,35 @@ import {
   Subtitle,
   SkeletonFigure,
   AlbumCardContainer,
-  TopTracksContainer
+  TopTracksContainer,
+  RelatedArtistsContainer
 } from './Artist.styles';
 import { FiExternalLink } from 'react-icons/fi';
 import AlbumCard from '@components/AlbumCard';
 import TopCard from '@components/TopCard';
 import { ITitle } from '@pages/Results/types';
 import TopCardSkeleton from '@components/TopCardSkeleton/TopCardSkeleton';
-import { IArtistAlbums } from '@redux/slices/music/types';
+import { IArtistAlbums, IArtistSimilars } from '@redux/slices/music/types';
+import { getRelatedArtists } from '@redux/slices/music/index';
+import { Link, useParams } from 'react-router-dom';
+import GenreCard from '@components/GenreCard';
 
 const Artist: React.FC = () => {
+  const dispatch = useCustomDispatch();
+  const { idArtist } = useParams();
   const { musicSlice } = useCustomSelector((state) => state);
   const artist = musicSlice.currentArtist;
   const artistAlbums = musicSlice.artistAlbums;
   const topTracks = musicSlice.currentArtist?.topTracks;
   const skeletonFill = [1, 2, 3, 4, 5];
+  const relatedArtists = musicSlice.artistSimilars;
+  const principalRelateds =
+    relatedArtists instanceof Array &&
+    relatedArtists?.filter((artist, index) => index < 6);
+
+  useEffect(() => {
+    dispatch(getRelatedArtists(idArtist as unknown as number));
+  }, [idArtist, dispatch]);
 
   return (
     <Section>
@@ -89,6 +103,24 @@ const Artist: React.FC = () => {
                     />
                   ))}
               </TopTracksContainer>
+              <RelatedArtistsContainer>
+                <Title>Fans like it too</Title>
+                <Link to={`/related/${idArtist as string}`} className="anchor">
+                  See more
+                </Link>
+              </RelatedArtistsContainer>
+              <RelatedArtistsContainer>
+                {principalRelateds instanceof Array &&
+                  principalRelateds.map((artist: IArtistSimilars, index) => (
+                    <GenreCard
+                      artist={artist.name}
+                      id={artist.id}
+                      img={artist.picture_xl}
+                      key={index}
+                      link={artist.link}
+                    />
+                  ))}
+              </RelatedArtistsContainer>
               <Title>Discography</Title>
               <AlbumCardContainer>
                 {artistAlbums instanceof Array &&
