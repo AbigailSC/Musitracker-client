@@ -23,7 +23,7 @@
 
 # 📌 Table of Contents
 
-- [Deploy Website](#🚀)
+- [Deploy Website](#eyes-deploy-website)
 - [Technologies](#💻)
 - [Features](#⚡)
 - [How to run](#👷)
