@@ -23,11 +23,11 @@
 
 # 📌 Table of Contents
 
-- [Deploy Website](#rocket-deploy-website)
-- [Technologies](#computer-technologies)
-- [Features](#rainbow-features)
-- [How to run](#construction_worker-how-to-run)
-- [Found a bug? Missing a specific feature?](#:space_invader:)
+* [Deploy Website](#rocket-deploy-website)
+* [Technologies](#computer-technologies)
+* [Features](#rainbow-features)
+* [How to run](#construction_worker-how-to-run)
+* [Found a bug? Missing a specific feature?](#space_invader-issues)
 
 ---
 
