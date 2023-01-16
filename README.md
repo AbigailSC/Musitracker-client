@@ -95,6 +95,10 @@ This project was made using the follow technologies:
 - Get information about the artist
 
   <img src="https://res.cloudinary.com/dbhb8sohh/image/upload/v1673832372/sc12_uzo2c2.png" width="600" />
+  
+- Get artist relateds by artist
+
+  <img src="https://res.cloudinary.com/dbhb8sohh/image/upload/v1673888042/sc18_yz6jcn.png" width="600" />
 
 - Get information about the album
 
