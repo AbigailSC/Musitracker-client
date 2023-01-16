@@ -8,7 +8,7 @@
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-blue?style=for-the-badge"/>
   </a>
   <a href="https://github.com/AbigailSC/Musitracker-api#readme">
-    <img alt="Repo size" src="https://img.shields.io/badge/repo_size-926KB-blue?style=for-the-badge" />
+    <img alt="Repo size" src="https://img.shields.io/github/repo-size/abigailsc/musitracker-client?style=for-the-badge" />
   </a>
 </p>
 
