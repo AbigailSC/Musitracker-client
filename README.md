@@ -31,7 +31,7 @@
 
 ---
 
-# 🚀 Deploy website
+# :eyes: Deploy website
 
 👉 deploy: https://musitracker-client.vercel.app/
 
